@@ -13,8 +13,6 @@
 * **Entity**: contains basic model objects used by the Interactor.
 * **Routing**: contains navigation logic for describing which screens are shown in which order.
 
-![alt text][https://github.com/HoaiAn1/NewYourTimes_demo/blob/master/Mark%20Down%20Images/viper.png "Logo Title Text 1")
-
 # Project Structure:
 ## 3 main folders:
 * [NewYourTimes](#newyourtimes-1)
