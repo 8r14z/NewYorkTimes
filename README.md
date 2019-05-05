@@ -22,7 +22,7 @@ Contains App Bundle with 3 main folders:
 * **Common**: contains constants and utility methods that uses in the project
 
 ### <a name="head2"></a>NewYourTimes_DemoTests
-Contains Unit-test
+Contains Unit Tests
 
 ### <a name="head3"></a>NewYourTimes_DemoUITests
-Contains UI test
+Contains UI Tests
