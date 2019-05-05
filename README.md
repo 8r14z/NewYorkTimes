@@ -15,7 +15,7 @@ Contains App Bundle with 3 main folders:
 * [Resources](#head1.2) which contains all resources such as: images, localizable strings,...
 * [Supporting Files](#head1.3) which contains supporting files for the project: info.plist,...
 
-#### <a name="head1.1"/a> Source
+#### <a name="head1.1"></a> Source
 * **AppDelegate.swift** 
 * **UI**: contains all UI related code
 * **Components**: contains all backend supporting code
