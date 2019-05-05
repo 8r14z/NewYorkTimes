@@ -5,8 +5,8 @@
 
 # Project Structure:
 ## 3 main folders:
-* [NewYourTimes](#new-your-times)
-* [NewYourTimesTests](#head2)
+* [NewYourTimes](#newyourtimes-1)
+* [NewYourTimesTests](#newyourtimestests)
 * [NewYourTimesUITests](#head3)
 
 ### <a name="head1"></a>NewYourTimes
