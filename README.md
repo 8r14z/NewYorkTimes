@@ -5,9 +5,9 @@
 
 # Project Structure:
 ## 3 main folders:
-* [NewYourTimes_Demo](#head1)
-* [NewYourTimes_DemoTests](#head2)
-* [NewYourTimes_DemoUITests](#head3)
+* [NewYourTimes](#head1)
+* [NewYourTimesTests](#head2)
+* [NewYourTimesUITests](#head3)
 
 ### <a name="head1"></a>NewYourTimes_Demo
 Contains App Bundle with 3 main folders:
