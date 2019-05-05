@@ -18,6 +18,7 @@ Contains App Bundle with 3 main folders:
 #### <a name="head1.1"></a> Source
 * **AppDelegate.swift** 
 * **UI**: contains all UI related code
+  * dajshdkashd
 * **Components**: contains all backend supporting code
 * **Common**: contains constants and utility methods that uses in the project
 
