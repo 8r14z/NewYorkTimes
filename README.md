@@ -18,8 +18,12 @@ Contains App Bundle with 3 main folders:
 #### <a name="head1.1"></a> Source
 * **AppDelegate.swift** 
 * **UI**: contains all UI related code
-  * dajshdkashd
+  * **Custom**: contains all custom UI
+  * **Base**: contains all base protocol/classes
+  * **Screens**: contains all in-app screens
 * **Components**: contains all backend supporting code
+  * **Repositories**: contains all data access layers using in the project
+  * ...
 * **Common**: contains constants and utility methods that uses in the project
 
 ### <a name="head2"></a>NewYourTimesTests
