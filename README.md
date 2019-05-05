@@ -1,4 +1,4 @@
-# NewYourTimes_Demo
+# NewYourTimes
 
 *This is a demo for NYTimes APIs which applys **VIPER, POP, Core Data,** ...*
 
@@ -9,7 +9,7 @@
 * [NewYourTimesTests](#head2)
 * [NewYourTimesUITests](#head3)
 
-### <a name="head1"></a>NewYourTimes_Demo
+### <a name="head1"></a>NewYourTimes
 Contains App Bundle with 3 main folders:
 * [Source](#head1.1) which contains all source code
 * [Resources](#head1.2) which contains all resources such as: images, localizable strings,...
@@ -21,8 +21,8 @@ Contains App Bundle with 3 main folders:
 * **Components**: contains all backend supporting code
 * **Common**: contains constants and utility methods that uses in the project
 
-### <a name="head2"></a>NewYourTimes_DemoTests
+### <a name="head2"></a>NewYourTimesTests
 Contains Unit Tests
 
-### <a name="head3"></a>NewYourTimes_DemoUITests
+### <a name="head3"></a>NewYourTimesUITests
 Contains UI Tests
