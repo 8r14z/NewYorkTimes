@@ -16,11 +16,14 @@ Contains App Bundle with 3 main folders:
 * [Supporting Files](#head1.3) which contains supporting files for the project: info.plist,...
 
 ##### Source
-|_ **AppDelegate.swift
+|_ **AppDelegate.swift**
+
 |
 |_ **UI**: contains all UI related code
+
 |
 |_ **Components**: contains all backend support code
+
 |
 |_ **Common**: contains constant and all utility that uses in the project
 
