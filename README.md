@@ -19,7 +19,7 @@ Contains App Bundle with 3 main folders:
 * **AppDelegate.swift** 
 * **UI**: contains all UI related code
 * **Components**: contains all backend supporting code
-* **Common**: contains constants and all utility that uses in the project
+* **Common**: contains constants and utility methods that uses in the project
 
 ### <a name="head2"></a>NewYourTimes_DemoTests
 Contains Unit-test
