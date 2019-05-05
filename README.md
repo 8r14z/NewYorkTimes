@@ -4,11 +4,11 @@
 
 
 ## Project Structure:
-* [NewYourTimes_Demo](NewYourTimes_Demo)
-* [NewYourTimes_DemoTests](#head1234)
-* [NewYourTimes_DemoUITests](NewYourTimes_DemoUITests)
+* [NewYourTimes_Demo](#head1)
+* [NewYourTimes_DemoTests](#head2.1)
+* [NewYourTimes_DemoUITests](#head3)
 
-#### NewYourTimes_Demo
+#### <a name="head1"></a>NewYourTimes_Demo
 
 
 dsad
@@ -117,6 +117,6 @@ dasds
 
 
 
-#### <a name="head1234"></a>NewYourTimes_DemoTests
+#### <a name="head2.1"></a>NewYourTimes_DemoTests
 
-#### NewYourTimes_DemoUITests
+#### <a name="head3"></a>NewYourTimes_DemoUITests
