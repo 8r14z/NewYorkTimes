@@ -5,7 +5,7 @@
 
 # Project Structure:
 ## 3 main folders:
-* [NewYourTimes](#newyourtimes-1)
+* [NewYourTimes](#new-your-times)
 * [NewYourTimesTests](#head2)
 * [NewYourTimesUITests](#head3)
 
