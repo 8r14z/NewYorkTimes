@@ -5,7 +5,7 @@
 
 ## Project Structure:
 * [NewYourTimes_Demo](#head1)
-* [NewYourTimes_DemoTests][]
+* [NewYourTimes_DemoTests]()
 * [NewYourTimes_DemoUITests](#head3)
 
 #### <a name="head1"></a>NewYourTimes_Demo
