@@ -99,7 +99,7 @@
 		1F97D39E22806B390059808A /* NewYourTimes_Demo */ = {
 			isa = PBXGroup;
 			children = (
-				1F97D3D022806C530059808A /* Source */,
+				1F97D3D022806C530059808A /* Source Code */,
 				1F97D3D422806DAD0059808A /* Resources */,
 				1F97D3D622806E690059808A /* Supporting Files */,
 			);
@@ -124,7 +124,7 @@
 			path = NewYourTimes_DemoUITests;
 			sourceTree = "<group>";
 		};
-		1F97D3D022806C530059808A /* Source */ = {
+		1F97D3D022806C530059808A /* Source Code */ = {
 			isa = PBXGroup;
 			children = (
 				1F97D39F22806B390059808A /* AppDelegate.swift */,
@@ -133,7 +133,7 @@
 				1F97D3D522806E410059808A /* Core Data Model */,
 				1F97D3D322806CA60059808A /* Utilities */,
 			);
-			path = Source;
+			path = "Source Code";
 			sourceTree = "<group>";
 		};
 		1F97D3D122806C680059808A /* UI */ = {
