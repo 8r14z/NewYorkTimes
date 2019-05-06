@@ -130,8 +130,8 @@
 				1F97D39F22806B390059808A /* AppDelegate.swift */,
 				1F97D3D122806C680059808A /* UI */,
 				1F97D3D222806C750059808A /* Modules */,
-				1F97D3D522806E410059808A /* Core Data Model */,
-				1F97D3D322806CA60059808A /* Utilities */,
+				1F97D3D522806E410059808A /* Models */,
+				1F97D3D322806CA60059808A /* Common */,
 			);
 			path = "Source Code";
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 				1F97D3A322806B390059808A /* Main.storyboard */,
 				1F97D3D8228070C20059808A /* Shared */,
 				1F97D3D92280715A0059808A /* Home */,
-				1F97D3DA228071660059808A /* Article Detail */,
+				1F97D3DA228071660059808A /* Article */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -155,11 +155,11 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		1F97D3D322806CA60059808A /* Utilities */ = {
+		1F97D3D322806CA60059808A /* Common */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Utilities;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		1F97D3D422806DAD0059808A /* Resources */ = {
@@ -171,12 +171,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		1F97D3D522806E410059808A /* Core Data Model */ = {
+		1F97D3D522806E410059808A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				1F97D3A622806B390059808A /* NewYourTimes_Demo.xcdatamodeld */,
 			);
-			path = "Core Data Model";
+			path = Models;
 			sourceTree = "<group>";
 		};
 		1F97D3D622806E690059808A /* Supporting Files */ = {
@@ -209,11 +209,11 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		1F97D3DA228071660059808A /* Article Detail */ = {
+		1F97D3DA228071660059808A /* Article */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = "Article Detail";
+			path = Article;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
