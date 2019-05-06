@@ -11,7 +11,7 @@ import UIKit
 
 protocol ImageViewCaching {
     
-    var imageCacheManager: ImageCacheManaging { get set }
+    var imageCacheManager: ImageCaching { get set }
     
     func setImage(withURL url: URL)
 }
@@ -19,7 +19,11 @@ protocol ImageViewCaching {
 
 class AdvancedImageView: UIImageView, ImageViewCaching {
     
-    var imageCacheManager: ImageCacheManaging = ImageCacheManager()
+    lazy var imageCacheManager: ImageCaching = ImageCacher()
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func setImage(withURL url: URL) {
         

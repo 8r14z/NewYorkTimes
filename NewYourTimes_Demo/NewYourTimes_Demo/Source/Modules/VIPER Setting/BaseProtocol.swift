@@ -66,12 +66,21 @@ protocol BaseRouterProtocol {
  */
 protocol BaseDataRepositoryProtocol {
     
+    associatedtype Interactor: BaseInteractorProtocol
     associatedtype DataSource: BaseDataSourceProtocol
     
-    var dataSources: [DataSource] { get set }
+    var interactor: Interactor { get set }
+    
+    var localDataSource: DataSource { get set }
+    var cloudDataSource: DataSource { get set }
 }
 
 
 protocol BaseDataSourceProtocol {
     
+    // Data Access
+    func fetchData<T>(completion: CompletionBlock<T>?)
 }
+
+
+typealias CompletionBlock<T> = ((Result<[T], Error>) -> Void)
