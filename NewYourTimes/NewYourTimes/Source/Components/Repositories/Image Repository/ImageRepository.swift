@@ -9,10 +9,10 @@
 import Foundation
 
 
-
-protocol ImageRepositoryProtocol: BaseDataRepositoryProtocol {
-    
-}
+//
+//protocol ImageRepositoryProtocol: BaseDataRepositoryProtocol {
+//    
+//}
 
 
 

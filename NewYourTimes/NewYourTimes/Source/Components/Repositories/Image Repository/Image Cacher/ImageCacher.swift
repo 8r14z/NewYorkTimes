@@ -27,7 +27,7 @@ class ImageCacher: ImageCaching {
             self.cachePath = cachePath
             
         } else {
-            self.cachePath = Defaults.imageCachePath
+            self.cachePath = Constants.imageCachePath
         }
     }
 }

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F3FACF622804F3F002A0705 /* AriticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACF522804F3F002A0705 /* AriticleRepository.swift */; };
 		1F3FACFD2280502D002A0705 /* ArticleLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACFC2280502D002A0705 /* ArticleLocalDataSource.swift */; };
-		1F3FACFF2280503C002A0705 /* ArticleCloudDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACFE2280503C002A0705 /* ArticleCloudDataSource.swift */; };
+		1F3FACFF2280503C002A0705 /* ArticleRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACFE2280503C002A0705 /* ArticleRemoteDataSource.swift */; };
 		1F3FAD0122805133002A0705 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD0022805133002A0705 /* Reachability.swift */; };
 		1F3FAD2C22817B38002A0705 /* HomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD2B22817B38002A0705 /* HomeProtocol.swift */; };
 		1F3FAD2E22817B51002A0705 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD2D22817B51002A0705 /* HomeViewController.swift */; };
@@ -27,11 +27,15 @@
 		1F3FAD5822818576002A0705 /* BasePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD5722818576002A0705 /* BasePresenterProtocol.swift */; };
 		1F3FAD5A2281859A002A0705 /* BaseInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD592281859A002A0705 /* BaseInteractorProtocol.swift */; };
 		1F3FAD5C228185B7002A0705 /* BaseRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD5B228185B7002A0705 /* BaseRouterProtocol.swift */; };
-		1F3FAD5E228185D5002A0705 /* BaseRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD5D228185D5002A0705 /* BaseRepositoryProtocol.swift */; };
 		1F3FAD6022818A9B002A0705 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F3FAD5F22818A9B002A0705 /* README.md */; };
+		1F3FAD622281F18F002A0705 /* VMArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD612281F18F002A0705 /* VMArticle.swift */; };
+		1F3FAD652281FC1B002A0705 /* ACVProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD642281FC1B002A0705 /* ACVProtocol.swift */; };
+		1F3FAD672281FE42002A0705 /* ACVAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD662281FE42002A0705 /* ACVAdapter.swift */; };
+		1F3FAD6D2283419E002A0705 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD6C2283419E002A0705 /* ServiceProvider.swift */; };
+		1F3FAD702283419E002A0705 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD6F2283419E002A0705 /* Base.swift */; };
 		1F95E215227CAD9900EA7B02 /* AdvancedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */; };
 		1F95E217227CAE5400EA7B02 /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E216227CAE5400EA7B02 /* ImageCacher.swift */; };
-		1F95E21D227CB1A700EA7B02 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E21C227CB1A700EA7B02 /* Defaults.swift */; };
+		1F95E21D227CB1A700EA7B02 /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E21C227CB1A700EA7B02 /* Defines.swift */; };
 		1F95E22C227CB50D00EA7B02 /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E22B227CB50D00EA7B02 /* String+Utility.swift */; };
 		1F95E22F227CB69E00EA7B02 /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E22E227CB69E00EA7B02 /* UIImage+Utility.swift */; };
 		1F97D3A022806B390059808A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97D39F22806B390059808A /* AppDelegate.swift */; };
@@ -63,7 +67,7 @@
 /* Begin PBXFileReference section */
 		1F3FACF522804F3F002A0705 /* AriticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriticleRepository.swift; sourceTree = "<group>"; };
 		1F3FACFC2280502D002A0705 /* ArticleLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleLocalDataSource.swift; sourceTree = "<group>"; };
-		1F3FACFE2280503C002A0705 /* ArticleCloudDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCloudDataSource.swift; sourceTree = "<group>"; };
+		1F3FACFE2280503C002A0705 /* ArticleRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRemoteDataSource.swift; sourceTree = "<group>"; };
 		1F3FAD0022805133002A0705 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		1F3FAD2B22817B38002A0705 /* HomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProtocol.swift; sourceTree = "<group>"; };
 		1F3FAD2D22817B51002A0705 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -81,11 +85,15 @@
 		1F3FAD5722818576002A0705 /* BasePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenterProtocol.swift; sourceTree = "<group>"; };
 		1F3FAD592281859A002A0705 /* BaseInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInteractorProtocol.swift; sourceTree = "<group>"; };
 		1F3FAD5B228185B7002A0705 /* BaseRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouterProtocol.swift; sourceTree = "<group>"; };
-		1F3FAD5D228185D5002A0705 /* BaseRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepositoryProtocol.swift; sourceTree = "<group>"; };
 		1F3FAD5F22818A9B002A0705 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		1F3FAD612281F18F002A0705 /* VMArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMArticle.swift; sourceTree = "<group>"; };
+		1F3FAD642281FC1B002A0705 /* ACVProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACVProtocol.swift; sourceTree = "<group>"; };
+		1F3FAD662281FE42002A0705 /* ACVAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACVAdapter.swift; sourceTree = "<group>"; };
+		1F3FAD6C2283419E002A0705 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		1F3FAD6F2283419E002A0705 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedImageView.swift; sourceTree = "<group>"; };
 		1F95E216227CAE5400EA7B02 /* ImageCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
-		1F95E21C227CB1A700EA7B02 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		1F95E21C227CB1A700EA7B02 /* Defines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		1F95E22B227CB50D00EA7B02 /* String+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		1F95E22E227CB69E00EA7B02 /* UIImage+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
 		1F97D39C22806B390059808A /* NewYourTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewYourTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +148,7 @@
 			children = (
 				1F3FACF522804F3F002A0705 /* AriticleRepository.swift */,
 				1F3FACFC2280502D002A0705 /* ArticleLocalDataSource.swift */,
-				1F3FACFE2280503C002A0705 /* ArticleCloudDataSource.swift */,
+				1F3FACFE2280503C002A0705 /* ArticleRemoteDataSource.swift */,
 			);
 			path = "Article Repository";
 			sourceTree = "<group>";
@@ -159,6 +167,7 @@
 		1F3FAD4322818169002A0705 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				1F3FAD632281FC05002A0705 /* ACVKit */,
 				1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */,
 			);
 			path = Custom;
@@ -182,13 +191,29 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		1F3FAD51228184DB002A0705 /* Models */ = {
+		1F3FAD51228184DB002A0705 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				1F3FAD53228184F0002A0705 /* Article.swift */,
-				1F97D3D522806E410059808A /* Core Data */,
+				1F3FAD612281F18F002A0705 /* VMArticle.swift */,
 			);
-			path = Models;
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		1F3FAD632281FC05002A0705 /* ACVKit */ = {
+			isa = PBXGroup;
+			children = (
+				1F3FAD642281FC1B002A0705 /* ACVProtocol.swift */,
+				1F3FAD662281FE42002A0705 /* ACVAdapter.swift */,
+			);
+			path = ACVKit;
+			sourceTree = "<group>";
+		};
+		1F3FAD6E2283419E002A0705 /* SearchArticle Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "SearchArticle Repository";
 			sourceTree = "<group>";
 		};
 		1F95E213227C80F800EA7B02 /* CDArticle */ = {
@@ -281,8 +306,8 @@
 		1F97D3D122806C680059808A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				1F3FAD4322818169002A0705 /* Custom */,
 				1F3FAD45228182E2002A0705 /* Base */,
+				1F3FAD4322818169002A0705 /* Custom */,
 				1F3FAD44228181B8002A0705 /* Screens */,
 				1F97D3A322806B390059808A /* Main.storyboard */,
 			);
@@ -292,9 +317,10 @@
 		1F97D3D222806C750059808A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				1F3FAD5D228185D5002A0705 /* BaseRepositoryProtocol.swift */,
+				1F3FAD6F2283419E002A0705 /* Base.swift */,
 				1F3FAD2922817ADC002A0705 /* Image Repository */,
 				1F3FACF722804F59002A0705 /* Article Repository */,
+				1F3FAD6E2283419E002A0705 /* SearchArticle Repository */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -302,7 +328,7 @@
 		1F97D3D322806CA60059808A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1F95E21C227CB1A700EA7B02 /* Defaults.swift */,
+				1F95E21C227CB1A700EA7B02 /* Defines.swift */,
 				1F95E22D227CB57100EA7B02 /* Utility */,
 			);
 			path = Common;
@@ -349,8 +375,10 @@
 		1F97D3D8228070C20059808A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1F3FAD6C2283419E002A0705 /* ServiceProvider.swift */,
 				1F97D3D222806C750059808A /* Repositories */,
-				1F3FAD51228184DB002A0705 /* Models */,
+				1F3FAD51228184DB002A0705 /* Entities */,
+				1F97D3D522806E410059808A /* Core Data */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -507,14 +535,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3FAD652281FC1B002A0705 /* ACVProtocol.swift in Sources */,
 				1F3FACF622804F3F002A0705 /* AriticleRepository.swift in Sources */,
-				1F95E21D227CB1A700EA7B02 /* Defaults.swift in Sources */,
+				1F3FAD622281F18F002A0705 /* VMArticle.swift in Sources */,
+				1F95E21D227CB1A700EA7B02 /* Defines.swift in Sources */,
 				1F3FAD54228184F0002A0705 /* Article.swift in Sources */,
 				1F3FAD3222817B79002A0705 /* HomeInteractor.swift in Sources */,
 				1F3FAD3A22817D44002A0705 /* ImageCloudDataSource.swift in Sources */,
-				1F3FACFF2280503C002A0705 /* ArticleCloudDataSource.swift in Sources */,
+				1F3FACFF2280503C002A0705 /* ArticleRemoteDataSource.swift in Sources */,
 				1F3FACFD2280502D002A0705 /* ArticleLocalDataSource.swift in Sources */,
 				1F3FAD2E22817B51002A0705 /* HomeViewController.swift in Sources */,
+				1F3FAD6D2283419E002A0705 /* ServiceProvider.swift in Sources */,
+				1F3FAD702283419E002A0705 /* Base.swift in Sources */,
 				1F97D3A022806B390059808A /* AppDelegate.swift in Sources */,
 				1F3FAD5C228185B7002A0705 /* BaseRouterProtocol.swift in Sources */,
 				1F95E217227CAE5400EA7B02 /* ImageCacher.swift in Sources */,
@@ -530,7 +562,7 @@
 				1F3FAD5822818576002A0705 /* BasePresenterProtocol.swift in Sources */,
 				1F3FAD5A2281859A002A0705 /* BaseInteractorProtocol.swift in Sources */,
 				1F3FAD2C22817B38002A0705 /* HomeProtocol.swift in Sources */,
-				1F3FAD5E228185D5002A0705 /* BaseRepositoryProtocol.swift in Sources */,
+				1F3FAD672281FE42002A0705 /* ACVAdapter.swift in Sources */,
 				1F3FAD5022818431002A0705 /* CDArticle+CoreDataProperties.swift in Sources */,
 				1F95E22F227CB69E00EA7B02 /* UIImage+Utility.swift in Sources */,
 				1F3FAD4F22818431002A0705 /* CDArticle+CoreDataClass.swift in Sources */,

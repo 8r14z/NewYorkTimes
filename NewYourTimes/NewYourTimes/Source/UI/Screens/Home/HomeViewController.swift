@@ -8,7 +8,13 @@
 
 import UIKit
 
+
+
 class HomeViewController: UIViewController {
+    
+    lazy var collectionViewAdapter: ACVAdapter = {
+       return ACVAdapter()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()

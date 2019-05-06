@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+
+
+protocol ArticleLocalDataSourceProtocol {
+    
+}
+
+
+
+class ArticleLocalDataSource: ArticleLocalDataSourceProtocol {
+
+}

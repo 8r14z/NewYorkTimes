@@ -18,4 +18,34 @@ public extension Notification.Name {
 
 protocol ArticleRepositoryProtocol: BaseDataRepositoryProtocol {
     
+    func getArticles(onCacheCompletion: ReadCompletionBlock<Article>?,
+                     onCompletion: ReadCompletionBlock<Article>?)
 }
+
+
+
+class ArticleRepository: ArticleRepositoryProtocol {
+    
+    private let localDataSource: ArticleLocalDataSourceProtocol
+    private let remoteDataSource: ArticleRemoteDataSourceProtocol
+    
+    init(local: ArticleLocalDataSourceProtocol,
+         remote: ArticleRemoteDataSourceProtocol) {
+        localDataSource = local
+        remoteDataSource = remote
+    }
+    
+    func getArticles(onCacheCompletion: ReadCompletionBlock<Article>?, onCompletion: ReadCompletionBlock<Article>?) {
+        
+        DispatchQueue.global().async { [weak self] in
+            
+            guard let self = self else {
+                return
+            }
+        }
+    }
+
+}
+
+
+
