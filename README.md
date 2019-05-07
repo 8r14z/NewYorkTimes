@@ -5,12 +5,10 @@
 
 ## Project Structure:
 * [NewYourTimes_Demo](NewYourTimes_Demo)
-* [NewYourTimes_DemoTests](NewYourTimes_DemoTests)
+* [NewYourTimes_DemoTests](#new-your-times-demo-tests)
 * [NewYourTimes_DemoUITests](NewYourTimes_DemoUITests)
 
 #### NewYourTimes_Demo
-
-
 
 
 
