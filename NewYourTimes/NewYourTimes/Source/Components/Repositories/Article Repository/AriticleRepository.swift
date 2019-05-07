@@ -13,3 +13,9 @@ import Foundation
 public extension Notification.Name {
     static let newArticleUpdated = Notification.Name("newArticleUpdated")
 }
+
+
+
+protocol ArticleRepositoryProtocol: BaseDataRepositoryProtocol {
+    
+}

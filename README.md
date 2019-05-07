@@ -31,7 +31,7 @@ Contains App Bundle with 3 main folders:
   * **Custom**: contains all custom UI
   * **Base**: contains all base protocols/classes
   * **Screens**: contains all in-app screens
-* **Components**: contains all backend supporting code
+* **Components**: contains all backend related code
   * **Repositories**: contains all data access layers using in the project
   * ...
 * **Common**: contains constants and utility methods that uses in the project

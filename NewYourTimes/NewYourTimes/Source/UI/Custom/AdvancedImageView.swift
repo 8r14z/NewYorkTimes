@@ -21,10 +21,6 @@ class AdvancedImageView: UIImageView, ImageViewCaching {
     
     lazy var imageCacheManager: ImageCaching = ImageCacher()
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func setImage(withURL url: URL) {
         
     }
