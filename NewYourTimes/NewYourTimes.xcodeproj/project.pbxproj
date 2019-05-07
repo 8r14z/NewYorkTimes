@@ -88,17 +88,17 @@
 		1F95E21C227CB1A700EA7B02 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		1F95E22B227CB50D00EA7B02 /* String+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		1F95E22E227CB69E00EA7B02 /* UIImage+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
-		1F97D39C22806B390059808A /* NewYourTimes_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewYourTimes_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F97D39C22806B390059808A /* NewYourTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewYourTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F97D39F22806B390059808A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F97D3A422806B390059808A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F97D3A722806B390059808A /* NewYourTimes_Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewYourTimes_Demo.xcdatamodel; sourceTree = "<group>"; };
 		1F97D3A922806B3B0059808A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1F97D3AC22806B3B0059808A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F97D3AE22806B3B0059808A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F97D3B322806B3B0059808A /* NewYourTimes_DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewYourTimes_DemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F97D3B322806B3B0059808A /* NewYourTimesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewYourTimesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F97D3B722806B3B0059808A /* NewYourTimes_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewYourTimes_DemoTests.swift; sourceTree = "<group>"; };
 		1F97D3B922806B3B0059808A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F97D3BE22806B3B0059808A /* NewYourTimes_DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewYourTimes_DemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F97D3BE22806B3B0059808A /* NewYourTimesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewYourTimesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F97D3C222806B3B0059808A /* NewYourTimes_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewYourTimes_DemoUITests.swift; sourceTree = "<group>"; };
 		1F97D3C422806B3B0059808A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -222,9 +222,9 @@
 			isa = PBXGroup;
 			children = (
 				1F3FAD5F22818A9B002A0705 /* README.md */,
-				1F97D39E22806B390059808A /* NewYourTimes_Demo */,
-				1F97D3B622806B3B0059808A /* NewYourTimes_DemoTests */,
-				1F97D3C122806B3B0059808A /* NewYourTimes_DemoUITests */,
+				1F97D39E22806B390059808A /* NewYourTimes */,
+				1F97D3B622806B3B0059808A /* NewYourTimesTests */,
+				1F97D3C122806B3B0059808A /* NewYourTimesUITests */,
 				1F97D39D22806B390059808A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -232,39 +232,39 @@
 		1F97D39D22806B390059808A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1F97D39C22806B390059808A /* NewYourTimes_Demo.app */,
-				1F97D3B322806B3B0059808A /* NewYourTimes_DemoTests.xctest */,
-				1F97D3BE22806B3B0059808A /* NewYourTimes_DemoUITests.xctest */,
+				1F97D39C22806B390059808A /* NewYourTimes.app */,
+				1F97D3B322806B3B0059808A /* NewYourTimesTests.xctest */,
+				1F97D3BE22806B3B0059808A /* NewYourTimesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1F97D39E22806B390059808A /* NewYourTimes_Demo */ = {
+		1F97D39E22806B390059808A /* NewYourTimes */ = {
 			isa = PBXGroup;
 			children = (
 				1F97D3D022806C530059808A /* Source */,
 				1F97D3D422806DAD0059808A /* Resources */,
 				1F97D3D622806E690059808A /* Supporting Files */,
 			);
-			path = NewYourTimes_Demo;
+			path = NewYourTimes;
 			sourceTree = "<group>";
 		};
-		1F97D3B622806B3B0059808A /* NewYourTimes_DemoTests */ = {
+		1F97D3B622806B3B0059808A /* NewYourTimesTests */ = {
 			isa = PBXGroup;
 			children = (
 				1F97D3B722806B3B0059808A /* NewYourTimes_DemoTests.swift */,
 				1F97D3B922806B3B0059808A /* Info.plist */,
 			);
-			path = NewYourTimes_DemoTests;
+			path = NewYourTimesTests;
 			sourceTree = "<group>";
 		};
-		1F97D3C122806B3B0059808A /* NewYourTimes_DemoUITests */ = {
+		1F97D3C122806B3B0059808A /* NewYourTimesUITests */ = {
 			isa = PBXGroup;
 			children = (
 				1F97D3C222806B3B0059808A /* NewYourTimes_DemoUITests.swift */,
 				1F97D3C422806B3B0059808A /* Info.plist */,
 			);
-			path = NewYourTimes_DemoUITests;
+			path = NewYourTimesUITests;
 			sourceTree = "<group>";
 		};
 		1F97D3D022806C530059808A /* Source */ = {
@@ -377,9 +377,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1F97D39B22806B390059808A /* NewYourTimes_Demo */ = {
+		1F97D39B22806B390059808A /* NewYourTimes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F97D3C722806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimes_Demo" */;
+			buildConfigurationList = 1F97D3C722806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimes" */;
 			buildPhases = (
 				1F97D39822806B390059808A /* Sources */,
 				1F97D39922806B390059808A /* Frameworks */,
@@ -389,14 +389,14 @@
 			);
 			dependencies = (
 			);
-			name = NewYourTimes_Demo;
+			name = NewYourTimes;
 			productName = NewYourTimes_Demo;
-			productReference = 1F97D39C22806B390059808A /* NewYourTimes_Demo.app */;
+			productReference = 1F97D39C22806B390059808A /* NewYourTimes.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1F97D3B222806B3B0059808A /* NewYourTimes_DemoTests */ = {
+		1F97D3B222806B3B0059808A /* NewYourTimesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F97D3CA22806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimes_DemoTests" */;
+			buildConfigurationList = 1F97D3CA22806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimesTests" */;
 			buildPhases = (
 				1F97D3AF22806B3B0059808A /* Sources */,
 				1F97D3B022806B3B0059808A /* Frameworks */,
@@ -407,14 +407,14 @@
 			dependencies = (
 				1F97D3B522806B3B0059808A /* PBXTargetDependency */,
 			);
-			name = NewYourTimes_DemoTests;
+			name = NewYourTimesTests;
 			productName = NewYourTimes_DemoTests;
-			productReference = 1F97D3B322806B3B0059808A /* NewYourTimes_DemoTests.xctest */;
+			productReference = 1F97D3B322806B3B0059808A /* NewYourTimesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1F97D3BD22806B3B0059808A /* NewYourTimes_DemoUITests */ = {
+		1F97D3BD22806B3B0059808A /* NewYourTimesUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F97D3CD22806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimes_DemoUITests" */;
+			buildConfigurationList = 1F97D3CD22806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimesUITests" */;
 			buildPhases = (
 				1F97D3BA22806B3B0059808A /* Sources */,
 				1F97D3BB22806B3B0059808A /* Frameworks */,
@@ -425,9 +425,9 @@
 			dependencies = (
 				1F97D3C022806B3B0059808A /* PBXTargetDependency */,
 			);
-			name = NewYourTimes_DemoUITests;
+			name = NewYourTimesUITests;
 			productName = NewYourTimes_DemoUITests;
-			productReference = 1F97D3BE22806B3B0059808A /* NewYourTimes_DemoUITests.xctest */;
+			productReference = 1F97D3BE22806B3B0059808A /* NewYourTimesUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -453,7 +453,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1F97D39722806B390059808A /* Build configuration list for PBXProject "NewYourTimes_Demo" */;
+			buildConfigurationList = 1F97D39722806B390059808A /* Build configuration list for PBXProject "NewYourTimes" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -466,9 +466,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1F97D39B22806B390059808A /* NewYourTimes_Demo */,
-				1F97D3B222806B3B0059808A /* NewYourTimes_DemoTests */,
-				1F97D3BD22806B3B0059808A /* NewYourTimes_DemoUITests */,
+				1F97D39B22806B390059808A /* NewYourTimes */,
+				1F97D3B222806B3B0059808A /* NewYourTimesTests */,
+				1F97D3BD22806B3B0059808A /* NewYourTimesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -558,12 +558,12 @@
 /* Begin PBXTargetDependency section */
 		1F97D3B522806B3B0059808A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1F97D39B22806B390059808A /* NewYourTimes_Demo */;
+			target = 1F97D39B22806B390059808A /* NewYourTimes */;
 			targetProxy = 1F97D3B422806B3B0059808A /* PBXContainerItemProxy */;
 		};
 		1F97D3C022806B3B0059808A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1F97D39B22806B390059808A /* NewYourTimes_Demo */;
+			target = 1F97D39B22806B390059808A /* NewYourTimes */;
 			targetProxy = 1F97D3BF22806B3B0059808A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -710,7 +710,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2QHF7H3E43;
-				INFOPLIST_FILE = "$(SRCROOT)/NewYourTimes_Demo/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NewYourTimes/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -729,7 +729,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2QHF7H3E43;
-				INFOPLIST_FILE = "$(SRCROOT)/NewYourTimes_Demo/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NewYourTimes/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -758,7 +758,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewYourTimes_Demo.app/NewYourTimes_Demo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewYourTimes.app/NewYourTimes";
 			};
 			name = Debug;
 		};
@@ -778,7 +778,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewYourTimes_Demo.app/NewYourTimes_Demo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewYourTimes.app/NewYourTimes";
 			};
 			name = Release;
 		};
@@ -823,7 +823,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1F97D39722806B390059808A /* Build configuration list for PBXProject "NewYourTimes_Demo" */ = {
+		1F97D39722806B390059808A /* Build configuration list for PBXProject "NewYourTimes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F97D3C522806B3B0059808A /* Debug */,
@@ -832,7 +832,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F97D3C722806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimes_Demo" */ = {
+		1F97D3C722806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F97D3C822806B3B0059808A /* Debug */,
@@ -841,7 +841,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F97D3CA22806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimes_DemoTests" */ = {
+		1F97D3CA22806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F97D3CB22806B3B0059808A /* Debug */,
@@ -850,7 +850,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F97D3CD22806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimes_DemoUITests" */ = {
+		1F97D3CD22806B3B0059808A /* Build configuration list for PBXNativeTarget "NewYourTimesUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F97D3CE22806B3B0059808A /* Debug */,
