@@ -13,7 +13,7 @@ protocol ArticleRemoteDataSourceProtocol {
     
     var serviceProvider: ServiceProviding { get set }
 
-    func retrieveArticles(forPageOffset offset: UInt, pageSize: UInt, completion: ReadCompletionBlock<[Article]>?)
+    func fetchArticles(forPageOffset offset: UInt, pageSize: UInt, completion: ReadCompletionBlock<[Article]>?)
 }
 
 
@@ -25,24 +25,23 @@ class ArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
         self.serviceProvider = serviceProvider
     }
     
-    func retrieveArticles(forPageOffset offset: UInt, pageSize: UInt, completion: ReadCompletionBlock<[Article]>?) {
+    func fetchArticles(forPageOffset offset: UInt, pageSize: UInt, completion: ReadCompletionBlock<[Article]>?) {
         
-        let articleAPI: NYTimesAPI = .article(offset: offset, pageSize: pageSize)
-        let request = URLRequest(url: articleAPI.url)
-        
-        serviceProvider.download(with: request) { (result) in
+        let articleAPI = API.article(offset: offset, pageSize: 1)
+
+        serviceProvider.download(with: articleAPI.url) { (result) in
             
             switch result {
             case .success(let json):
                 
-                if let result = json[NYTimesAPI.JSONKeys.result] {
+                if let result = json[API.JSONKeys.result] as? [Any] {
                     
                     do {
                         
-                        let data = try JSONSerialization.data(withJSONObject: result)
-                        let articles = try JSONDecoder().decode([Article].self, from: data)
+                        let decoder = JSONDecoder(dateDecodingFormat: .iso8601DateAndTime)
+                        let articles = try decoder.decode([Article].self, from: result)
                         
-                        completion?(.success(articles.filter { $0.images != nil }))
+                        completion?(.success(articles))
                         
                     } catch {
                         completion?(.failure(error))

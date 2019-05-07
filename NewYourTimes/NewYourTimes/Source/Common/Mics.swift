@@ -53,3 +53,5 @@ enum FetchStrategy {
     /// Fetch from cache, then fecth from server.
     case cacheThenServer
 }
+
+

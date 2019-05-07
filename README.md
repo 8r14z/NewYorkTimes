@@ -29,7 +29,7 @@ Contains App Bundle with 3 main folders:
 * **AppDelegate.swift** 
 * **UI**: contains all UI related code
   * **Custom**: contains all custom UI
-  * **Base**: contains all base protocols/classes
+  * **Shared**: contains all shared UIs using across modules
   * **Screens**: contains all in-app screens
 * **Components**: contains all backend related code
   * **Repositories**: contains all data access layers using in the project

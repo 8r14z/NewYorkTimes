@@ -1,5 +1,5 @@
 //
-//  NYTimesAPI.swift
+//  API.swift
 //  NewYourTimes
 //
 //  Created by An Le  on 5/7/19.
@@ -10,7 +10,7 @@ import Foundation
 
 
 
-enum NYTimesAPI {
+enum API {
     
     // All constants of NewYourTimes APIs
     //************************************************
@@ -23,10 +23,14 @@ enum NYTimesAPI {
     
     struct JSONKeys {
         static let result = "results"
+        static let title = "title"
+        static let snippet = "abstract"
+        static let publishedDate = "published_date"
+        static let createdDate = "created_date"
+        static let images = "multimedia"
     }
     
     struct RequestKeys {
-        
         static let apiKey = "api-key"
         static let pageSize = "limit"
         static let offset = "offset"
@@ -35,7 +39,9 @@ enum NYTimesAPI {
     }
     //************************************************
 
+    /// Articles with number of articles (pageSize) in a request and offset of first article in batch.
     case article(offset: UInt, pageSize: UInt)
+    /// Search articles based on search term
     case searchArticle(searchQuery: String, pageIndex: UInt)
     
     var url: URL {

@@ -11,7 +11,7 @@ import Foundation
 
 
 protocol ServiceProviding {
-    func download(with request: URLRequest, completion: ReadCompletionBlock<JSON>?)
+    func download(with url: URL, completion: ReadCompletionBlock<JSON>?)
 }
 
 
@@ -19,9 +19,9 @@ protocol ServiceProviding {
 /// ServiceProvider
 extension URLSession: ServiceProviding {
     
-    func download(with request: URLRequest, completion: ReadCompletionBlock<JSON>?) {
+    func download(with url: URL, completion: ReadCompletionBlock<JSON>?) {
         
-        dataTask(with: request) { (data, response, error) in
+        dataTask(with: url) { (data, response, error) in
             
             if let error = error {
                 completion?(.failure(error))

@@ -12,10 +12,14 @@ import Foundation
 
 protocol ArticleLocalDataSourceProtocol {
     
+    func fetchArticles(withLimit limit: UInt, completion: ReadCompletionBlock<[Article]>?)
 }
 
 
 
 class ArticleLocalDataSource: ArticleLocalDataSourceProtocol {
 
+    func fetchArticles(withLimit limit: UInt, completion: ReadCompletionBlock<[Article]>?) {
+        completion?(.success([]))
+    }
 }

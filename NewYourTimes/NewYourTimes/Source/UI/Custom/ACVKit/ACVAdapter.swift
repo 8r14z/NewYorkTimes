@@ -57,24 +57,24 @@ final class ACVAdapter: NSObject {
             
         } else {
 
-            let oldSectionSet = Set(oldSectionModels.map { $0.identifier })
-            let newSectionSet = Set(newSectionModels.map { $0.identifier })
+            let oldSectionSet = Set(oldSectionModels.map { $0.identifier() })
+            let newSectionSet = Set(newSectionModels.map { $0.identifier() })
 
             let addedSections = newSectionModels
                 .enumerated()
-                .filter { oldSectionSet.contains($0.element.identifier) }
+                .filter { oldSectionSet.contains($0.element.identifier()) }
                 .map { $0.offset }
             
             let removedSections = oldSectionModels
                 .enumerated()
-                .filter { newSectionSet.contains($0.element.identifier) }
+                .filter { newSectionSet.contains($0.element.identifier()) }
                 .map { $0.offset }
             
             // Should apply DIFF to get better time complexity
             var movedSections = [(from: Int, to: Int)]()
             for (fromIndex, oldSection) in oldSectionModels.enumerated() {
-                if newSectionSet.contains(oldSection.identifier) {
-                    if let toIndex = newSectionModels.firstIndex(where: {oldSection.identifier == $0.identifier }) {
+                if newSectionSet.contains(oldSection.identifier()) {
+                    if let toIndex = newSectionModels.firstIndex(where: {oldSection.identifier() == $0.identifier() }) {
                         movedSections.append((from: fromIndex, to: toIndex))
                     }
                 }
@@ -206,7 +206,8 @@ extension ACVAdapter: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemModel = _itemForIndexPath(indexPath)
-        return itemModel.sizeForItem(withContainerSize: collectionView.bounds.size)
+        let ViewClass = itemModel.viewClass
+        return ViewClass.sizeForItem(itemModel, containerSize: collectionView.bounds.size)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -215,7 +216,8 @@ extension ACVAdapter: UICollectionViewDelegateFlowLayout {
             return CGSize.zero
         }
         
-        return supplementaryItemModel.sizeForItem(withContainerSize: collectionView.bounds.size)
+        let ViewClass = supplementaryItemModel.viewClass
+        return ViewClass.sizeForItem(supplementaryItemModel, containerSize: collectionView.bounds.size)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -224,7 +226,8 @@ extension ACVAdapter: UICollectionViewDelegateFlowLayout {
             return CGSize.zero
         }
         
-        return supplementaryItemModel.sizeForItem(withContainerSize: collectionView.bounds.size)
+        let ViewClass = supplementaryItemModel.viewClass
+        return ViewClass.sizeForItem(supplementaryItemModel, containerSize: collectionView.bounds.size)
     }
 }
 

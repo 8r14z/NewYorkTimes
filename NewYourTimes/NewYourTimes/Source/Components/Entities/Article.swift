@@ -14,14 +14,29 @@ struct Article: Codable {
     
     var title: String
     var snippet: String
-    var date: String
+    var updatedDate: Date
+    var publishedDate: Date
     var images: [Image]?
     
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey, CaseIterable {
         
         case title
         case snippet = "abstract"
-        case date = "published_date"
+        case updatedDate = "updated_date"
+        case publishedDate = "published_date"
         case images = "multimedia"
+    }
+}
+
+
+extension Article {
+    init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        title = try values.decode(String.self, forKey: .title)
+        snippet = try values.decode(String.self, forKey: .snippet)
+        updatedDate = try values.decode(Date.self, forKey: .updatedDate)
+        publishedDate = try values.decode(Date.self, forKey: .publishedDate)
+        images = try? values.decode([Image].self, forKey: .images)
     }
 }

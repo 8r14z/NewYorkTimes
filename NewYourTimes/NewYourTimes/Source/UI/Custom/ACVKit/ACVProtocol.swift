@@ -25,7 +25,7 @@ protocol ItemViewDelegate { }
 
 
 protocol Identifiable {
-    var identifier: Identifier { get set }
+    func identifier() -> Identifier
 }
 
 
@@ -37,6 +37,8 @@ protocol ItemViewProtocol: AnyObject {
     var itemViewDelegate: ItemViewDelegate? { get set }
     
     func didUpdate(_ object: ItemViewModel)
+    
+    static func sizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize
 }
 
 
@@ -44,9 +46,7 @@ protocol ItemViewProtocol: AnyObject {
 protocol ItemViewModel {
     
     var viewClass: ItemViewProtocol.Type { get }
-    var viewNibName: String? { get }
-    
-    func sizeForItem(withContainerSize size: CGSize) -> CGSize
+    var viewNibName: String? { get }    
 }
 
 

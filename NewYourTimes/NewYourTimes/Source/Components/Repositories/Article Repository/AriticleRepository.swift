@@ -18,8 +18,7 @@ public extension Notification.Name {
 
 protocol ArticleRepositoryProtocol: BaseDataRepositoryProtocol {
     
-    func getArticles(onCacheCompletion: ReadCompletionBlock<Article>?,
-                     onCompletion: ReadCompletionBlock<Article>?)
+    func fetchArticles(pageOffset: UInt, pageSize: UInt, fetchStrategy: FetchStrategy, callBack: ReadCompletionBlock<[Article]>?)
 }
 
 
@@ -29,21 +28,26 @@ class ArticleRepository: ArticleRepositoryProtocol {
     private let localDataSource: ArticleLocalDataSourceProtocol
     private let remoteDataSource: ArticleRemoteDataSourceProtocol
     
+    private var serialQueue = DispatchQueue(label: "ArticleRepositorySerialQueue")
+    
     init(local: ArticleLocalDataSourceProtocol, remote: ArticleRemoteDataSourceProtocol) {
         localDataSource = local
         remoteDataSource = remote
     }
-    
-    func getArticles(onCacheCompletion: ReadCompletionBlock<Article>?, onCompletion: ReadCompletionBlock<Article>?) {
-        
-        DispatchQueue.global().async { [weak self] in
+
+    func fetchArticles(pageOffset: UInt, pageSize: UInt, fetchStrategy: FetchStrategy, callBack: ReadCompletionBlock<[Article]>?) {
+
+        if fetchStrategy == .serverOnly {
+            remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: callBack)
             
-            guard let self = self else {
-                return
-            }
+        } else {
+            
+            // TODO: In development
+            
+            // Fake response
+            callBack?(.success([]))
         }
     }
-
 }
 
 

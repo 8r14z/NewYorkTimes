@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol ImageViewCaching {
+protocol AdvancedImageViewProtocol {
     
     var imageCacheManager: ImageCaching { get set }
     
@@ -17,7 +17,7 @@ protocol ImageViewCaching {
 }
 
 
-class AdvancedImageView: UIImageView, ImageViewCaching {
+class AdvancedImageView: UIImageView, AdvancedImageViewProtocol {
     
     lazy var imageCacheManager: ImageCaching = ImageCacher()
     
