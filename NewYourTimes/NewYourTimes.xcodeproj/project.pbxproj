@@ -32,10 +32,12 @@
 		1F3FAD652281FC1B002A0705 /* ACVProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD642281FC1B002A0705 /* ACVProtocol.swift */; };
 		1F3FAD672281FE42002A0705 /* ACVAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD662281FE42002A0705 /* ACVAdapter.swift */; };
 		1F3FAD6D2283419E002A0705 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD6C2283419E002A0705 /* ServiceProvider.swift */; };
-		1F3FAD702283419E002A0705 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD6F2283419E002A0705 /* Base.swift */; };
+		1F3FAD702283419E002A0705 /* BaseDataRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD6F2283419E002A0705 /* BaseDataRepositoryProtocol.swift */; };
+		1F5487A62280B3EB008F6823 /* NYTimesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A52280B3EB008F6823 /* NYTimesAPI.swift */; };
+		1F5487A82280BC08008F6823 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A72280BC08008F6823 /* Image.swift */; };
 		1F95E215227CAD9900EA7B02 /* AdvancedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */; };
 		1F95E217227CAE5400EA7B02 /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E216227CAE5400EA7B02 /* ImageCacher.swift */; };
-		1F95E21D227CB1A700EA7B02 /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E21C227CB1A700EA7B02 /* Defines.swift */; };
+		1F95E21D227CB1A700EA7B02 /* Mics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E21C227CB1A700EA7B02 /* Mics.swift */; };
 		1F95E22C227CB50D00EA7B02 /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E22B227CB50D00EA7B02 /* String+Utility.swift */; };
 		1F95E22F227CB69E00EA7B02 /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E22E227CB69E00EA7B02 /* UIImage+Utility.swift */; };
 		1F97D3A022806B390059808A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97D39F22806B390059808A /* AppDelegate.swift */; };
@@ -90,10 +92,12 @@
 		1F3FAD642281FC1B002A0705 /* ACVProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACVProtocol.swift; sourceTree = "<group>"; };
 		1F3FAD662281FE42002A0705 /* ACVAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACVAdapter.swift; sourceTree = "<group>"; };
 		1F3FAD6C2283419E002A0705 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
-		1F3FAD6F2283419E002A0705 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		1F3FAD6F2283419E002A0705 /* BaseDataRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDataRepositoryProtocol.swift; sourceTree = "<group>"; };
+		1F5487A52280B3EB008F6823 /* NYTimesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTimesAPI.swift; sourceTree = "<group>"; };
+		1F5487A72280BC08008F6823 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedImageView.swift; sourceTree = "<group>"; };
 		1F95E216227CAE5400EA7B02 /* ImageCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
-		1F95E21C227CB1A700EA7B02 /* Defines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
+		1F95E21C227CB1A700EA7B02 /* Mics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mics.swift; sourceTree = "<group>"; };
 		1F95E22B227CB50D00EA7B02 /* String+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		1F95E22E227CB69E00EA7B02 /* UIImage+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
 		1F97D39C22806B390059808A /* NewYourTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewYourTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				1F3FAD53228184F0002A0705 /* Article.swift */,
+				1F5487A72280BC08008F6823 /* Image.swift */,
 				1F3FAD612281F18F002A0705 /* VMArticle.swift */,
 			);
 			path = Entities;
@@ -317,7 +322,7 @@
 		1F97D3D222806C750059808A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				1F3FAD6F2283419E002A0705 /* Base.swift */,
+				1F3FAD6F2283419E002A0705 /* BaseDataRepositoryProtocol.swift */,
 				1F3FAD2922817ADC002A0705 /* Image Repository */,
 				1F3FACF722804F59002A0705 /* Article Repository */,
 				1F3FAD6E2283419E002A0705 /* SearchArticle Repository */,
@@ -328,7 +333,8 @@
 		1F97D3D322806CA60059808A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1F95E21C227CB1A700EA7B02 /* Defines.swift */,
+				1F95E21C227CB1A700EA7B02 /* Mics.swift */,
+				1F5487A52280B3EB008F6823 /* NYTimesAPI.swift */,
 				1F95E22D227CB57100EA7B02 /* Utility */,
 			);
 			path = Common;
@@ -538,7 +544,7 @@
 				1F3FAD652281FC1B002A0705 /* ACVProtocol.swift in Sources */,
 				1F3FACF622804F3F002A0705 /* AriticleRepository.swift in Sources */,
 				1F3FAD622281F18F002A0705 /* VMArticle.swift in Sources */,
-				1F95E21D227CB1A700EA7B02 /* Defines.swift in Sources */,
+				1F95E21D227CB1A700EA7B02 /* Mics.swift in Sources */,
 				1F3FAD54228184F0002A0705 /* Article.swift in Sources */,
 				1F3FAD3222817B79002A0705 /* HomeInteractor.swift in Sources */,
 				1F3FAD3A22817D44002A0705 /* ImageCloudDataSource.swift in Sources */,
@@ -546,9 +552,10 @@
 				1F3FACFD2280502D002A0705 /* ArticleLocalDataSource.swift in Sources */,
 				1F3FAD2E22817B51002A0705 /* HomeViewController.swift in Sources */,
 				1F3FAD6D2283419E002A0705 /* ServiceProvider.swift in Sources */,
-				1F3FAD702283419E002A0705 /* Base.swift in Sources */,
+				1F3FAD702283419E002A0705 /* BaseDataRepositoryProtocol.swift in Sources */,
 				1F97D3A022806B390059808A /* AppDelegate.swift in Sources */,
 				1F3FAD5C228185B7002A0705 /* BaseRouterProtocol.swift in Sources */,
+				1F5487A62280B3EB008F6823 /* NYTimesAPI.swift in Sources */,
 				1F95E217227CAE5400EA7B02 /* ImageCacher.swift in Sources */,
 				1F97D3A822806B390059808A /* NewYourTimes_Demo.xcdatamodeld in Sources */,
 				1F3FAD3822817D34002A0705 /* ImageLocalDataSource.swift in Sources */,
@@ -565,6 +572,7 @@
 				1F3FAD672281FE42002A0705 /* ACVAdapter.swift in Sources */,
 				1F3FAD5022818431002A0705 /* CDArticle+CoreDataProperties.swift in Sources */,
 				1F95E22F227CB69E00EA7B02 /* UIImage+Utility.swift in Sources */,
+				1F5487A82280BC08008F6823 /* Image.swift in Sources */,
 				1F3FAD4F22818431002A0705 /* CDArticle+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

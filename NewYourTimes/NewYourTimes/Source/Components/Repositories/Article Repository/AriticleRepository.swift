@@ -29,8 +29,7 @@ class ArticleRepository: ArticleRepositoryProtocol {
     private let localDataSource: ArticleLocalDataSourceProtocol
     private let remoteDataSource: ArticleRemoteDataSourceProtocol
     
-    init(local: ArticleLocalDataSourceProtocol,
-         remote: ArticleRemoteDataSourceProtocol) {
+    init(local: ArticleLocalDataSourceProtocol, remote: ArticleRemoteDataSourceProtocol) {
         localDataSource = local
         remoteDataSource = remote
     }

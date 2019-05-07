@@ -10,6 +10,18 @@ import Foundation
 
 
 
-struct Article {
+struct Article: Codable {
     
+    var title: String
+    var snippet: String
+    var date: String
+    var images: [Image]?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case title
+        case snippet = "abstract"
+        case date = "published_date"
+        case images = "multimedia"
+    }
 }

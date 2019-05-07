@@ -14,11 +14,8 @@ struct Constants {
     
     static let imageCachePath = "articleImages"
     
-    struct API {
-        static let pageSize = 10
-        static let newYourTimesKey = "FauIo832lm5wKELs5tCMUlRA9EOdZL96"
-        static let scheme = "https"
-        static let host = "api.nytimes.com"
+    struct JSON {
+        
     }
 }
 
@@ -26,8 +23,10 @@ struct Constants {
 
 // MARK: Typealias
 
-typealias ReadCompletionBlock<T> = ((Result<[T], Error>) -> Void)
-typealias WriteCompletionBlock = ((_ successed: Bool) -> Void)
+typealias ReadCompletionBlock<T> = (Result<T, Error>) -> Void
+typealias WriteCompletionBlock = (_ successed: Bool) -> Void
+
+typealias JSON = [String : Any]
 
 
 
@@ -36,6 +35,11 @@ typealias WriteCompletionBlock = ((_ successed: Bool) -> Void)
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
+}
+
+enum NetworkError: Error {
+    case noConnection
+    case unexpected
 }
 
 enum FetchStrategy {
