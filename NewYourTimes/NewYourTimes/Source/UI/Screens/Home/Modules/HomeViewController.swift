@@ -96,7 +96,7 @@ extension HomeViewController {
     
     func reloadView(with data: [HomeArticleSection]) {
         articleSections = data
-        acvAdapter.performUpdate()
+        acvAdapter.reloadAllSections()
     }
     
     func updateView(with newData: [HomeArticleSection]) {

@@ -10,9 +10,18 @@ import UIKit
 
 
 
-final class ACVAdapter: NSObject {
+protocol ACVAdapterProtocol {
     
-    // MARK: Public Properties
+    /// Update changes on data source: insert, delete, move in batch updates
+    func performUpdate()
+    func reloadAllSections()
+}
+
+
+
+final class ACVAdapter: NSObject, ACVAdapterProtocol {
+    
+    // MARK: === Public Properties ===
     weak var collectionView: UICollectionView? {
         didSet {
             collectionView?.dataSource = self
@@ -29,10 +38,11 @@ final class ACVAdapter: NSObject {
     
     weak var delegate: ACVAdapterDelegate?
     
-    private(set) var sectionViewModels: [SectionViewModel] = []
     
+    // MARK: === Private Properties ===
+    private var sectionViewModels: [SectionViewModel] = []
+
     
-    // MARK: Private Properties
     private var registeredCellClasses = Set<String>()
     private var registeredNibNames = Set<String>()
     private var registeredSupplementaryViewClasses = Set<String>()
@@ -41,49 +51,56 @@ final class ACVAdapter: NSObject {
     private func _itemForIndexPath(_ indexPath: IndexPath) -> ItemViewModel {
         return sectionViewModels[indexPath.section].itemModels[indexPath.item]
     }
-
-    func performUpdate() {
+    
+    private func _newSectionModels() -> [SectionViewModel] {
         
-        // TODO: IN DEVELOPMENT...
+        guard let dataSource = dataSource else {
+            return []
+        }
+        
+        return dataSource.sectionViewModelsForAdapter(self)
+    }
+
+    // MARK: === Perform Actions ===
+    func performUpdate() {
         
         guard let dataSource = dataSource else {
             return
         }
         
         let oldSectionModels = sectionViewModels
-        let newSectionModels = dataSource.sectionViewModelsForAdapter(self)
-        
-        sectionViewModels = newSectionModels
         
         if oldSectionModels.isEmpty {
-            collectionView?.reloadData()
+            reloadAllSections()
             
         } else {
             
+            let newSectionModels = dataSource.sectionViewModelsForAdapter(self)
+            sectionViewModels = newSectionModels
+
+            #warning("Apply DIFF to get better performace")
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                
-                let oldSectionSet = Set(oldSectionModels.map { $0.identifier() })
-                let newSectionSet = Set(newSectionModels.map { $0.identifier() })
+
+                let oldSectionMap = oldSectionModels.enumerated().reduce(into: [Identifier: (offset: Int, SectionViewModel)](), { $0[$1.element.identifier()] = $1 })
+                var newSectionMap = newSectionModels.enumerated().reduce(into: [Identifier: (offset: Int, SectionViewModel)](), { $0[$1.element.identifier()] = $1 })
                 
                 let addedSections = newSectionModels
                     .enumerated()
-                    .filter { !oldSectionSet.contains($0.element.identifier()) }
+                    .filter { oldSectionMap[$0.element.identifier()] == nil }
                     .map { $0.offset }
                 
                 let removedSections = oldSectionModels
                     .enumerated()
-                    .filter { !newSectionSet.contains($0.element.identifier()) }
+                    .filter { newSectionMap[$0.element.identifier()] == nil }
                     .map { $0.offset }
                 
                 // Should apply DIFF to get better time complexity
                 var movedSections = [(from: Int, to: Int)]()
-                for (fromIndex, oldSection) in oldSectionModels.enumerated() {
-                    if newSectionSet.contains(oldSection.identifier()) {
-                        if let toIndex = newSectionModels.firstIndex(where: {oldSection.identifier() == $0.identifier() }) {
-                            if fromIndex != toIndex {
-                                movedSections.append((from: fromIndex, to: toIndex))
-                            }
-                        }
+                
+                oldSectionMap.forEach { (entry) in
+                    if let toIndex = newSectionMap[entry.key]?.offset {
+                        let fromIndex = entry.value.offset
+                        movedSections.append((from: fromIndex, to: toIndex))
                     }
                 }
                 
@@ -104,6 +121,15 @@ final class ACVAdapter: NSObject {
         }
     }
 
+    func reloadAllSections() {
+        
+        sectionViewModels = _newSectionModels()
+        
+        collectionView?.reloadData()
+        collectionView?.collectionViewLayout.invalidateLayout()
+        collectionView?.layoutIfNeeded()
+    }
+    
 }
 
 
@@ -208,11 +234,8 @@ extension ACVAdapter: UICollectionViewDataSource {
 extension ACVAdapter: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectItem(_itemForIndexPath(indexPath), atIndexPath: indexPath)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        delegate?.didDeselectItem(_itemForIndexPath(indexPath), atIndexPath: indexPath)
+        delegate?.didSelectSection(indexPath.section)
+        delegate?.didSelectItem(at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -225,13 +248,7 @@ extension ACVAdapter: UICollectionViewDelegate {
             delegate?.willDisplaySection(section: indexPath.section)
         }
         
-        guard let cell = cell as? ItemViewProtocol else {
-            fatalError("Cell must conform to ItemViewProtocol")
-        }
-        
-        if let item = cell.itemModel {
-            delegate?.willDisplayItem(item, atIndexPath: indexPath)
-        }
+        delegate?.willDisplayItem(at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -244,13 +261,7 @@ extension ACVAdapter: UICollectionViewDelegate {
             delegate?.didEndDisplaySection(section: indexPath.section)
         }
         
-        guard let cell = cell as? ItemViewProtocol else {
-            fatalError("Cell must conform to ItemViewProtocol")
-        }
-        
-        if let item = cell.itemModel {
-            delegate?.didEndDisplayItem(item, atIndexPath: indexPath)
-        }
+        delegate?.didEndDisplayItem(at: indexPath)
     }
     
 }
@@ -292,20 +303,21 @@ protocol ACVAdapterDataSource: AnyObject {
     func sectionViewModelsForAdapter(_ adapter: ACVAdapter) -> [SectionViewModel]
 }
 
+
 protocol ACVAdapterDelegate: AnyObject {
-    func didSelectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
-    func didDeselectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
-    func didEndDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
-    func willDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
+    func didSelectItem(at indexPath: IndexPath)
+    func didSelectSection(_ section: Int)
+    func willDisplayItem(at indexPath: IndexPath)
+    func didEndDisplayItem(at indexPath: IndexPath)
     func willDisplaySection(section: Int)
     func didEndDisplaySection(section: Int)
 }
 
 extension ACVAdapterDelegate {
-    func didSelectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) { }
-    func didDeselectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) { }
-    func didEndDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) { }
-    func willDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) { }
+    func didSelectItem(at indexPath: IndexPath) { }
+    func didSelectSection(_ section: Int) { }
+    func willDisplayItem(at indexPath: IndexPath) { }
+    func didEndDisplayItem(at indexPath: IndexPath) { }
     func willDisplaySection(section: Int) { }
     func didEndDisplaySection(section: Int) { }
 }
