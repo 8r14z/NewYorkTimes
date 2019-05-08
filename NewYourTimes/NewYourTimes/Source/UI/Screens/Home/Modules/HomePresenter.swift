@@ -20,8 +20,6 @@ class HomePresenter: HomePresenterProtocol {
     
     private var isPullingToRefresh = false
     private var isFetchingArticles = false
-    
-    private(set) var articleSections = [HomeArticleSection]()
 
     // MARK: === VIEW EVENTS ===
     func viewDidAppear() {
@@ -29,18 +27,20 @@ class HomePresenter: HomePresenterProtocol {
         initialFetchArticles()
     }
     
+   
+
     func didPullToRefresh() {
         isPullingToRefresh = true
         initialFetchArticles()
     }
-
-    func didSelectSection(_ section: Int) {
+    
+    func didSelectSection(_ section: HomeArticleSection) {
         
     }
     
-    func willDisplaySection(_ section: Int) {
-        let remainItems = articleSections.count - section
-        if remainItems < 3 {
+    func willDisplaySection(_ section: HomeArticleSection, sectionIndex: Int, sectionCount: Int) {
+        let remainItems = sectionCount - sectionIndex
+        if remainItems < 4 {
             fetchMoreArticles()
         }
     }

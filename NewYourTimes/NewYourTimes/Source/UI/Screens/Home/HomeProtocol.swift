@@ -21,7 +21,8 @@ protocol HomeViewProtocol: ClassOnly {
     
     func hidePullToRefreshIndicator()
     
-    func performUpdateView()
+    func reloadView(with data: [HomeArticleSection])
+    func updateView(with newData: [HomeArticleSection])
 }
 
 
@@ -34,8 +35,8 @@ protocol HomePresenterProtocol: ClassOnly {
     
     func viewDidAppear()
     func didPullToRefresh()
-    func didSelectSection(_ section: Int)
-    func willDisplaySection(_ section: Int)
+    func didSelectSection(_ section: HomeArticleSection)
+    func willDisplaySection(_ section: HomeArticleSection, sectionIndex: Int, sectionCount: Int)
     
     // Interactor listener
     func didInitialFetchSuccess(_ articles: [Article])

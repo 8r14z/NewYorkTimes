@@ -31,6 +31,8 @@ class HomeViewController: UICollectionViewController, HomeViewProtocol {
         return indicator
     }()
     
+    private var articleSections = [HomeArticleSection]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -92,7 +94,13 @@ extension HomeViewController {
         refreshControl.endRefreshing()
     }
     
-    func performUpdateView() {
+    func reloadView(with data: [HomeArticleSection]) {
+        articleSections = data
+        acvAdapter.performUpdate()
+    }
+    
+    func updateView(with newData: [HomeArticleSection]) {
+        articleSections.append(contentsOf: newData)
         acvAdapter.performUpdate()
     }
 }
@@ -102,12 +110,7 @@ extension HomeViewController {
 extension HomeViewController: ACVAdapterDataSource {
     
     func sectionViewModelsForAdapter(_ adapter: ACVAdapter) -> [SectionViewModel] {
-        
-        if let presenter = presenter as? HomePresenter {
-            return presenter.articleSections
-        } else {
-            return []
-        }
+        return articleSections
     }
 }
 
@@ -117,11 +120,11 @@ extension HomeViewController: ACVAdapterDataSource {
 extension HomeViewController: ACVAdapterDelegate {
 
     func didSelectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) {
-        presenter?.didSelectSection(indexPath.section)
+        presenter?.didSelectSection(articleSections[indexPath.section])
     }
     
     func willDisplaySection(section: Int) {
-        presenter?.willDisplaySection(section)
+        presenter?.willDisplaySection(articleSections[section], sectionIndex: section, sectionCount: articleSections.count)
     }
     
     @objc func didPullToRefresh() {
