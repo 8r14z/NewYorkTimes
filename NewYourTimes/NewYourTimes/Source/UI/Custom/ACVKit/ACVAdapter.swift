@@ -207,7 +207,7 @@ extension ACVAdapter: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemModel = _itemForIndexPath(indexPath)
         let ViewClass = itemModel.viewClass
-        return ViewClass.sizeForItem(itemModel, containerSize: collectionView.bounds.size)
+        return ViewClass.preferredSizeForItem(itemModel, containerSize: collectionView.bounds.size)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -217,7 +217,7 @@ extension ACVAdapter: UICollectionViewDelegateFlowLayout {
         }
         
         let ViewClass = supplementaryItemModel.viewClass
-        return ViewClass.sizeForItem(supplementaryItemModel, containerSize: collectionView.bounds.size)
+        return ViewClass.preferredSizeForItem(supplementaryItemModel, containerSize: collectionView.bounds.size)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -227,7 +227,7 @@ extension ACVAdapter: UICollectionViewDelegateFlowLayout {
         }
         
         let ViewClass = supplementaryItemModel.viewClass
-        return ViewClass.sizeForItem(supplementaryItemModel, containerSize: collectionView.bounds.size)
+        return ViewClass.preferredSizeForItem(supplementaryItemModel, containerSize: collectionView.bounds.size)
     }
 }
 
@@ -241,5 +241,7 @@ protocol ACVAdapterDataSource: AnyObject {
 protocol ACVAdapterDelegate: AnyObject {
     func didSelectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
     func didDeselectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
+    func didEndDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
+    func willDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
 }
 

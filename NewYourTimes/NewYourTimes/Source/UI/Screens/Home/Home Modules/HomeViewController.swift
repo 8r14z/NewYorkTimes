@@ -19,11 +19,16 @@ class HomeViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        clearsSelectionOnViewWillAppear = false
-        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: collectionView.bounds.width, height: 100)
-        }
-        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = CGSize(width: 200, height: 100)
+        flowLayout.minimumLineSpacing = 0.0
+
+        collectionView.collectionViewLayout = flowLayout
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       
         acvAdapter.collectionView = collectionView
         acvAdapter.dataSource = self
         acvAdapter.delegate = self
@@ -35,8 +40,8 @@ class HomeViewController: UICollectionViewController {
 extension HomeViewController: ACVAdapterDataSource {
     
     func sectionViewModelsForAdapter(_ adapter: ACVAdapter) -> [SectionViewModel] {
-        let homeSecionModel = HomeArticleSection(title: "dasdas", snippet: "", publishedDate: Date(), imageURL: nil)
-        return [homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel]
+        let homeSecionModel = HomeArticleSection(title: "djnasjkdhjkkjsa jhd jksahkjhjkd ajkshj ahsjkhj hkj sjh jkahkjs khdjk asjhdjk ksahj hds jkhaj khsjk djkasj hdjkashkj dh ak", snippet: "", publishedDate: Date(), imageURL: nil)
+        return [homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel]
     }
 }
 
@@ -48,6 +53,14 @@ extension HomeViewController: ACVAdapterDelegate {
     }
     
     func didDeselectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) {
+        
+    }
+    
+    func didEndDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) {
+        
+    }
+    
+    func willDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) {
         
     }
 }

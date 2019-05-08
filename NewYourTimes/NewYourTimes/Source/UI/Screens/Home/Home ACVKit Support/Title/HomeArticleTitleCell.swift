@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class HomeArticleTitleCell: UICollectionViewCell, ItemViewProtocol {
+class HomeArticleTitleCell: FullWidthCollectionViewCell, ItemViewProtocol {
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,9 +28,5 @@ class HomeArticleTitleCell: UICollectionViewCell, ItemViewProtocol {
         if let object = object as? HomeArticleTitleItem {
             titleLabel.text = object.title
         }
-    }
-    
-    static func sizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize {
-        return CGSize(width: containerSize.width, height: 100)
     }
 }

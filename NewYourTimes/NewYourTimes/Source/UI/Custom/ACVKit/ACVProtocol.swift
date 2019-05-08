@@ -38,7 +38,16 @@ protocol ItemViewProtocol: AnyObject {
     
     func didUpdate(_ object: ItemViewModel)
     
-    static func sizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize
+    /// Calculate preferred size for item using in collection view. By default its size is (containerSize.width, 100)
+    static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize
+}
+
+
+extension ItemViewProtocol {
+    
+    static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize {
+        return CGSize(width: containerSize.width, height: 100)
+    }
 }
 
 
@@ -46,7 +55,7 @@ protocol ItemViewProtocol: AnyObject {
 protocol ItemViewModel {
     
     var viewClass: ItemViewProtocol.Type { get }
-    var viewNibName: String? { get }    
+    var viewNibName: String? { get }
 }
 
 

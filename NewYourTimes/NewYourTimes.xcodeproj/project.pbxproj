@@ -40,6 +40,8 @@
 		1F5487BE2281C1FD008F6823 /* HomeArticleTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487BC2281C1FD008F6823 /* HomeArticleTitleCell.swift */; };
 		1F5487BF2281C1FD008F6823 /* HomeArticleTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5487BD2281C1FD008F6823 /* HomeArticleTitleCell.xib */; };
 		1F5487C22281C882008F6823 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487C12281C882008F6823 /* HomeViewController.swift */; };
+		1F5487C4228292AE008F6823 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5487C3228292AE008F6823 /* View.xib */; };
+		1F5487C622829495008F6823 /* FullWidthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487C522829495008F6823 /* FullWidthCollectionViewCell.swift */; };
 		1F95E215227CAD9900EA7B02 /* AdvancedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */; };
 		1F95E217227CAE5400EA7B02 /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E216227CAE5400EA7B02 /* ImageCacher.swift */; };
 		1F95E21D227CB1A700EA7B02 /* Mics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E21C227CB1A700EA7B02 /* Mics.swift */; };
@@ -105,6 +107,8 @@
 		1F5487BC2281C1FD008F6823 /* HomeArticleTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleTitleCell.swift; sourceTree = "<group>"; };
 		1F5487BD2281C1FD008F6823 /* HomeArticleTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeArticleTitleCell.xib; sourceTree = "<group>"; };
 		1F5487C12281C882008F6823 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1F5487C3228292AE008F6823 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		1F5487C522829495008F6823 /* FullWidthCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedImageView.swift; sourceTree = "<group>"; };
 		1F95E216227CAE5400EA7B02 /* ImageCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
 		1F95E21C227CB1A700EA7B02 /* Mics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mics.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 			children = (
 				1F3FAD632281FC05002A0705 /* ACVKit */,
 				1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */,
+				1F5487C522829495008F6823 /* FullWidthCollectionViewCell.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				1F3FAD2F22817B70002A0705 /* HomePresenter.swift */,
 				1F3FAD3122817B79002A0705 /* HomeInteractor.swift */,
 				1F3FAD3322817B82002A0705 /* HomeRouter.swift */,
+				1F5487C3228292AE008F6823 /* View.xib */,
 			);
 			path = "Home Modules";
 			sourceTree = "<group>";
@@ -543,6 +549,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5487C4228292AE008F6823 /* View.xib in Resources */,
 				1F97D3AD22806B3B0059808A /* LaunchScreen.storyboard in Resources */,
 				1F3FAD4C22818389002A0705 /* Localizable.strings in Resources */,
 				1F3FAD6022818A9B002A0705 /* README.md in Resources */,
@@ -595,6 +602,7 @@
 				1F97D3A822806B390059808A /* NewYourTimes_Demo.xcdatamodeld in Sources */,
 				1F3FAD3822817D34002A0705 /* ImageLocalDataSource.swift in Sources */,
 				1F95E22C227CB50D00EA7B02 /* String+Utility.swift in Sources */,
+				1F5487C622829495008F6823 /* FullWidthCollectionViewCell.swift in Sources */,
 				1F3FAD3622817D25002A0705 /* ImageRepository.swift in Sources */,
 				1F5487AC228154BA008F6823 /* JSONDecoder+Utility.swift in Sources */,
 				1F5487B22281BDCE008F6823 /* HomeArticleSection.swift in Sources */,
