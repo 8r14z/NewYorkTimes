@@ -25,12 +25,10 @@
 		1F3FAD652281FC1B002A0705 /* ACVProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD642281FC1B002A0705 /* ACVProtocol.swift */; };
 		1F3FAD672281FE42002A0705 /* ACVAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD662281FE42002A0705 /* ACVAdapter.swift */; };
 		1F3FAD6D2283419E002A0705 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD6C2283419E002A0705 /* ServiceProvider.swift */; };
-		1F3FAD702283419E002A0705 /* BaseDataRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FAD6F2283419E002A0705 /* BaseDataRepositoryProtocol.swift */; };
 		1F5487A62280B3EB008F6823 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A52280B3EB008F6823 /* API.swift */; };
 		1F5487A82280BC08008F6823 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A72280BC08008F6823 /* Image.swift */; };
 		1F5487AA22815285008F6823 /* DateFormatter+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A922815285008F6823 /* DateFormatter+Utility.swift */; };
 		1F5487AC228154BA008F6823 /* JSONDecoder+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487AB228154BA008F6823 /* JSONDecoder+Utility.swift */; };
-		1F5487AE2281AE09008F6823 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487AD2281AE09008F6823 /* Promise.swift */; };
 		1F5487B22281BDCE008F6823 /* HomeArticleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487B12281BDCE008F6823 /* HomeArticleSection.swift */; };
 		1F5487B42281BE71008F6823 /* ArticleTitleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487B32281BE71008F6823 /* ArticleTitleItem.swift */; };
 		1F5487B62281BE82008F6823 /* ArticleSnippetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487B52281BE82008F6823 /* ArticleSnippetItem.swift */; };
@@ -56,6 +54,15 @@
 		1F5487ED2282EA6F008F6823 /* UIScrollView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487EC2282EA6F008F6823 /* UIScrollView+Utility.swift */; };
 		1F5487EF2282F472008F6823 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487EE2282F472008F6823 /* UIColor+Utility.swift */; };
 		1F5487F12282FBDC008F6823 /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487F02282FBDC008F6823 /* UIFont+Utility.swift */; };
+		1F5487F322834C95008F6823 /* SearchArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487F222834C95008F6823 /* SearchArticleRepository.swift */; };
+		1F5487F522834CA2008F6823 /* SearchArticleLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487F422834CA2008F6823 /* SearchArticleLocalDataSource.swift */; };
+		1F5487F722834CB7008F6823 /* SearchArticleRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487F622834CB7008F6823 /* SearchArticleRemoteDataSource.swift */; };
+		1F5487F922834EC8008F6823 /* SearchArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487F822834EC8008F6823 /* SearchArticle.swift */; };
+		1F5487FB22835930008F6823 /* DatabaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487FA22835930008F6823 /* DatabaseStore.swift */; };
+		1F5487FD22835D8D008F6823 /* AdditionalInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487FC22835D8D008F6823 /* AdditionalInfoItem.swift */; };
+		1F54880122835DC6008F6823 /* AdditionalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487FF22835DC6008F6823 /* AdditionalInfoCell.swift */; };
+		1F54880222835DC6008F6823 /* AdditionalInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F54880022835DC6008F6823 /* AdditionalInfoCell.xib */; };
+		1F54880422836163008F6823 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F54880322836163008F6823 /* Search.storyboard */; };
 		1F95E215227CAD9900EA7B02 /* AdvancedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */; };
 		1F95E217227CAE5400EA7B02 /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E216227CAE5400EA7B02 /* ImageCacher.swift */; };
 		1F95E21D227CB1A700EA7B02 /* Mics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E21C227CB1A700EA7B02 /* Mics.swift */; };
@@ -106,12 +113,10 @@
 		1F3FAD642281FC1B002A0705 /* ACVProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACVProtocol.swift; sourceTree = "<group>"; };
 		1F3FAD662281FE42002A0705 /* ACVAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACVAdapter.swift; sourceTree = "<group>"; };
 		1F3FAD6C2283419E002A0705 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
-		1F3FAD6F2283419E002A0705 /* BaseDataRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDataRepositoryProtocol.swift; sourceTree = "<group>"; };
 		1F5487A52280B3EB008F6823 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1F5487A72280BC08008F6823 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		1F5487A922815285008F6823 /* DateFormatter+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Utility.swift"; sourceTree = "<group>"; };
 		1F5487AB228154BA008F6823 /* JSONDecoder+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Utility.swift"; sourceTree = "<group>"; };
-		1F5487AD2281AE09008F6823 /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		1F5487B12281BDCE008F6823 /* HomeArticleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeArticleSection.swift; sourceTree = "<group>"; };
 		1F5487B32281BE71008F6823 /* ArticleTitleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTitleItem.swift; sourceTree = "<group>"; };
 		1F5487B52281BE82008F6823 /* ArticleSnippetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSnippetItem.swift; sourceTree = "<group>"; };
@@ -137,6 +142,15 @@
 		1F5487EC2282EA6F008F6823 /* UIScrollView+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utility.swift"; sourceTree = "<group>"; };
 		1F5487EE2282F472008F6823 /* UIColor+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
 		1F5487F02282FBDC008F6823 /* UIFont+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
+		1F5487F222834C95008F6823 /* SearchArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticleRepository.swift; sourceTree = "<group>"; };
+		1F5487F422834CA2008F6823 /* SearchArticleLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticleLocalDataSource.swift; sourceTree = "<group>"; };
+		1F5487F622834CB7008F6823 /* SearchArticleRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticleRemoteDataSource.swift; sourceTree = "<group>"; };
+		1F5487F822834EC8008F6823 /* SearchArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticle.swift; sourceTree = "<group>"; };
+		1F5487FA22835930008F6823 /* DatabaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseStore.swift; sourceTree = "<group>"; };
+		1F5487FC22835D8D008F6823 /* AdditionalInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoItem.swift; sourceTree = "<group>"; };
+		1F5487FF22835DC6008F6823 /* AdditionalInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoCell.swift; sourceTree = "<group>"; };
+		1F54880022835DC6008F6823 /* AdditionalInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalInfoCell.xib; sourceTree = "<group>"; };
+		1F54880322836163008F6823 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Search.storyboard; path = ../../../../../../../Documents/Search.storyboard; sourceTree = "<group>"; };
 		1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedImageView.swift; sourceTree = "<group>"; };
 		1F95E216227CAE5400EA7B02 /* ImageCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
 		1F95E21C227CB1A700EA7B02 /* Mics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mics.swift; sourceTree = "<group>"; };
@@ -185,6 +199,7 @@
 		1F3FACF222804BC9002A0705 /* Search  */ = {
 			isa = PBXGroup;
 			children = (
+				1F54880322836163008F6823 /* Search.storyboard */,
 			);
 			path = "Search ";
 			sourceTree = "<group>";
@@ -230,13 +245,14 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		1F3FAD51228184DB002A0705 /* Entities */ = {
+		1F3FAD51228184DB002A0705 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				1F3FAD53228184F0002A0705 /* Article.swift */,
+				1F5487F822834EC8008F6823 /* SearchArticle.swift */,
 				1F5487A72280BC08008F6823 /* Image.swift */,
 			);
-			path = Entities;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		1F3FAD632281FC05002A0705 /* ACVKit */ = {
@@ -252,6 +268,9 @@
 		1F3FAD6E2283419E002A0705 /* SearchArticle Repository */ = {
 			isa = PBXGroup;
 			children = (
+				1F5487F222834C95008F6823 /* SearchArticleRepository.swift */,
+				1F5487F422834CA2008F6823 /* SearchArticleLocalDataSource.swift */,
+				1F5487F622834CB7008F6823 /* SearchArticleRemoteDataSource.swift */,
 			);
 			name = "SearchArticle Repository";
 			sourceTree = "<group>";
@@ -289,6 +308,7 @@
 		1F5487C02281C63A008F6823 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1F5487FE22835D95008F6823 /* Additional Info */,
 				1F5487E72282DB5C008F6823 /* Separator */,
 				1F5487CE2282A60F008F6823 /* Article Items */,
 			);
@@ -343,6 +363,16 @@
 				1F5487E82282DB6D008F6823 /* SepartorCell.swift */,
 			);
 			path = Separator;
+			sourceTree = "<group>";
+		};
+		1F5487FE22835D95008F6823 /* Additional Info */ = {
+			isa = PBXGroup;
+			children = (
+				1F5487FC22835D8D008F6823 /* AdditionalInfoItem.swift */,
+				1F5487FF22835DC6008F6823 /* AdditionalInfoCell.swift */,
+				1F54880022835DC6008F6823 /* AdditionalInfoCell.xib */,
+			);
+			path = "Additional Info";
 			sourceTree = "<group>";
 		};
 		1F95E213227C80F800EA7B02 /* CDArticle */ = {
@@ -453,7 +483,6 @@
 		1F97D3D222806C750059808A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				1F3FAD6F2283419E002A0705 /* BaseDataRepositoryProtocol.swift */,
 				1F3FAD2922817ADC002A0705 /* Image Repository */,
 				1F3FACF722804F59002A0705 /* Article Repository */,
 				1F3FAD6E2283419E002A0705 /* SearchArticle Repository */,
@@ -465,7 +494,6 @@
 			isa = PBXGroup;
 			children = (
 				1F95E21C227CB1A700EA7B02 /* Mics.swift */,
-				1F5487AD2281AE09008F6823 /* Promise.swift */,
 				1F5487A52280B3EB008F6823 /* API.swift */,
 				1F95E22D227CB57100EA7B02 /* Utility */,
 			);
@@ -503,8 +531,9 @@
 			isa = PBXGroup;
 			children = (
 				1F3FAD6C2283419E002A0705 /* ServiceProvider.swift */,
+				1F5487FA22835930008F6823 /* DatabaseStore.swift */,
 				1F97D3D222806C750059808A /* Repositories */,
-				1F3FAD51228184DB002A0705 /* Entities */,
+				1F3FAD51228184DB002A0705 /* Models */,
 				1F97D3D522806E410059808A /* Core Data */,
 			);
 			path = Components;
@@ -638,7 +667,9 @@
 				1F5487CD2282A4DD008F6823 /* ArticleSnippetCell.xib in Resources */,
 				1F3FAD6022818A9B002A0705 /* README.md in Resources */,
 				1F97D3AA22806B3B0059808A /* Images.xcassets in Resources */,
+				1F54880422836163008F6823 /* Search.storyboard in Resources */,
 				1F5487BF2281C1FD008F6823 /* ArticleTitleCell.xib in Resources */,
+				1F54880222835DC6008F6823 /* AdditionalInfoCell.xib in Resources */,
 				1F97D3A522806B390059808A /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -671,19 +702,19 @@
 				1F5487E42282D1DD008F6823 /* UIVIew+Utility.swift in Sources */,
 				1F5487C22281C882008F6823 /* HomeViewController.swift in Sources */,
 				1F5487D92282A915008F6823 /* ArticleBannerCell.swift in Sources */,
-				1F5487AE2281AE09008F6823 /* Promise.swift in Sources */,
 				1F95E21D227CB1A700EA7B02 /* Mics.swift in Sources */,
 				1F3FAD54228184F0002A0705 /* Article.swift in Sources */,
 				1F5487AA22815285008F6823 /* DateFormatter+Utility.swift in Sources */,
 				1F3FAD3222817B79002A0705 /* HomeInteractor.swift in Sources */,
+				1F5487FB22835930008F6823 /* DatabaseStore.swift in Sources */,
 				1F5487ED2282EA6F008F6823 /* UIScrollView+Utility.swift in Sources */,
 				1F3FAD3A22817D44002A0705 /* ImageCloudDataSource.swift in Sources */,
 				1F3FACFF2280503C002A0705 /* ArticleRemoteDataSource.swift in Sources */,
 				1F5487D32282A733008F6823 /* ArticlePublishedDateCell.swift in Sources */,
+				1F54880122835DC6008F6823 /* AdditionalInfoCell.swift in Sources */,
 				1F5487D62282A855008F6823 /* Date+Utility.swift in Sources */,
 				1F3FACFD2280502D002A0705 /* ArticleLocalDataSource.swift in Sources */,
 				1F3FAD6D2283419E002A0705 /* ServiceProvider.swift in Sources */,
-				1F3FAD702283419E002A0705 /* BaseDataRepositoryProtocol.swift in Sources */,
 				1F97D3A022806B390059808A /* AppDelegate.swift in Sources */,
 				1F5487CC2282A4DD008F6823 /* ArticleSnippetCell.swift in Sources */,
 				1F5487E62282DB2A008F6823 /* SepartorItem.swift in Sources */,
@@ -696,10 +727,13 @@
 				1F3FAD3822817D34002A0705 /* ImageLocalDataSource.swift in Sources */,
 				1F5487EF2282F472008F6823 /* UIColor+Utility.swift in Sources */,
 				1F95E22C227CB50D00EA7B02 /* String+Utility.swift in Sources */,
+				1F5487F722834CB7008F6823 /* SearchArticleRemoteDataSource.swift in Sources */,
 				1F5487C622829495008F6823 /* FullWidthCollectionViewCell.swift in Sources */,
+				1F5487F322834C95008F6823 /* SearchArticleRepository.swift in Sources */,
 				1F3FAD3622817D25002A0705 /* ImageRepository.swift in Sources */,
 				1F5487AC228154BA008F6823 /* JSONDecoder+Utility.swift in Sources */,
 				1F5487B22281BDCE008F6823 /* HomeArticleSection.swift in Sources */,
+				1F5487F522834CA2008F6823 /* SearchArticleLocalDataSource.swift in Sources */,
 				1F3FAD3022817B70002A0705 /* HomePresenter.swift in Sources */,
 				1F5487BE2281C1FD008F6823 /* ArticleTitleCell.swift in Sources */,
 				1F3FAD3422817B82002A0705 /* HomeRouter.swift in Sources */,
@@ -711,7 +745,9 @@
 				1F95E22F227CB69E00EA7B02 /* UIImage+Utility.swift in Sources */,
 				1F5487A82280BC08008F6823 /* Image.swift in Sources */,
 				1F5487C82282A198008F6823 /* ACVFlowLayout.swift in Sources */,
+				1F5487F922834EC8008F6823 /* SearchArticle.swift in Sources */,
 				1F3FAD4F22818431002A0705 /* CDArticle+CoreDataClass.swift in Sources */,
+				1F5487FD22835D8D008F6823 /* AdditionalInfoItem.swift in Sources */,
 				1F5487B42281BE71008F6823 /* ArticleTitleItem.swift in Sources */,
 				1F5487DE2282B8DC008F6823 /* UIViewController+Utility.swift in Sources */,
 			);

@@ -13,6 +13,7 @@ import Foundation
 struct Constants {
     
     static let imageCachePath = "articleImages"
+    static let searchArticleDBKey = "searchArticleDBKey"
 }
 
 

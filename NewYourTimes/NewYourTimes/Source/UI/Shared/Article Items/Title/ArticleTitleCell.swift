@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ArticleTitleCell: FullWidthCollectionViewCell, ItemViewProtocol {
+class ArticleTitleCell: UICollectionViewCell, ItemViewProtocol {
     
     @IBOutlet weak var titleLabel: UILabel!
 

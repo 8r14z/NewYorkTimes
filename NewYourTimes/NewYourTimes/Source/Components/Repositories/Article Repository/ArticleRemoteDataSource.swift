@@ -13,7 +13,7 @@ protocol ArticleRemoteDataSourceProtocol {
     
     var serviceProvider: ServiceProviding { get set }
 
-    func fetchArticles(forPageOffset offset: UInt, pageSize: UInt, completion: ReadCompletionBlock<[Article]>?)
+    func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?)
 }
 
 
@@ -25,7 +25,7 @@ class ArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
         self.serviceProvider = serviceProvider
     }
     
-    func fetchArticles(forPageOffset offset: UInt, pageSize: UInt, completion: ReadCompletionBlock<[Article]>?) {
+    func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?) {
         
         let articleAPI = API.article(offset: offset, pageSize: pageSize)
 

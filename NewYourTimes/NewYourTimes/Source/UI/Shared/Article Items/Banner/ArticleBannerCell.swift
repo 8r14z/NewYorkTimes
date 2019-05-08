@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ArticleBannerCell: FullWidthCollectionViewCell, ItemViewProtocol {
+class ArticleBannerCell: UICollectionViewCell, ItemViewProtocol {
     
     @IBOutlet weak var bannerImageView: AdvancedImageView!
     

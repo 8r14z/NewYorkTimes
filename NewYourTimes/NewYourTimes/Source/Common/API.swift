@@ -15,19 +15,24 @@ enum API {
     // All constants of NewYourTimes APIs
     //************************************************
     struct Default {
-        static let pageSize: UInt = 10
+        static let pageSize: Int = 10
         static let apiKey = "FauIo832lm5wKELs5tCMUlRA9EOdZL96"
         static let scheme = "https"
         static let host = "api.nytimes.com"
     }
     
     struct JSONKeys {
+        // Article
         static let result = "results"
         static let title = "title"
         static let snippet = "abstract"
         static let publishedDate = "published_date"
         static let createdDate = "created_date"
         static let images = "multimedia"
+        
+        // Search
+        static let searchResponse = "response"
+        static let searchResult = "docs"
     }
     
     struct RequestKeys {
@@ -40,9 +45,9 @@ enum API {
     //************************************************
 
     /// Articles with number of articles (pageSize) in a request and offset of first article in batch.
-    case article(offset: UInt, pageSize: UInt)
+    case article(offset: Int, pageSize: Int)
     /// Search articles based on search term
-    case searchArticle(searchQuery: String, pageIndex: UInt)
+    case searchArticle(searchQuery: String, pageIndex: Int)
     
     var url: URL {
         var component = URLComponents()

@@ -12,14 +12,21 @@ import Foundation
 
 protocol ArticleLocalDataSourceProtocol {
     
-    func fetchArticles(withLimit limit: UInt, completion: ReadCompletionBlock<[Article]>?)
+    func fetchArticles(limit: Int, completion: ReadCompletionBlock<[Article]>?)
+    func saveArticles(_ articles: [Article], completion: WriteCompletionBlock?)
 }
 
 
 
 class ArticleLocalDataSource: ArticleLocalDataSourceProtocol {
-
-    func fetchArticles(withLimit limit: UInt, completion: ReadCompletionBlock<[Article]>?) {
+    
+   
+    func fetchArticles(limit: Int, completion: ReadCompletionBlock<[Article]>?) {
         completion?(.success([]))
     }
+    
+    func saveArticles(_ articles: [Article], completion: WriteCompletionBlock?) {
+        completion?(true)
+    }
+    
 }

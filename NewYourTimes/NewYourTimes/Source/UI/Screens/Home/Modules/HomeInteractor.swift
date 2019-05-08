@@ -15,11 +15,11 @@ class HomeInteractor: HomeInteractorProtocol {
     weak var presenter: HomePresenterProtocol?
     
     private let pageSize = API.Default.pageSize
-    private var pageOffset: UInt = 0
+    private var pageOffset: Int = 0
     
     private let serialQueue = DispatchQueue(label: "HomeInteractorSerialQueue")
     
-    lazy var articleRepository = ArticleRepository.shared
+    lazy var articleRepository = ArticleRepository()
     
     
     func initialFetchArticles() {
@@ -30,7 +30,7 @@ class HomeInteractor: HomeInteractorProtocol {
         fetch(with: pageOffset, pageSize: pageSize, isInitialFetch: false)
     }
     
-    private func fetch(with pageOffset: UInt, pageSize: UInt, isInitialFetch: Bool) {
+    private func fetch(with pageOffset: Int, pageSize: Int, isInitialFetch: Bool) {
         
         articleRepository.fetchArticles(pageOffset: pageOffset, pageSize: pageSize, fetchStrategy: .serverOnly) { [weak self] (result) in
             

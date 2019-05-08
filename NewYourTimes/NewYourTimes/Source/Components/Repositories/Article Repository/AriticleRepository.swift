@@ -10,51 +10,71 @@ import Foundation
 
 
 
-public extension Notification.Name {
-    static let newArticleUpdated = Notification.Name("newArticleUpdated")
-}
-
-
-
-protocol ArticleRepositoryProtocol: BaseDataRepositoryProtocol {
+protocol ArticleRepositoryProtocol {
     
-    func fetchArticles(pageOffset: UInt, pageSize: UInt, fetchStrategy: FetchStrategy, callBack: ReadCompletionBlock<[Article]>?)
+    func fetchArticles(pageOffset: Int,
+                       pageSize: Int,
+                       fetchStrategy: FetchStrategy,
+                       completion: ReadCompletionBlock<[Article]>?)
 }
 
 
 
 class ArticleRepository: ArticleRepositoryProtocol {
     
-    static let shared: ArticleRepository = {
-        
-        let local = ArticleLocalDataSource()
-        let remote = ArticleRemoteDataSource()
-        
-        return ArticleRepository(local: local, remote: remote)
-    }()
-    
     private let localDataSource: ArticleLocalDataSourceProtocol
     private let remoteDataSource: ArticleRemoteDataSourceProtocol
     
-    private var serialQueue = DispatchQueue(label: "ArticleRepositorySerialQueue")
+    private var isCacheFetched = false
+    private var concurrentQueue = DispatchQueue(label: "ArticleRepositoryQueue", attributes: .concurrent)
     
-    init(local: ArticleLocalDataSourceProtocol, remote: ArticleRemoteDataSourceProtocol) {
+    init(local: ArticleLocalDataSourceProtocol = ArticleLocalDataSource(),
+         remote: ArticleRemoteDataSourceProtocol = ArticleRemoteDataSource()) {
+        
         localDataSource = local
         remoteDataSource = remote
     }
 
-    func fetchArticles(pageOffset: UInt, pageSize: UInt, fetchStrategy: FetchStrategy, callBack: ReadCompletionBlock<[Article]>?) {
+    func fetchArticles(pageOffset: Int,
+                       pageSize: Int,
+                       fetchStrategy: FetchStrategy = .serverOnly,
+                       completion: ReadCompletionBlock<[Article]>?) {
 
-        if fetchStrategy == .serverOnly {
-            remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: callBack)
+        concurrentQueue.async { [weak self] in
+            guard let self = self else {
+                return
+            }
             
-        } else {
-            
-            // TODO: In development
-            
-            // Fake response
-            callBack?(.success([]))
+            if fetchStrategy == .serverOnly || self.isCacheFetched {
+                self.remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: completion)
+                
+            } else {
+                
+                self.isCacheFetched = true
+                
+                self.localDataSource.fetchArticles(limit: pageSize) { [weak self] (result) in
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    switch result {
+                    case .success(let articles):
+                        
+                        completion?(.success(articles))
+                        
+                        if (fetchStrategy == .cacheFirstElseServer && articles.isEmpty) ||
+                            fetchStrategy == .cacheThenServer {
+                            
+                            self.remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: completion)
+                        }
+                        
+                    case .failure(let error):
+                        completion?(.failure(error))
+                    }
+                }
+            }
         }
+       
     }
 }
 
