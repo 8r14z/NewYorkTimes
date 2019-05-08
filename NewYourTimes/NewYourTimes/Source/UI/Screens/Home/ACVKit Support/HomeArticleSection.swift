@@ -20,11 +20,11 @@ struct HomeArticleSection: SectionViewModel {
     
     init(title: String, snippet: String, publishedDate: Date, imageURL: URL?) {
         
-        itemModels = [HomeArticleTitleItem(title: "1 \(title)"),
-                      HomeArticleTitleItem(title: "2 \(title)"),
-                      HomeArticleTitleItem(title: "3 \(title)"),
-                      HomeArticleTitleItem(title: "4 \(title)"),
-                      HomeArticleTitleItem(title: "5 \(title)")]
+        itemModels = [ArticleTitleItem(title: "1 \(title)"),
+                      ArticleTitleItem(title: "2 \(title)"),
+                      ArticleTitleItem(title: "3 \(title)"),
+                      ArticleTitleItem(title: "4 \(title)"),
+                      ArticleTitleItem(title: "5 \(title)")]
         
         id = String(title.hashValue)
 //        id = String(imageURL.hashValue)

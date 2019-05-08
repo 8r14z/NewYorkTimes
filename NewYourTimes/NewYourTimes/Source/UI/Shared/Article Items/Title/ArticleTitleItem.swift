@@ -1,5 +1,5 @@
 //
-//  HomeArticleTitleItem.swift
+//  ArticleTitleItem.swift
 //  NewYourTimes
 //
 //  Created by An Le  on 5/7/19.
@@ -10,10 +10,10 @@ import Foundation
 
 
 
-struct HomeArticleTitleItem: ItemViewModel {
+struct ArticleTitleItem: ItemViewModel {
     
     var viewClass: ItemViewProtocol.Type {
-        return HomeArticleTitleCell.self
+        return ArticleTitleCell.self
     }
     
     var viewNibName: String? {
@@ -21,6 +21,7 @@ struct HomeArticleTitleItem: ItemViewModel {
     }
     
     private(set) var title: String
+    
     init(title: String) {
         self.title = title
     }
