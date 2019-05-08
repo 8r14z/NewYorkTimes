@@ -21,4 +21,7 @@ enum ImageFormat: String, Codable {
 struct Image: Codable {
     var url: String
     var format: ImageFormat
+    var caption: String
+    var width: Int
+    var height: Int
 }

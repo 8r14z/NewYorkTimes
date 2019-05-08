@@ -10,42 +10,54 @@ import UIKit
 
 
 
-protocol HomeViewProtocol: UIViewController {
+protocol HomeViewProtocol: ClassOnly {
     
-    var presenter: HomePresenterProtocol { get set }
+    var presenter: HomePresenterProtocol? { get set }
     
-    func reloadView(with data: [HomeArticleSection])
-    func updateView(with newData: [HomeArticleSection])
+    func showError(_ error: Error)
+    
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
+    
+    func hidePullToRefreshIndicator()
+    
+    func performUpdateView()
 }
 
 
 
-protocol HomePresenterProtocol {
+protocol HomePresenterProtocol: ClassOnly {
     
-    var view: HomeViewProtocol { get set }
-    var interactor: HomeInteractorProtocol { get set }
-    var router: HomeRouterProtocol { get set }
+    var view: HomeViewProtocol? { get set }
+    var interactor: HomeInteractorProtocol? { get set }
+    var router: HomeRouterProtocol? { get set }
     
-    func viewDidLoad()
-    func didEndDisplayItem(at index: Int, inTotal total: Int)
+    func viewDidAppear()
     func didPullToRefresh()
+    func didSelectSection(_ section: Int)
+    func willDisplaySection(_ section: Int)
     
     // Interactor listener
-    func didFetchArticles(_ articles: [Article])
+    func didInitialFetchSuccess(_ articles: [Article])
+    func didFetchSuccess(_ articles: [Article])
+    func didFetchError(_ error: Error)
 }
 
 
 
-protocol HomeInteractorProtocol {
+protocol HomeInteractorProtocol: ClassOnly {
     
-    var presenter: HomePresenterProtocol { get set }
+    var presenter: HomePresenterProtocol? { get set }
     
+    func initialFetchArticles() 
     func fetchArticles()
 }
 
 
 
-protocol HomeRouterProtocol {
+protocol HomeRouterProtocol: ClassOnly {
+    
+    static func makeHomeView() -> UIViewController
     
     func navigateToSearchArticleView(from view: HomeViewProtocol)
     func navigateToArticleView(from view: HomeViewProtocol)

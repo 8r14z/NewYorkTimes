@@ -29,4 +29,17 @@ class ArticleTitleCell: FullWidthCollectionViewCell, ItemViewProtocol {
             titleLabel.text = object.title
         }
     }
+    
+    static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize {
+        
+        if let item = item as? ArticleTitleItem {
+            
+            let width = containerSize.width
+            let height = item.title.height(for: width - 40, font: .title)
+            return CGSize(width: containerSize.width, height: height + 16)
+            
+        } else {
+            return CGSize.zero
+        }
+    }
 }

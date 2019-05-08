@@ -28,4 +28,16 @@ class ArticleSnippetCell: UICollectionViewCell, ItemViewProtocol {
         }
     }
     
+    static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize {
+        
+        if let item = item as? ArticleSnippetItem {
+            
+            let width = containerSize.width
+            let height = item.snippet.height(for: width - 40, font: .snippet)
+            return CGSize(width: containerSize.width, height: height + 16)
+            
+        } else {
+            return CGSize.zero
+        }
+    }
 }

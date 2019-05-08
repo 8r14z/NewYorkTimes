@@ -27,7 +27,7 @@ class ArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
     
     func fetchArticles(forPageOffset offset: UInt, pageSize: UInt, completion: ReadCompletionBlock<[Article]>?) {
         
-        let articleAPI = API.article(offset: offset, pageSize: 1)
+        let articleAPI = API.article(offset: offset, pageSize: pageSize)
 
         serviceProvider.download(with: articleAPI.url) { (result) in
             

@@ -26,6 +26,13 @@ struct Article: Codable {
         case publishedDate = "published_date"
         case images = "multimedia"
     }
+    
+    func banner() -> Image? {
+        if let banner = images?.first(where: { $0.format == .mediumThreeByTwo440 }) {
+            return banner
+        }
+        return nil
+    }
 }
 
 

@@ -13,10 +13,6 @@ import Foundation
 struct Constants {
     
     static let imageCachePath = "articleImages"
-    
-    struct JSON {
-        
-    }
 }
 
 
@@ -27,6 +23,8 @@ typealias ReadCompletionBlock<T> = (Result<T, Error>) -> Void
 typealias WriteCompletionBlock = (_ successed: Bool) -> Void
 
 typealias JSON = [String : Any]
+
+typealias ClassOnly = AnyObject
 
 
 

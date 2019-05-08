@@ -28,6 +28,12 @@ protocol Identifiable {
     func identifier() -> Identifier
 }
 
+extension Identifiable {
+    func identifier() -> Identifier {
+        return String(UUID().hashValue)
+    }
+}
+
 
 
 protocol ItemViewProtocol: AnyObject {
@@ -38,16 +44,8 @@ protocol ItemViewProtocol: AnyObject {
     
     func didUpdate(_ object: ItemViewModel)
     
-    /// Calculate preferred size for item using in collection view. By default its size is (containerSize.width, 100)
+    /// Calculate preferred size for item using in collection view.
     static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize
-}
-
-
-extension ItemViewProtocol {
-    
-    static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize {
-        return CGSize(width: containerSize.width, height: 100)
-    }
 }
 
 

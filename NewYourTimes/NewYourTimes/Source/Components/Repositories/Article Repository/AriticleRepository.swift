@@ -25,6 +25,14 @@ protocol ArticleRepositoryProtocol: BaseDataRepositoryProtocol {
 
 class ArticleRepository: ArticleRepositoryProtocol {
     
+    static let shared: ArticleRepository = {
+        
+        let local = ArticleLocalDataSource()
+        let remote = ArticleRemoteDataSource()
+        
+        return ArticleRepository(local: local, remote: remote)
+    }()
+    
     private let localDataSource: ArticleLocalDataSourceProtocol
     private let remoteDataSource: ArticleRemoteDataSourceProtocol
     

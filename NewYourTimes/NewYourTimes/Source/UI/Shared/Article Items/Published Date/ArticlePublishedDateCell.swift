@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ArticlePublishedDateCell: UICollectionViewCell, ItemViewProtocol {
+class ArticlePublishedDateCell: FullWidthCollectionViewCell, ItemViewProtocol {
     
     @IBOutlet weak var publishedDateLabel: UILabel!
 
@@ -30,4 +30,7 @@ class ArticlePublishedDateCell: UICollectionViewCell, ItemViewProtocol {
         }
     }
     
+    static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize {
+        return CGSize(width: containerSize.width, height: 30)
+    }
 }

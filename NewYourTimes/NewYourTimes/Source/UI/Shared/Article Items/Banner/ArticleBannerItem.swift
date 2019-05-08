@@ -20,9 +20,9 @@ struct ArticleBannerItem: ItemViewModel {
         return "ArticleBannerCell"
     }
     
-    private(set) var url: URL
+    private(set) var image: Image
     
-    init(url: URL) {
-        self.url = url
+    init(image: Image) {
+        self.image = image
     }
 }

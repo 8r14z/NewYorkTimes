@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ArticleBannerCell: UICollectionViewCell, ItemViewProtocol {
+class ArticleBannerCell: FullWidthCollectionViewCell, ItemViewProtocol {
     
     @IBOutlet weak var bannerImageView: AdvancedImageView!
     
@@ -25,8 +25,20 @@ class ArticleBannerCell: UICollectionViewCell, ItemViewProtocol {
     
     func didUpdate(_ object: ItemViewModel) {
         
-        if let object = object as? ArticleBannerItem {
-            bannerImageView.setImage(with: object.url)
+        if let object = object as? ArticleBannerItem,
+            let url = URL(string: object.image.url) {
+            bannerImageView.setImage(with: url)
         }
+    }
+    
+    static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize {
+        
+        guard let item = item as? ArticleBannerItem else {
+            fatalError()
+        }
+        
+        let imageHeight = item.image.height
+        let imageWidth = item.image.width
+        return CGSize(width: containerSize.width, height: containerSize.width * CGFloat(imageHeight) / CGFloat(imageWidth))
     }
 }

@@ -8,23 +8,47 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
 
-class HomeViewController: UICollectionViewController {
-    
+
+class HomeViewController: UICollectionViewController, HomeViewProtocol {
+
+    var presenter: HomePresenterProtocol?
+
     lazy var acvAdapter: ACVAdapter = {
         return ACVAdapter()
     }()
-
+    
+    private let refreshControl: UIRefreshControl = {
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        return refresher
+    }()
+    
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let flowLayout = ACVFlowLayout()
-            .autoSizing(true)
+            .autoSizing(false)
             .minimumLineSpacing(0)
             .sectionInset(top: 0, left: 0, bottom: 10, right: 0)
         
         collectionView.collectionViewLayout = flowLayout
+        collectionView.addSubview(refreshControl)
+        
+        view.addSubview(loadingIndicator)
+        loadingIndicator.constraintCenter(to: view)
+        
+        navigationItem.title = "News".localized()
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,6 +57,43 @@ class HomeViewController: UICollectionViewController {
         acvAdapter.collectionView = collectionView
         acvAdapter.dataSource = self
         acvAdapter.delegate = self
+        
+        presenter?.viewDidAppear()
+    }
+    
+    override class func storyboardName() -> String {
+        return "Home"
+    }
+}
+
+
+
+extension HomeViewController {
+    
+    func showError(_ error: Error) {
+        
+        let alertController = UIAlertController(title: "Something went wrong", message: error.localizedDescription, preferredStyle: .alert)
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        )
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func showLoadingIndicator() {
+        loadingIndicator.startAnimating()
+    }
+    
+    func hideLoadingIndicator() {
+        loadingIndicator.stopAnimating()
+    }
+    
+    func hidePullToRefreshIndicator() {
+        refreshControl.endRefreshing()
+    }
+    
+    func performUpdateView() {
+        acvAdapter.performUpdate()
     }
 }
 
@@ -41,27 +102,32 @@ class HomeViewController: UICollectionViewController {
 extension HomeViewController: ACVAdapterDataSource {
     
     func sectionViewModelsForAdapter(_ adapter: ACVAdapter) -> [SectionViewModel] {
-        let homeSecionModel = HomeArticleSection(title: "djnasjkdhjkkjsa jhd jksahkjhjkd ajkshj ahsjkhj hkj sjh jkahkjs khdjk asjhdjk ksahj hds jkhaj khsjk djkasj hdjkashkj dh ak", snippet: "", publishedDate: Date(), imageURL: nil)
-        return [homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel,homeSecionModel]
+        
+        if let presenter = presenter as? HomePresenter {
+            return presenter.articleSections
+        } else {
+            return []
+        }
     }
 }
 
 
+
+// MARK: === USER INTERACTION ===
 extension HomeViewController: ACVAdapterDelegate {
-    
+
     func didSelectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) {
-        
+        presenter?.didSelectSection(indexPath.section)
     }
     
-    func didDeselectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) {
-        
+    func willDisplaySection(section: Int) {
+        presenter?.willDisplaySection(section)
     }
     
-    func didEndDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) {
-        
-    }
-    
-    func willDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) {
-        
+    @objc func didPullToRefresh() {
+        presenter?.didPullToRefresh()
     }
 }
+
+
+

@@ -17,7 +17,7 @@ struct ArticleTitleItem: ItemViewModel {
     }
     
     var viewNibName: String? {
-        return "HomeArticleTitleCell"
+        return "ArticleTitleCell"
     }
     
     private(set) var title: String

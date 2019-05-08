@@ -13,32 +13,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ArticlePublishedDateCell" customModule="NewYourTimes" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="366" height="167"/>
+            <rect key="frame" x="0.0" y="0.0" width="366" height="30"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="366" height="167"/>
+                <rect key="frame" x="0.0" y="0.0" width="366" height="30"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05/08/2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2S-VU-xaA" userLabel="Date Label" colorLabel="IBBuiltInLabel-Red">
-                        <rect key="frame" x="16" y="8" width="334" height="151"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                        <rect key="frame" x="21" y="8" width="329" height="14"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="A2S-VU-xaA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="AMN-gG-GyE"/>
+                <constraint firstItem="A2S-VU-xaA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" constant="5" id="AMN-gG-GyE"/>
                 <constraint firstAttribute="bottom" secondItem="A2S-VU-xaA" secondAttribute="bottom" constant="8" id="F0i-MF-p5t"/>
                 <constraint firstItem="A2S-VU-xaA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Pcb-XU-QVe"/>
                 <constraint firstAttribute="trailingMargin" secondItem="A2S-VU-xaA" secondAttribute="trailing" id="itv-j3-fFL"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="366" height="167"/>
+            <size key="customSize" width="366" height="33"/>
             <connections>
                 <outlet property="publishedDateLabel" destination="A2S-VU-xaA" id="isR-8j-8hs"/>
             </connections>
-            <point key="canvasLocation" x="-443.47826086956525" y="41.852678571428569"/>
+            <point key="canvasLocation" x="-443.47826086956525" y="-3.3482142857142856"/>
         </collectionViewCell>
     </objects>
 </document>

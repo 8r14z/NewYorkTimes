@@ -12,6 +12,7 @@ import UIKit
 
 final class ACVAdapter: NSObject {
     
+    // MARK: Public Properties
     weak var collectionView: UICollectionView? {
         didSet {
             collectionView?.dataSource = self
@@ -28,8 +29,10 @@ final class ACVAdapter: NSObject {
     
     weak var delegate: ACVAdapterDelegate?
     
-    private var sectionViewModels: [SectionViewModel] = []
+    private(set) var sectionViewModels: [SectionViewModel] = []
     
+    
+    // MARK: Private Properties
     private var registeredCellClasses = Set<String>()
     private var registeredNibNames = Set<String>()
     private var registeredSupplementaryViewClasses = Set<String>()
@@ -41,7 +44,7 @@ final class ACVAdapter: NSObject {
 
     func performUpdate() {
         
-        //TODO: IN DEVELOPMENT...
+        // TODO: IN DEVELOPMENT...
         
         guard let dataSource = dataSource else {
             return
@@ -49,46 +52,58 @@ final class ACVAdapter: NSObject {
         
         let oldSectionModels = sectionViewModels
         let newSectionModels = dataSource.sectionViewModelsForAdapter(self)
-
+        
         sectionViewModels = newSectionModels
         
         if oldSectionModels.isEmpty {
             collectionView?.reloadData()
             
         } else {
-
-            let oldSectionSet = Set(oldSectionModels.map { $0.identifier() })
-            let newSectionSet = Set(newSectionModels.map { $0.identifier() })
-
-            let addedSections = newSectionModels
-                .enumerated()
-                .filter { oldSectionSet.contains($0.element.identifier()) }
-                .map { $0.offset }
             
-            let removedSections = oldSectionModels
-                .enumerated()
-                .filter { newSectionSet.contains($0.element.identifier()) }
-                .map { $0.offset }
-            
-            // Should apply DIFF to get better time complexity
-            var movedSections = [(from: Int, to: Int)]()
-            for (fromIndex, oldSection) in oldSectionModels.enumerated() {
-                if newSectionSet.contains(oldSection.identifier()) {
-                    if let toIndex = newSectionModels.firstIndex(where: {oldSection.identifier() == $0.identifier() }) {
-                        movedSections.append((from: fromIndex, to: toIndex))
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                
+                let oldSectionSet = Set(oldSectionModels.map { $0.identifier() })
+                let newSectionSet = Set(newSectionModels.map { $0.identifier() })
+                
+                let addedSections = newSectionModels
+                    .enumerated()
+                    .filter { !oldSectionSet.contains($0.element.identifier()) }
+                    .map { $0.offset }
+                
+                let removedSections = oldSectionModels
+                    .enumerated()
+                    .filter { !newSectionSet.contains($0.element.identifier()) }
+                    .map { $0.offset }
+                
+                // Should apply DIFF to get better time complexity
+                var movedSections = [(from: Int, to: Int)]()
+                for (fromIndex, oldSection) in oldSectionModels.enumerated() {
+                    if newSectionSet.contains(oldSection.identifier()) {
+                        if let toIndex = newSectionModels.firstIndex(where: {oldSection.identifier() == $0.identifier() }) {
+                            if fromIndex != toIndex {
+                                movedSections.append((from: fromIndex, to: toIndex))
+                            }
+                        }
+                    }
+                }
+                
+                if !addedSections.isEmpty || !removedSections.isEmpty || !movedSections.isEmpty {
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        
+                        self?.collectionView?.performBatchUpdates({
+                            
+                            movedSections.forEach { self?.collectionView?.moveSection($0.from, toSection: $0.to) }
+                            self?.collectionView?.deleteSections(IndexSet(removedSections))
+                            self?.collectionView?.insertSections(IndexSet(addedSections))
+                            
+                        }, completion: nil)
                     }
                 }
             }
-            
-            collectionView?.performBatchUpdates({
-                
-                movedSections.forEach { collectionView?.moveSection($0.from, toSection: $0.to) }
-                collectionView?.deleteSections(IndexSet(removedSections))
-                collectionView?.insertSections(IndexSet(addedSections))
-                
-            }, completion: nil)
         }
     }
+
 }
 
 
@@ -199,6 +214,45 @@ extension ACVAdapter: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         delegate?.didDeselectItem(_itemForIndexPath(indexPath), atIndexPath: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard collectionView.isScrolling() else {
+            return
+        }
+        
+        if indexPath.row == 0 {
+            delegate?.willDisplaySection(section: indexPath.section)
+        }
+        
+        guard let cell = cell as? ItemViewProtocol else {
+            fatalError("Cell must conform to ItemViewProtocol")
+        }
+        
+        if let item = cell.itemModel {
+            delegate?.willDisplayItem(item, atIndexPath: indexPath)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard collectionView.isScrolling() else {
+            return
+        }
+        
+        if indexPath.row == sectionViewModels[indexPath.section].itemModels.count - 1 {
+            delegate?.didEndDisplaySection(section: indexPath.section)
+        }
+        
+        guard let cell = cell as? ItemViewProtocol else {
+            fatalError("Cell must conform to ItemViewProtocol")
+        }
+        
+        if let item = cell.itemModel {
+            delegate?.didEndDisplayItem(item, atIndexPath: indexPath)
+        }
+    }
+    
 }
 
 
@@ -243,5 +297,16 @@ protocol ACVAdapterDelegate: AnyObject {
     func didDeselectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
     func didEndDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
     func willDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath)
+    func willDisplaySection(section: Int)
+    func didEndDisplaySection(section: Int)
+}
+
+extension ACVAdapterDelegate {
+    func didSelectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) { }
+    func didDeselectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) { }
+    func didEndDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) { }
+    func willDisplayItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) { }
+    func willDisplaySection(section: Int) { }
+    func didEndDisplaySection(section: Int) { }
 }
 

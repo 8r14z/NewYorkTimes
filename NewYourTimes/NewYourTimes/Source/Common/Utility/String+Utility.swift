@@ -6,7 +6,7 @@
 //  Copyright © 2019 An Le. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CommonCrypto
 
 
@@ -32,5 +32,24 @@ extension String {
         
         return digestData.map { String(format: "%02hhx", $0) }.joined()
     }
-}
+    
+    func localized(comment: String = "") -> String {
+        return NSLocalizedString(self, comment: comment)
+    }
+    
+    func height(for width: CGFloat, font: UIFont) -> CGFloat {
+        
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font : font], context: nil)
+        
+        return ceil(boundingBox.height)
+    }
+    
+    func width(for height: CGFloat, font: UIFont) -> CGFloat {
+        
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+        
+        return ceil(boundingBox.width)
+    }}
 
