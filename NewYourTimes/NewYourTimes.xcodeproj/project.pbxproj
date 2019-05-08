@@ -42,6 +42,7 @@
 		1F5487C22281C882008F6823 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487C12281C882008F6823 /* HomeViewController.swift */; };
 		1F5487C4228292AE008F6823 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5487C3228292AE008F6823 /* View.xib */; };
 		1F5487C622829495008F6823 /* FullWidthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487C522829495008F6823 /* FullWidthCollectionViewCell.swift */; };
+		1F5487C82282A198008F6823 /* ACVFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487C72282A198008F6823 /* ACVFlowLayout.swift */; };
 		1F95E215227CAD9900EA7B02 /* AdvancedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */; };
 		1F95E217227CAE5400EA7B02 /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E216227CAE5400EA7B02 /* ImageCacher.swift */; };
 		1F95E21D227CB1A700EA7B02 /* Mics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95E21C227CB1A700EA7B02 /* Mics.swift */; };
@@ -109,6 +110,7 @@
 		1F5487C12281C882008F6823 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1F5487C3228292AE008F6823 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		1F5487C522829495008F6823 /* FullWidthCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthCollectionViewCell.swift; sourceTree = "<group>"; };
+		1F5487C72282A198008F6823 /* ACVFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACVFlowLayout.swift; sourceTree = "<group>"; };
 		1F95E214227CAD9900EA7B02 /* AdvancedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedImageView.swift; sourceTree = "<group>"; };
 		1F95E216227CAE5400EA7B02 /* ImageCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
 		1F95E21C227CB1A700EA7B02 /* Mics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mics.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				1F3FAD642281FC1B002A0705 /* ACVProtocol.swift */,
+				1F5487C72282A198008F6823 /* ACVFlowLayout.swift */,
 				1F3FAD662281FE42002A0705 /* ACVAdapter.swift */,
 			);
 			path = ACVKit;
@@ -616,6 +619,7 @@
 				1F3FAD5022818431002A0705 /* CDArticle+CoreDataProperties.swift in Sources */,
 				1F95E22F227CB69E00EA7B02 /* UIImage+Utility.swift in Sources */,
 				1F5487A82280BC08008F6823 /* Image.swift in Sources */,
+				1F5487C82282A198008F6823 /* ACVFlowLayout.swift in Sources */,
 				1F3FAD4F22818431002A0705 /* CDArticle+CoreDataClass.swift in Sources */,
 				1F5487B42281BE71008F6823 /* HomeArticleTitleItem.swift in Sources */,
 			);

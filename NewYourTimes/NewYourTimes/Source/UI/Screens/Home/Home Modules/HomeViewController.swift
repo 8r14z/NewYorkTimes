@@ -19,10 +19,11 @@ class HomeViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.estimatedItemSize = CGSize(width: 200, height: 100)
-        flowLayout.minimumLineSpacing = 0.0
-
+        let flowLayout = ACVFlowLayout()
+            .autoSizing(true)
+            .minimumLineSpacing(0)
+            .sectionInset(top: 0, left: 0, bottom: 10, right: 0)
+        
         collectionView.collectionViewLayout = flowLayout
     }
     
