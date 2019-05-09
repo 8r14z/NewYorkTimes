@@ -27,8 +27,6 @@ class HomePresenter: HomePresenterProtocol {
         initialFetchArticles()
     }
     
-   
-
     func didPullToRefresh() {
         isPullingToRefresh = true
         initialFetchArticles()
@@ -92,10 +90,20 @@ class HomePresenter: HomePresenterProtocol {
                 return
             }
             
+            if self.isPullingToRefresh {
+                self.isPullingToRefresh = false
+                self.view?.hidePullToRefreshIndicator()
+            } else {
+                self.view?.hideLoadingIndicator()
+            }
+            
+            self.isFetchingArticles = false
             self.view?.showError(error)
         }
     }
     
+    
+    // MARK: === PRIVATE ===
     private func initialFetchArticles() {
         guard !isFetchingArticles else {
             return
