@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NewYourTimes/Source/UI/Screens/Search /Modules/SearchPresenter.swift"
-            timestampString = "579102775.4272749"
+            filePath = "NewYourTimes/Source/UI/Screens/Home/Modules/HomeRouter.swift"
+            timestampString = "579116774.585644"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "timerDidFire(_:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "navigateToArticleView(from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

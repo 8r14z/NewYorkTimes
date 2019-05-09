@@ -21,7 +21,7 @@ protocol SearchViewProtocol: ClassOnly {
     func showLoadingIndicator()
     func hideLoadingIndicator()
     
-    func setSearchBarTextPlaceholder(_ text: String)
+    func updateSearchBarText(_ text: String)
     func removeFocusOnSearchBar()
     
     func reloadView(with data: [SectionViewModel])
@@ -35,10 +35,11 @@ protocol SearchPresenterProtocol: ClassOnly {
     var interactor: SearchInteractorProtocol? { get set }
     var router: SearchRouterProtocol? { get set }
     
-    func searchBarDidBeginEditing()
     func didSelectSearchKeyword(_ keyword: String)
-    func searchTextDidChange(_ text: String)
-    func searchButtonDidEnter(_ text: String)
+
+    func searchBarDidBeginEditing()
+    func searchBarTextDidChange(_ text: String)
+    func searchBarButtonDidEnter(_ text: String)
     
     // Interactor Listener
     func didFetchKeywords(_ keywords: [String])

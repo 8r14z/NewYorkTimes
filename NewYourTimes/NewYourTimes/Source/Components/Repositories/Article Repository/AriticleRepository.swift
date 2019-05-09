@@ -22,6 +22,8 @@ protocol ArticleRepositoryProtocol {
 
 class ArticleRepository: ArticleRepositoryProtocol {
     
+    static let shared = ArticleRepository()
+    
     private let localDataSource: ArticleLocalDataSourceProtocol
     private let remoteDataSource: ArticleRemoteDataSourceProtocol
     

@@ -19,19 +19,20 @@ class SearchPresenter: SearchPresenterProtocol {
     private var isFetchingArticles = false
     private var timer: Timer?
     
+    
     // MARK: === VIEW EVENTS ===
     func searchBarDidBeginEditing() {
         interactor?.fetchPreviousKeywords()
     }
     
     func didSelectSearchKeyword(_ keyword: String) {
-        view?.setSearchBarTextPlaceholder(keyword)
+        view?.updateSearchBarText(keyword)
         view?.removeFocusOnSearchBar()
         view?.showLoadingIndicator()
         interactor?.fetchSearchArticles(with: keyword)
     }
     
-    func searchTextDidChange(_ text: String) {
+    func searchBarTextDidChange(_ text: String) {
         
         timer?.invalidate()
 
@@ -42,7 +43,7 @@ class SearchPresenter: SearchPresenterProtocol {
         }
     }
     
-    func searchButtonDidEnter(_ text: String) {
+    func searchBarButtonDidEnter(_ text: String) {
         
         timer?.invalidate()
         
@@ -50,6 +51,7 @@ class SearchPresenter: SearchPresenterProtocol {
         view?.showLoadingIndicator()
         interactor?.fetchSearchArticles(with: text)
     }
+    
     
     // MARK: === INTERACTOR EVENTS ===
     func didFetchKeywords(_ keywords: [String]) {

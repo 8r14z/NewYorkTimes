@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class SepartorCell: UICollectionViewCell, ItemViewProtocol {
+class SepartorView: UICollectionReusableView, ItemViewProtocol {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

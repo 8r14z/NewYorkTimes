@@ -17,6 +17,8 @@ struct Article: Codable {
     var updatedDate: Date
     var publishedDate: Date
     var images: [Image]?
+    var author: String
+    var publisher: String
     
     enum CodingKeys: String, CodingKey, CaseIterable {
         
@@ -25,6 +27,8 @@ struct Article: Codable {
         case updatedDate = "updated_date"
         case publishedDate = "published_date"
         case images = "multimedia"
+        case author = "byline"
+        case publisher = "source"
     }
     
     func banner() -> Image? {
@@ -45,5 +49,7 @@ extension Article {
         updatedDate = try values.decode(Date.self, forKey: .updatedDate)
         publishedDate = try values.decode(Date.self, forKey: .publishedDate)
         images = try? values.decode([Image].self, forKey: .images)
+        author = try values.decode(String.self, forKey: .author)
+        publisher = try values.decode(String.self, forKey: .publisher)
     }
 }

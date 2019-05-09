@@ -13,7 +13,7 @@ import Foundation
 struct SeparatorItem: ItemViewModel {
     
     var viewClass: ItemViewProtocol.Type {
-        return SepartorCell.self
+        return SepartorView.self
     }
     
     var viewNibName: String?

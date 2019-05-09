@@ -25,11 +25,12 @@ struct HomeArticleSection: SectionViewModel {
         if let image = image {
             itemModels.append(ArticleBannerItem(image: image))
         }
-        
+
         itemModels.append(ArticleTitleItem(title: title))
         itemModels.append(ArticleSnippetItem(snippet: snippet))
         itemModels.append(ArticlePublishedDateItem(publishedDate: publishedDate))
-        itemModels.append(SeparatorItem())
+        
+        supplementaryItems = [ACVAdapter.sectionFooterKind : SeparatorItem()]
         
         id = String(title.hashValue + UUID().hashValue)
     }

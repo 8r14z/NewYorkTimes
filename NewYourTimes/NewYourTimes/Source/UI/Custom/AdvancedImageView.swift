@@ -10,8 +10,8 @@ import UIKit
 
 
 protocol AdvancedImageViewProtocol {
-    
-    var imageCacheManager: ImageCaching { get set }
+
+    var imageRepository: ImageCaching { get set }
     
     func setImage(with url: URL)
 }
@@ -19,9 +19,9 @@ protocol AdvancedImageViewProtocol {
 
 class AdvancedImageView: UIImageView, AdvancedImageViewProtocol {
     
-    lazy var imageCacheManager: ImageCaching = ImageCacher()
+    var imageRepository: ImageCaching = ImageCacher()
     
     func setImage(with url: URL) {
-        
+
     }
 }

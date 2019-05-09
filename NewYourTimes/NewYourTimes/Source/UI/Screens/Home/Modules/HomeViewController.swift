@@ -14,18 +14,20 @@ class HomeViewController: ACVViewController, HomeViewProtocol {
 
     var presenter: HomePresenterProtocol?
 
-    private var articleSections = [HomeArticleSection]()
+    private(set)var articleSections = [HomeArticleSection]()
     
     lazy var searchController: UISearchController = {
         return SearchRouter.makeSearchView()
     }()
+    
+    private var viewDidAppearOnceToken = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
-            navigationItem.hidesSearchBarWhenScrolling = false
+            navigationItem.hidesSearchBarWhenScrolling = true
         } else {
             let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchItem))
             navigationItem.rightBarButtonItem = searchItem
@@ -34,15 +36,20 @@ class HomeViewController: ACVViewController, HomeViewProtocol {
         navigationItem.title = "News".localized()
         
         definesPresentationContext = true
+        
+        acvAdapter.dataSource = self
+        acvAdapter.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        
-        acvAdapter.dataSource = self
-        acvAdapter.delegate = self
+        if !viewDidAppearOnceToken {
+            viewDidAppearOnceToken = true
         
-        presenter?.viewDidAppear()
+            presenter?.viewDidAppear()
+        }
+        
     }
     
     override func didPullToRefreshSections() {
@@ -91,8 +98,8 @@ extension HomeViewController: ACVAdapterDataSource {
 // MARK: === USER INTERACTION ===
 extension HomeViewController: ACVAdapterDelegate {
 
-    func didSelectItem(_ item: ItemViewModel, atIndexPath indexPath: IndexPath) {
-        presenter?.didSelectSection(articleSections[indexPath.section])
+    func didSelectSection(_ section: Int) {
+        presenter?.didSelectSection(articleSections[section])
     }
     
     func willDisplaySection(section: Int) {

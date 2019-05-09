@@ -26,8 +26,8 @@ class ACVViewController: UICollectionViewController {
     
     lazy private(set)var loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .gray)
-        indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
         view.addSubview(indicator)
         indicator.constraintCenter(to: view)
         return indicator
@@ -51,7 +51,6 @@ class ACVViewController: UICollectionViewController {
     }
 
     init() {
-        
         let flowLayout = ACVFlowLayout()
             .autoSizing(false)
             .minimumLineSpacing(0)

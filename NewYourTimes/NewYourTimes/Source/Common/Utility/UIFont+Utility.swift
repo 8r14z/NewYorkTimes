@@ -19,4 +19,8 @@ extension UIFont {
     static var snippet: UIFont {
         return UIFont.systemFont(ofSize: 17, weight: .regular)
     }
+    
+    static var smallBody: UIFont {
+        return UIFont.systemFont(ofSize: 13, weight: .light)
+    }
 }

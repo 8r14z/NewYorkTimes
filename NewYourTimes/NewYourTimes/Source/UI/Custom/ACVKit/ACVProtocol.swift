@@ -20,9 +20,6 @@ typealias SupplementaryKind = String
 typealias Identifier = String
 
 
-protocol ItemViewDelegate { }
-
-
 
 protocol Identifiable {
     func identifier() -> Identifier
@@ -35,6 +32,8 @@ extension Identifiable {
 }
 
 
+
+protocol ItemViewDelegate { }
 
 protocol ItemViewProtocol: AnyObject {
     

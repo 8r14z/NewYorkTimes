@@ -21,6 +21,9 @@ protocol ACVAdapterProtocol {
 
 final class ACVAdapter: NSObject, ACVAdapterProtocol {
     
+    static let sectionHeaderKind = UICollectionView.elementKindSectionHeader
+    static let sectionFooterKind = UICollectionView.elementKindSectionFooter
+    
     // MARK: === Public Properties ===
     weak var collectionView: UICollectionView? {
         didSet {

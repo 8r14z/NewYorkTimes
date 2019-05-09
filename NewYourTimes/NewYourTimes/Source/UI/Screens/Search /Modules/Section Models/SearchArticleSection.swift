@@ -21,8 +21,9 @@ struct SearchArticleSection: SectionViewModel {
         itemModels = [
             ArticleTitleItem(title: title),
             ArticleSnippetItem(snippet: snippet),
-            AdditionalInfoItem(info: publisher),
-            SeparatorItem()
+            AdditionalInfoItem(info: publisher)
         ]
+        
+        supplementaryItems = [ACVAdapter.sectionFooterKind : SeparatorItem()]
     }
 }

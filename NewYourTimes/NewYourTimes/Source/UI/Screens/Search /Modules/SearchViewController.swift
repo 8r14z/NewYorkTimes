@@ -23,13 +23,12 @@ class SearchViewController: ACVViewController, SearchViewProtocol {
         return false
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         acvAdapter.dataSource = self
         acvAdapter.delegate = self
     }
-    
 }
 
 
@@ -55,14 +54,13 @@ extension SearchViewController {
         loadingIndicator.stopAnimating()
     }
     
-    func setSearchBarTextPlaceholder(_ text: String) {
+    func updateSearchBarText(_ text: String) {
         searchBar?.text = text
     }
     
     func removeFocusOnSearchBar() {
         searchBar?.resignFirstResponder()
     }
-    
     
     func reloadView(with data: [SectionViewModel]) {
         sections = data
@@ -95,7 +93,7 @@ extension SearchViewController: ACVAdapterDelegate, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text {
-            presenter?.searchButtonDidEnter(text)
+            presenter?.searchBarButtonDidEnter(text)
         }
     }
     
@@ -104,7 +102,7 @@ extension SearchViewController: ACVAdapterDelegate, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter?.searchTextDidChange(searchText)
+        presenter?.searchBarTextDidChange(searchText)
     }
     
 }

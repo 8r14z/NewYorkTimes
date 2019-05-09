@@ -13,7 +13,7 @@ import Foundation
 class HomeInteractor: HomeInteractorProtocol {
     
     weak var presenter: HomePresenterProtocol?
-    lazy var repository: ArticleRepositoryProtocol = ArticleRepository()
+    lazy var repository: ArticleRepositoryProtocol = ArticleRepository.shared
 
     private let pageSize = API.Default.pageSize
     private var pageOffset: Int = 0
