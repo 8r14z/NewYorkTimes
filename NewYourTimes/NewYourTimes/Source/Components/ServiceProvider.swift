@@ -10,8 +10,20 @@ import Foundation
 
 
 
+protocol Cancellable {
+    
+    func cancel()
+}
+
+
+
+extension URLSessionDataTask: Cancellable { }
+
+
+
 protocol ServiceProviding {
-    func download(with url: URL, completion: ReadCompletionBlock<JSON>?)
+    @discardableResult
+    func download(with url: URL, completion: ReadCompletionBlock<JSON>?) -> Cancellable
 }
 
 
@@ -19,9 +31,9 @@ protocol ServiceProviding {
 /// ServiceProvider
 extension URLSession: ServiceProviding {
     
-    func download(with url: URL, completion: ReadCompletionBlock<JSON>?) {
+    func download(with url: URL, completion: ReadCompletionBlock<JSON>?) -> Cancellable {
         
-        dataTask(with: url) { (data, response, error) in
+        let task = dataTask(with: url) { (data, response, error) in
             
             if let error = error {
                 completion?(.failure(error))
@@ -40,8 +52,10 @@ extension URLSession: ServiceProviding {
             } else {
                 completion?(.success([:]))
             }
-            
-        }.resume()
+        }
+        
+        task.resume()
+        return task
     }
     
     

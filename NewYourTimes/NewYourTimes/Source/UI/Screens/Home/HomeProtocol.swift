@@ -37,6 +37,7 @@ protocol HomePresenterProtocol: ClassOnly {
     func didPullToRefresh()
     func didSelectSection(_ section: HomeArticleSection)
     func willDisplaySection(_ section: HomeArticleSection, sectionIndex: Int, sectionCount: Int)
+    func didSelectSearch()
     
     // Interactor listener
     func didInitialFetchSuccess(_ articles: [Article])
@@ -50,6 +51,7 @@ protocol HomePresenterProtocol: ClassOnly {
 protocol HomeInteractorProtocol: ClassOnly {
     
     var presenter: HomePresenterProtocol? { get set }
+    var repository: ArticleRepositoryProtocol { get set }
     
     func initialFetchArticles() 
     func fetchArticles()

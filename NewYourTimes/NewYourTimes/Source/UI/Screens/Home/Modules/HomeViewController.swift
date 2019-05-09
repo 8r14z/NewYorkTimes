@@ -15,10 +15,21 @@ class HomeViewController: ACVViewController, HomeViewProtocol {
     var presenter: HomePresenterProtocol?
 
     private var articleSections = [HomeArticleSection]()
-
+    
+    lazy var searchController: UISearchController = {
+        return SearchRouter.makeSearchView()
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchItem))
+            navigationItem.rightBarButtonItem = searchItem
+        }
+                
         navigationItem.title = "News".localized()
     }
     
@@ -98,7 +109,12 @@ extension HomeViewController: ACVAdapterDelegate {
     func willDisplaySection(section: Int) {
         presenter?.willDisplaySection(articleSections[section], sectionIndex: section, sectionCount: articleSections.count)
     }
+
+    @objc func didTapSearchItem() {
+        if #available(iOS 11.0, *) {
+            // delegate presenter to view controller.
+        } else {
+            presenter?.didSelectSearch()
+        }
+    }
 }
-
-
-

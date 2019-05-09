@@ -13,48 +13,59 @@ import Foundation
 class HomeInteractor: HomeInteractorProtocol {
     
     weak var presenter: HomePresenterProtocol?
-    
+    lazy var repository: ArticleRepositoryProtocol = ArticleRepository()
+
     private let pageSize = API.Default.pageSize
     private var pageOffset: Int = 0
     
-    private let serialQueue = DispatchQueue(label: "HomeInteractorSerialQueue")
-    
-    lazy var articleRepository = ArticleRepository()
-    
+    private let mutex = DispatchSemaphore(value: 1)
     
     func initialFetchArticles() {
-        fetch(with: 0, pageSize: pageSize, isInitialFetch: true)
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            self.mutex.wait()
+            self.fetch(with: 0, pageSize: self.pageSize, isInitialFetch: true)
+        }
     }
 
     func fetchArticles() {
-        fetch(with: pageOffset, pageSize: pageSize, isInitialFetch: false)
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            self.mutex.wait()
+            self.fetch(with: self.pageOffset, pageSize: self.pageSize, isInitialFetch: false)
+        }
     }
     
     private func fetch(with pageOffset: Int, pageSize: Int, isInitialFetch: Bool) {
-        
-        articleRepository.fetchArticles(pageOffset: pageOffset, pageSize: pageSize, fetchStrategy: .serverOnly) { [weak self] (result) in
+
+        repository.fetchArticles(pageOffset: pageOffset, pageSize: pageSize, fetchStrategy: .serverOnly) { [weak self] (result) in
             
-            self?.serialQueue.async { [weak self] in
-                
-                guard let self = self else {
-                    return
-                }
-                
-                self.pageOffset += self.pageSize
-                
-                switch result {
-                case .success(let articles):
-                    
-                    if isInitialFetch {
-                        self.presenter?.didInitialFetchSuccess(articles)
-                    } else {
-                        self.presenter?.didFetchSuccess(articles)
-                    }
-                    
-                case .failure(let error):
-                    self.presenter?.didFetchError(error)
-                }
+            guard let self = self else {
+                return
             }
+            
+            self.pageOffset = pageOffset + pageSize
+            
+            switch result {
+            case .success(let articles):
+                
+                if isInitialFetch {
+                    self.presenter?.didInitialFetchSuccess(articles)
+                } else {
+                    self.presenter?.didFetchSuccess(articles)
+                }
+                
+            case .failure(let error):
+                self.presenter?.didFetchError(error)
+            }
+            
+            self.mutex.signal()
         }
     }
 }

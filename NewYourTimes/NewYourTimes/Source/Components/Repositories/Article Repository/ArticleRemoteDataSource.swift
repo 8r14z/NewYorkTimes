@@ -28,7 +28,7 @@ class ArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
     func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?) {
         
         let articleAPI = API.article(offset: offset, pageSize: pageSize)
-
+        
         serviceProvider.download(with: articleAPI.url) { (result) in
             
             switch result {
@@ -37,7 +37,6 @@ class ArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
                 if let result = json[API.JSONKeys.result] as? [Any] {
                     
                     do {
-                        
                         let decoder = JSONDecoder(dateDecodingFormat: .iso8601DateAndTime)
                         let articles = try decoder.decode([Article].self, from: result)
                         

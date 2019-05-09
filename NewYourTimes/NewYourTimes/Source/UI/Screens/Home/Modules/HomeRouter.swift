@@ -30,16 +30,16 @@ class HomeRouter: HomeRouterProtocol {
     
     func navigateToSearchArticleView(from view: HomeViewProtocol) {
         
-        guard let viewController = view as? UIViewController else {
+        guard let viewController = view as? HomeViewController else {
             return
         }
-        
-        
+        let searchController = UISearchController(searchResultsController: nil)
+        viewController.present(searchController, animated: true, completion: nil)
     }
     
     func navigateToArticleView(from view: HomeViewProtocol) {
         
-        guard let viewController = view as? UIViewController else {
+        guard let viewController = view as? HomeViewController else {
             return
         }
     }

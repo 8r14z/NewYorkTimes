@@ -57,6 +57,10 @@ class HomePresenter: HomePresenterProtocol {
             }
         }
     }
+    
+    func didSelectSearch() {
+        router?.navigateToSearchArticleView(from: view!)
+    }
 
     // MARK: === INTERACTOR EVENTS ===
     func didInitialFetchSuccess(_ articles: [Article]) {

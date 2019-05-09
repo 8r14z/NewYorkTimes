@@ -1,5 +1,5 @@
 //
-//  ArticleSearchController.swift
+//  SearchViewController.swift
 //  NewYourTimes
 //
 //  Created by An Le  on 5/9/19.
@@ -8,12 +8,15 @@
 
 import UIKit
 
-class ArticleSearchController: UISearchController {
+
+
+
+class SearchViewController: ACVViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
-
+    
 }

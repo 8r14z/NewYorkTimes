@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F38BABD2283F024008A07CE /* ArticleSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BABC2283F024008A07CE /* ArticleSearchResultViewController.swift */; };
-		1F38BABF2283F03E008A07CE /* ArticleSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BABE2283F03E008A07CE /* ArticleSearchController.swift */; };
+		1F38BABD2283F024008A07CE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BABC2283F024008A07CE /* SearchViewController.swift */; };
 		1F38BAC12283F1B6008A07CE /* ACVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BAC02283F1B6008A07CE /* ACVViewController.swift */; };
+		1F38BAC322840F2E008A07CE /* SearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BAC222840F2E008A07CE /* SearchProtocol.swift */; };
+		1F38BAC622841DF0008A07CE /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BAC522841DF0008A07CE /* SearchRouter.swift */; };
+		1F38BAC822841FD7008A07CE /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BAC722841FD7008A07CE /* SearchPresenter.swift */; };
+		1F38BACA22841FF0008A07CE /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BAC922841FF0008A07CE /* SearchInteractor.swift */; };
 		1F3FACF622804F3F002A0705 /* AriticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACF522804F3F002A0705 /* AriticleRepository.swift */; };
 		1F3FACFD2280502D002A0705 /* ArticleLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACFC2280502D002A0705 /* ArticleLocalDataSource.swift */; };
 		1F3FACFF2280503C002A0705 /* ArticleRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACFE2280503C002A0705 /* ArticleRemoteDataSource.swift */; };
@@ -96,9 +99,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F38BABC2283F024008A07CE /* ArticleSearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchResultViewController.swift; sourceTree = "<group>"; };
-		1F38BABE2283F03E008A07CE /* ArticleSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchController.swift; sourceTree = "<group>"; };
+		1F38BABC2283F024008A07CE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1F38BAC02283F1B6008A07CE /* ACVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACVViewController.swift; sourceTree = "<group>"; };
+		1F38BAC222840F2E008A07CE /* SearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProtocol.swift; sourceTree = "<group>"; };
+		1F38BAC522841DF0008A07CE /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		1F38BAC722841FD7008A07CE /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		1F38BAC922841FF0008A07CE /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		1F3FACF522804F3F002A0705 /* AriticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriticleRepository.swift; sourceTree = "<group>"; };
 		1F3FACFC2280502D002A0705 /* ArticleLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleLocalDataSource.swift; sourceTree = "<group>"; };
 		1F3FACFE2280503C002A0705 /* ArticleRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRemoteDataSource.swift; sourceTree = "<group>"; };
@@ -198,11 +204,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F38BAC422840F3A008A07CE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				1F38BABC2283F024008A07CE /* SearchViewController.swift */,
+				1F38BAC722841FD7008A07CE /* SearchPresenter.swift */,
+				1F38BAC922841FF0008A07CE /* SearchInteractor.swift */,
+				1F38BAC522841DF0008A07CE /* SearchRouter.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		1F3FACF222804BC9002A0705 /* Search  */ = {
 			isa = PBXGroup;
 			children = (
-				1F38BABE2283F03E008A07CE /* ArticleSearchController.swift */,
-				1F38BABC2283F024008A07CE /* ArticleSearchResultViewController.swift */,
+				1F38BAC222840F2E008A07CE /* SearchProtocol.swift */,
+				1F38BAC422840F3A008A07CE /* Modules */,
 			);
 			path = "Search ";
 			sourceTree = "<group>";
@@ -698,6 +715,7 @@
 			files = (
 				1F5487B82281BEA3008F6823 /* ArticlePublishedDateItem.swift in Sources */,
 				1F5487EA2282DB6D008F6823 /* SepartorCell.swift in Sources */,
+				1F38BAC822841FD7008A07CE /* SearchPresenter.swift in Sources */,
 				1F3FAD652281FC1B002A0705 /* ACVProtocol.swift in Sources */,
 				1F3FACF622804F3F002A0705 /* AriticleRepository.swift in Sources */,
 				1F5487E42282D1DD008F6823 /* UIVIew+Utility.swift in Sources */,
@@ -722,9 +740,11 @@
 				1F5487E62282DB2A008F6823 /* SepartorItem.swift in Sources */,
 				1F5487B62281BE82008F6823 /* ArticleSnippetItem.swift in Sources */,
 				1F5487BA2281C079008F6823 /* ArticleBannerItem.swift in Sources */,
+				1F38BAC622841DF0008A07CE /* SearchRouter.swift in Sources */,
 				1F5487A62280B3EB008F6823 /* API.swift in Sources */,
 				1F95E217227CAE5400EA7B02 /* ImageCacher.swift in Sources */,
 				1F5487DC2282B4CF008F6823 /* UIStoryboard+Utility.swift in Sources */,
+				1F38BACA22841FF0008A07CE /* SearchInteractor.swift in Sources */,
 				1F97D3A822806B390059808A /* NewYourTimes_Demo.xcdatamodeld in Sources */,
 				1F3FAD3822817D34002A0705 /* ImageLocalDataSource.swift in Sources */,
 				1F5487EF2282F472008F6823 /* UIColor+Utility.swift in Sources */,
@@ -733,7 +753,6 @@
 				1F5487C622829495008F6823 /* FullWidthCollectionViewCell.swift in Sources */,
 				1F5487F322834C95008F6823 /* SearchArticleRepository.swift in Sources */,
 				1F3FAD3622817D25002A0705 /* ImageRepository.swift in Sources */,
-				1F38BABF2283F03E008A07CE /* ArticleSearchController.swift in Sources */,
 				1F5487AC228154BA008F6823 /* JSONDecoder+Utility.swift in Sources */,
 				1F5487B22281BDCE008F6823 /* HomeArticleSection.swift in Sources */,
 				1F5487F522834CA2008F6823 /* SearchArticleLocalDataSource.swift in Sources */,
@@ -746,9 +765,10 @@
 				1F3FAD672281FE42002A0705 /* ACVAdapter.swift in Sources */,
 				1F3FAD5022818431002A0705 /* CDArticle+CoreDataProperties.swift in Sources */,
 				1F95E22F227CB69E00EA7B02 /* UIImage+Utility.swift in Sources */,
+				1F38BAC322840F2E008A07CE /* SearchProtocol.swift in Sources */,
 				1F5487A82280BC08008F6823 /* Image.swift in Sources */,
 				1F5487C82282A198008F6823 /* ACVFlowLayout.swift in Sources */,
-				1F38BABD2283F024008A07CE /* ArticleSearchResultViewController.swift in Sources */,
+				1F38BABD2283F024008A07CE /* SearchViewController.swift in Sources */,
 				1F5487F922834EC8008F6823 /* SearchArticle.swift in Sources */,
 				1F3FAD4F22818431002A0705 /* CDArticle+CoreDataClass.swift in Sources */,
 				1F5487FD22835D8D008F6823 /* AdditionalInfoItem.swift in Sources */,
