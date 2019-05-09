@@ -40,7 +40,6 @@ class SearchPresenter: SearchPresenterProtocol {
         } else {
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(timerDidFire(_:)), userInfo: text, repeats: false)
         }
-
     }
     
     func searchButtonDidEnter(_ text: String) {
@@ -48,11 +47,8 @@ class SearchPresenter: SearchPresenterProtocol {
         timer?.invalidate()
         
         interactor?.saveKeyword(text)
-
-        if text != view?.currentSearchText() ?? "" {
-            view?.showLoadingIndicator()
-            interactor?.fetchSearchArticles(with: text)
-        }
+        view?.showLoadingIndicator()
+        interactor?.fetchSearchArticles(with: text)
     }
     
     // MARK: === INTERACTOR EVENTS ===

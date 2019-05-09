@@ -35,11 +35,7 @@ class SearchViewController: ACVViewController, SearchViewProtocol {
 
 
 extension SearchViewController {
-    
-    func currentSearchText() -> String? {
-        return searchBar?.text
-    }
-    
+
     func showEmptyView() {
         emptyLabel.isHidden = false
         emptyLabel.text = "No result".localized()
