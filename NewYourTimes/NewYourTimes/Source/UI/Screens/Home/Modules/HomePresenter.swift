@@ -23,13 +23,23 @@ class HomePresenter: HomePresenterProtocol {
 
     // MARK: === VIEW EVENTS ===
     func viewDidAppear() {
-        view?.showLoadingIndicator()
-        initialFetchArticles()
+        
+        if !isFetchingArticles  {
+            isFetchingArticles = true
+            
+            view?.showLoadingIndicator()
+            interactor?.initialFetchArticles()
+        }
     }
     
     func didPullToRefresh() {
-        isPullingToRefresh = true
-        initialFetchArticles()
+        
+        if !isFetchingArticles {
+            isFetchingArticles = true
+            isPullingToRefresh = true
+
+            interactor?.initialFetchArticles()
+        }
     }
     
     func didSelectSection(_ section: HomeArticleSection) {
@@ -37,90 +47,80 @@ class HomePresenter: HomePresenterProtocol {
     }
     
     func willDisplaySection(_ section: HomeArticleSection, sectionIndex: Int, sectionCount: Int) {
-        let remainItems = sectionCount - sectionIndex
-        if remainItems < 4 {
-            fetchMoreArticles()
+        
+        if !isFetchingArticles {
+            
+            let remainItems = sectionCount - sectionIndex
+            if remainItems < 4 {
+                isFetchingArticles = true
+                interactor?.fetchArticles()
+            }
         }
     }
 
     // MARK: === INTERACTOR EVENTS ===
     func didInitialFetchSuccess(_ articles: [Article]) {
-        
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            if self.isPullingToRefresh {
-                self.isPullingToRefresh = false
-                self.view?.hidePullToRefreshIndicator()
-            } else {
-                self.view?.hideLoadingIndicator()
-            }
-            
-            let sections = articles.map {
-                HomeArticleSection(title: $0.title, snippet: $0.snippet, publishedDate: $0.publishedDate, image: $0.banner())
-            }
-            
-            self.isFetchingArticles = false
-            self.view?.reloadView(with: sections)
+            self?.didInitialFetch(.success(articles))
+        }
+    }
+    
+    func didIntialFetchError(_ error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            self?.didInitialFetch(.failure(error))
         }
     }
     
     func didFetchSuccess(_ articles: [Article]) {
-        
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            let sections = articles.map {
-                HomeArticleSection(title: $0.title, snippet: $0.snippet, publishedDate: $0.publishedDate, image: $0.banner())
-            }
-            
-            self.isFetchingArticles = false
-            self.view?.updateView(with: sections)
+            self?.didFetch(.success(articles))
         }
     }
 
     func didFetchError(_ error: Error) {
-        
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            if self.isPullingToRefresh {
-                self.isPullingToRefresh = false
-                self.view?.hidePullToRefreshIndicator()
-            } else {
-                self.view?.hideLoadingIndicator()
-            }
-            
-            self.isFetchingArticles = false
-            self.view?.showError(error)
+            self?.didFetch(.failure(error))
         }
     }
     
     
     // MARK: === PRIVATE ===
-    private func initialFetchArticles() {
-        guard !isFetchingArticles else {
-            return
+    private func didInitialFetch(_ result: Result<[Article], Error>) {
+        
+        if self.isPullingToRefresh {
+            self.isPullingToRefresh = false
+            self.view?.hidePullToRefreshIndicator()
+        } else {
+            self.view?.hideLoadingIndicator()
         }
         
-        isFetchingArticles = true
+        self.isFetchingArticles = false
         
-        interactor?.initialFetchArticles()
+        switch result {
+        case .success(let articles):
+            view?.reloadView(with: parse(articles))
+            
+        case .failure(let error):
+            view?.showError(error)
+        }
     }
     
-    private func fetchMoreArticles() {
-        guard !isFetchingArticles else {
-            return
+    private func didFetch(_ result: Result<[Article], Error>) {
+        
+        self.isFetchingArticles = false
+        
+        switch result {
+        case .success(let articles):
+            view?.updateView(with: parse(articles))
+            
+        case .failure(let error):
+            view?.showError(error)
         }
-        
-        isFetchingArticles = true
-        
-        interactor?.fetchArticles()
+    }
+    
+    private func parse(_ articles: [Article]) -> [HomeArticleSection] {
+        return articles.map {
+            HomeArticleSection(title: $0.title, snippet: $0.snippet, publishedDate: $0.publishedDate, image: $0.banner())
+        }
     }
 }

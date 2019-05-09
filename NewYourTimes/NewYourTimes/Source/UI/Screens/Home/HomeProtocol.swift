@@ -40,6 +40,7 @@ protocol HomePresenterProtocol: ClassOnly {
     
     // Interactor listener
     func didInitialFetchSuccess(_ articles: [Article])
+    func didIntialFetchError(_ error: Error)
     func didFetchSuccess(_ articles: [Article])
     func didFetchError(_ error: Error)
 }
