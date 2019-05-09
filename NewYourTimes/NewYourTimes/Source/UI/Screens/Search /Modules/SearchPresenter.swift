@@ -45,6 +45,8 @@ class SearchPresenter: SearchPresenterProtocol {
     
     func searchButtonDidEnter(_ text: String) {
         
+        timer?.invalidate()
+        
         interactor?.saveKeyword(text)
 
         if text != view?.currentSearchText() ?? "" {

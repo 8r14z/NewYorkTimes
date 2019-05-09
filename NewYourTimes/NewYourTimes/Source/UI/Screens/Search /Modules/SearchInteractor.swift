@@ -17,16 +17,27 @@ class SearchInteractor: SearchInteractorProtocol {
     
     func fetchPreviousKeywords() {
         
-        var keywords = repository.getPreviousSearchTerms() ?? []
-        
-        if keywords.count >= 10 {
-            keywords = Array(keywords[0...9])
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            
+            guard let self = self else {
+                return
+            }
+            
+            var keywords = self.repository.getPreviousSearchTerms() ?? []
+            
+            if keywords.count >= 10 {
+                keywords = Array(keywords[0...9])
+            }
+            
+            self.presenter?.didFetchKeywords(keywords)
         }
-        presenter?.didFetchKeywords(keywords)
     }
     
     func saveKeyword(_ keyword: String) {
-        repository.saveSearchTerm(keyword)
+        
+        DispatchQueue.global().async { [weak self] in
+            self?.repository.saveSearchTerm(keyword)
+        }
     }
     
     func fetchSearchArticles(with keyword: String) {
