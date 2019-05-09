@@ -15,13 +15,13 @@ class SearchInteractor: SearchInteractorProtocol {
     weak var presenter: SearchPresenterProtocol?
     var repository: SearchArticleRepository = SearchArticleRepository()
     
-    private var previousKeyword: String = ""
-    private var pageIndex: Int = 0
-    
-    private let serialQueue = DispatchQueue(label: "SearchInteractorSerialQueue")
-
     func fetchPreviousKeywords() {
-        let keywords = repository.getPreviousSearchTerms()
+        
+        var keywords = repository.getPreviousSearchTerms() ?? []
+        
+        if keywords.count >= 10 {
+            keywords = Array(keywords[0...9])
+        }
         presenter?.didFetchKeywords(keywords)
     }
     
@@ -31,17 +31,18 @@ class SearchInteractor: SearchInteractorProtocol {
     
     func fetchSearchArticles(with keyword: String) {
 
-        serialQueue.async { [weak self] in
+        // Do sth
+        repository.fetchSearchArticles(query: keyword, pageIndex: 0) { [weak self] (result) in
+            
             guard let self = self else {
                 return
             }
             
-            self.repository.fetchSearchArticles(query: keyword, pageIndex: self.pageIndex) { [weak self] (result) in
-                
-                self?.serialQueue.async { [weak self] in
-                    
-                    
-                }
+            switch result {
+            case .success(let articles):
+                self.presenter?.didFetchSearchArticleSuccess(articles)
+            case .failure(let error):
+                self.presenter?.didFetchSearchArticlesError(error)
             }
         }
     }

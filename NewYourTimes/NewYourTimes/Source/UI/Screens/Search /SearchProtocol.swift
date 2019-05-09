@@ -14,14 +14,17 @@ protocol SearchViewProtocol: ClassOnly {
     
     var presenter: SearchPresenterProtocol? { get set }
     
+    func showError(_ error: Error)
     func showEmptyView()
     func hideEmptyView()
     
     func showLoadingIndicator()
     func hideLoadingIndicator()
     
-    func reloadView(with data: [SearchArticle])
-    func updateView(with newData: [SearchArticle])
+    func setSearchBarTextPlaceholder(_ text: String)
+    func removeFocusOnSearchBar()
+
+    func reloadView(with data: [SectionViewModel])
 }
 
 
@@ -30,18 +33,15 @@ protocol SearchPresenterProtocol: ClassOnly {
     
     var view: SearchViewProtocol? { get set }
     var interactor: SearchInteractorProtocol? { get set }
-    var rounter: SearchRouterProtocol? { get set }
+    var router: SearchRouterProtocol? { get set }
     
     func searchBarDidBeginEditing()
     func didSelectSearchKeyword(_ keyword: String)
-    func searchTextDidChange(_ text: String?)
-    func searchButtonDidSelect(_ text: String)
-    
-    func didSelectSection(_ section: HomeArticleSection)
-    func willDisplaySection(_ section: HomeArticleSection, sectionIndex: Int, sectionCount: Int)
+    func searchTextDidChange(_ text: String)
+    func searchButtonDidEnter(_ text: String)
     
     // Interactor Listener
-    func didFetchKeywords(_ keywords: [String]?)
+    func didFetchKeywords(_ keywords: [String])
     func didFetchSearchArticleSuccess(_ searchArticles: [SearchArticle])
     func didFetchSearchArticlesError(_ error: Error)
 }

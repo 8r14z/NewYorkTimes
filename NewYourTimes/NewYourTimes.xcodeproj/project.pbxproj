@@ -13,6 +13,8 @@
 		1F38BAC622841DF0008A07CE /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BAC522841DF0008A07CE /* SearchRouter.swift */; };
 		1F38BAC822841FD7008A07CE /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BAC722841FD7008A07CE /* SearchPresenter.swift */; };
 		1F38BACA22841FF0008A07CE /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BAC922841FF0008A07CE /* SearchInteractor.swift */; };
+		1F38BACC22843BB8008A07CE /* SearchArticleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BACB22843BB8008A07CE /* SearchArticleSection.swift */; };
+		1F38BAD122844140008A07CE /* SearchKeywordSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F38BAD022844140008A07CE /* SearchKeywordSection.swift */; };
 		1F3FACF622804F3F002A0705 /* AriticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACF522804F3F002A0705 /* AriticleRepository.swift */; };
 		1F3FACFD2280502D002A0705 /* ArticleLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACFC2280502D002A0705 /* ArticleLocalDataSource.swift */; };
 		1F3FACFF2280503C002A0705 /* ArticleRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FACFE2280503C002A0705 /* ArticleRemoteDataSource.swift */; };
@@ -105,6 +107,8 @@
 		1F38BAC522841DF0008A07CE /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		1F38BAC722841FD7008A07CE /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		1F38BAC922841FF0008A07CE /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		1F38BACB22843BB8008A07CE /* SearchArticleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticleSection.swift; sourceTree = "<group>"; };
+		1F38BAD022844140008A07CE /* SearchKeywordSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordSection.swift; sourceTree = "<group>"; };
 		1F3FACF522804F3F002A0705 /* AriticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriticleRepository.swift; sourceTree = "<group>"; };
 		1F3FACFC2280502D002A0705 /* ArticleLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleLocalDataSource.swift; sourceTree = "<group>"; };
 		1F3FACFE2280503C002A0705 /* ArticleRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRemoteDataSource.swift; sourceTree = "<group>"; };
@@ -207,12 +211,22 @@
 		1F38BAC422840F3A008A07CE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1F38BACD22843BBE008A07CE /* Section Models */,
 				1F38BABC2283F024008A07CE /* SearchViewController.swift */,
 				1F38BAC722841FD7008A07CE /* SearchPresenter.swift */,
 				1F38BAC922841FF0008A07CE /* SearchInteractor.swift */,
 				1F38BAC522841DF0008A07CE /* SearchRouter.swift */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		1F38BACD22843BBE008A07CE /* Section Models */ = {
+			isa = PBXGroup;
+			children = (
+				1F38BACB22843BB8008A07CE /* SearchArticleSection.swift */,
+				1F38BAD022844140008A07CE /* SearchKeywordSection.swift */,
+			);
+			path = "Section Models";
 			sourceTree = "<group>";
 		};
 		1F3FACF222804BC9002A0705 /* Search  */ = {
@@ -719,6 +733,7 @@
 				1F3FAD652281FC1B002A0705 /* ACVProtocol.swift in Sources */,
 				1F3FACF622804F3F002A0705 /* AriticleRepository.swift in Sources */,
 				1F5487E42282D1DD008F6823 /* UIVIew+Utility.swift in Sources */,
+				1F38BACC22843BB8008A07CE /* SearchArticleSection.swift in Sources */,
 				1F5487C22281C882008F6823 /* HomeViewController.swift in Sources */,
 				1F5487D92282A915008F6823 /* ArticleBannerCell.swift in Sources */,
 				1F95E21D227CB1A700EA7B02 /* Mics.swift in Sources */,
@@ -765,6 +780,7 @@
 				1F3FAD672281FE42002A0705 /* ACVAdapter.swift in Sources */,
 				1F3FAD5022818431002A0705 /* CDArticle+CoreDataProperties.swift in Sources */,
 				1F95E22F227CB69E00EA7B02 /* UIImage+Utility.swift in Sources */,
+				1F38BAD122844140008A07CE /* SearchKeywordSection.swift in Sources */,
 				1F38BAC322840F2E008A07CE /* SearchProtocol.swift in Sources */,
 				1F5487A82280BC08008F6823 /* Image.swift in Sources */,
 				1F5487C82282A198008F6823 /* ACVFlowLayout.swift in Sources */,

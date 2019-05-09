@@ -33,7 +33,8 @@ class HomeRouter: HomeRouterProtocol {
         guard let viewController = view as? HomeViewController else {
             return
         }
-        let searchController = UISearchController(searchResultsController: nil)
+        
+        let searchController = viewController.searchController
         viewController.present(searchController, animated: true, completion: nil)
     }
     

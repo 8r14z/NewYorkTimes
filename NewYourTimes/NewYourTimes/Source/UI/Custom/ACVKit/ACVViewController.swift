@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class ACVViewController: UICollectionViewController {
     
     lazy private(set)var acvAdapter: ACVAdapter = {
@@ -38,6 +40,7 @@ class ACVViewController: UICollectionViewController {
         label.textColor = .lightGray
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.isHidden = true
         view.addSubview(label)
         label.constraintEqual(to: view)
         return label
@@ -62,6 +65,8 @@ class ACVViewController: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // MARK: === Life Cycle ===
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -72,6 +77,18 @@ class ACVViewController: UICollectionViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
+    }
+    
+    
+    // MARK: === Convenient ===
+    func showError(_ error: Error) {
+        
+        let alertController = UIAlertController(title: "Something went wrong", message: error.localizedDescription, preferredStyle: .alert)
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        )
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     /// To override by sub class

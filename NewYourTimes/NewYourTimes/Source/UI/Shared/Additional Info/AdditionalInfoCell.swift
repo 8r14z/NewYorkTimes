@@ -23,7 +23,9 @@ class AdditionalInfoCell: UICollectionViewCell, ItemViewProtocol {
     
     func didUpdate(_ object: ItemViewModel) {
         
-        
+        if let object = object as? AdditionalInfoItem {
+            infoLabel.text = object.info
+        }
     }
     
     static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize {

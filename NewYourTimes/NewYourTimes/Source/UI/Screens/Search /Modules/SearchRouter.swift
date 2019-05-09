@@ -14,6 +14,22 @@ class SearchRouter: SearchRouterProtocol {
     
     static func makeSearchView() -> UISearchController {
         
-        return UISearchController()
+        let view = SearchViewController()
+        let presenter = SearchPresenter()
+        let interactor = SearchInteractor()
+        let router = SearchRouter()
+        
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        
+        let searchController = UISearchController(searchResultsController: view)
+        searchController.searchResultsUpdater = view
+        searchController.searchBar.delegate = view
+        view.searchBar = searchController.searchBar
+        
+        return searchController
     }
 }

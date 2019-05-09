@@ -25,12 +25,15 @@ class HomeViewController: ACVViewController, HomeViewProtocol {
     
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
         } else {
             let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchItem))
             navigationItem.rightBarButtonItem = searchItem
         }
                 
         navigationItem.title = "News".localized()
+        
+        definesPresentationContext = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,10 +45,6 @@ class HomeViewController: ACVViewController, HomeViewProtocol {
         presenter?.viewDidAppear()
     }
     
-    override class func storyboardName() -> String {
-        return "Home"
-    }
-    
     override func didPullToRefreshSections() {
         presenter?.didPullToRefresh()
     }
@@ -54,16 +53,6 @@ class HomeViewController: ACVViewController, HomeViewProtocol {
 
 
 extension HomeViewController {
-    
-    func showError(_ error: Error) {
-        
-        let alertController = UIAlertController(title: "Something went wrong", message: error.localizedDescription, preferredStyle: .alert)
-        alertController.addAction(
-            UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        )
-        
-        present(alertController, animated: true, completion: nil)
-    }
     
     func showLoadingIndicator() {
         loadingIndicator.startAnimating()
@@ -112,7 +101,7 @@ extension HomeViewController: ACVAdapterDelegate {
 
     @objc func didTapSearchItem() {
         if #available(iOS 11.0, *) {
-            // delegate presenter to view controller.
+            // delegate presentation to view controller.
         } else {
             presenter?.didSelectSearch()
         }

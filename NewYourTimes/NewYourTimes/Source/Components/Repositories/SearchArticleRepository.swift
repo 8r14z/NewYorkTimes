@@ -38,7 +38,9 @@ class SearchArticleRepository: SearchArticleRepositoryProtocol {
     }
     
     func saveSearchTerm(_ searchTerm: String) {
-        localDataSource.saveSearchTerm(searchTerm)
+        if !searchTerm.isEmpty {
+            localDataSource.saveSearchTerm(searchTerm)
+        }
     }
     
     func fetchSearchArticles(query: String,
