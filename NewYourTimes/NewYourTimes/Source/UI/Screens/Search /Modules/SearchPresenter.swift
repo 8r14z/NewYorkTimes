@@ -32,6 +32,7 @@ class SearchPresenter: SearchPresenterProtocol {
     }
     
     func searchTextDidChange(_ text: String) {
+        
         timer?.invalidate()
 
         if text.isEmpty {
@@ -98,6 +99,7 @@ class SearchPresenter: SearchPresenterProtocol {
     // MARK: === PRIVATE ===
     @objc private func timerDidFire(_ timer: Timer) {
         if  let text = timer.userInfo as? String {
+            view?.showLoadingIndicator()
             interactor?.fetchSearchArticles(with: text)
         }
     }

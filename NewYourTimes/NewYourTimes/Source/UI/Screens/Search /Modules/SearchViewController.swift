@@ -104,7 +104,7 @@ extension SearchViewController: ACVAdapterDelegate, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        presenter?.searchTextDidChange(searchText)
     }
     
 }
