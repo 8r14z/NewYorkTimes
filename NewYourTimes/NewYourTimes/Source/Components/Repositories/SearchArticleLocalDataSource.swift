@@ -36,15 +36,13 @@ class SearchArticleLocalDataSource: SearchArticleLocalDataSourceProtocol {
     }
     
     func saveSearchTerm(_ searchTerm: String) {
-        
-        let key = Constants.searchArticleDBKey
-        
+
         if !searchTerm.isEmpty {
             
             let previousSearchTerms = fetchPreviousSearchTerms()
             
-            if previousSearchTerms == nil || !previousSearchTerms!.contains(key) {
-                dbStore.saveData(searchTerm, forKey: key)
+            if previousSearchTerms == nil || !previousSearchTerms!.contains(searchTerm) {
+                dbStore.saveData(searchTerm, forKey: Constants.searchArticleDBKey)
             }
         }
     }

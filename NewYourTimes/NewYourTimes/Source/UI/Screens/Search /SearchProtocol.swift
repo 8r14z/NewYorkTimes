@@ -23,6 +23,8 @@ protocol SearchViewProtocol: ClassOnly {
     
     func setSearchBarTextPlaceholder(_ text: String)
     func removeFocusOnSearchBar()
+    
+    func currentSearchText() -> String?
 
     func reloadView(with data: [SectionViewModel])
 }

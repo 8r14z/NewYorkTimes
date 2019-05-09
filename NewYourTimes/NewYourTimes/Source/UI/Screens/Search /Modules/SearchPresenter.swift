@@ -44,9 +44,13 @@ class SearchPresenter: SearchPresenterProtocol {
     }
     
     func searchButtonDidEnter(_ text: String) {
-        view?.showLoadingIndicator()
+        
         interactor?.saveKeyword(text)
-        interactor?.fetchSearchArticles(with: text)
+
+        if text != view?.currentSearchText() ?? "" {
+            view?.showLoadingIndicator()
+            interactor?.fetchSearchArticles(with: text)
+        }
     }
     
     // MARK: === INTERACTOR EVENTS ===
