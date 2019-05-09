@@ -10,53 +10,21 @@ import UIKit
 
 
 
-class HomeViewController: UICollectionViewController, HomeViewProtocol {
+class HomeViewController: ACVViewController, HomeViewProtocol {
 
     var presenter: HomePresenterProtocol?
 
-    lazy var acvAdapter: ACVAdapter = {
-        return ACVAdapter()
-    }()
-    
-    private let refreshControl: UIRefreshControl = {
-        let refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
-        return refresher
-    }()
-    
-    private let loadingIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .gray)
-        indicator.hidesWhenStopped = true
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        return indicator
-    }()
-    
     private var articleSections = [HomeArticleSection]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let flowLayout = ACVFlowLayout()
-            .autoSizing(false)
-            .minimumLineSpacing(0)
-            .sectionInset(top: 0, left: 0, bottom: 10, right: 0)
-        
-        collectionView.collectionViewLayout = flowLayout
-        collectionView.addSubview(refreshControl)
-        
-        view.addSubview(loadingIndicator)
-        loadingIndicator.constraintCenter(to: view)
-        
         navigationItem.title = "News".localized()
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        
-        acvAdapter.collectionView = collectionView
         acvAdapter.dataSource = self
         acvAdapter.delegate = self
         
@@ -65,6 +33,10 @@ class HomeViewController: UICollectionViewController, HomeViewProtocol {
     
     override class func storyboardName() -> String {
         return "Home"
+    }
+    
+    override func didPullToRefreshSections() {
+        presenter?.didPullToRefresh()
     }
 }
 
@@ -125,10 +97,6 @@ extension HomeViewController: ACVAdapterDelegate {
     
     func willDisplaySection(section: Int) {
         presenter?.willDisplaySection(articleSections[section], sectionIndex: section, sectionCount: articleSections.count)
-    }
-    
-    @objc func didPullToRefresh() {
-        presenter?.didPullToRefresh()
     }
 }
 
