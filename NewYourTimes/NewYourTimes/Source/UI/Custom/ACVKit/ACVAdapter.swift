@@ -100,7 +100,9 @@ final class ACVAdapter: NSObject, ACVAdapterProtocol {
                 oldSectionMap.forEach { (entry) in
                     if let toIndex = newSectionMap[entry.key]?.offset {
                         let fromIndex = entry.value.offset
-                        movedSections.append((from: fromIndex, to: toIndex))
+                        if toIndex != fromIndex {
+                            movedSections.append((from: fromIndex, to: toIndex))
+                        }
                     }
                 }
                 
