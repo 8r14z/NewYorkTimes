@@ -10,19 +10,19 @@ import UIKit
 
 class ACVViewController: UICollectionViewController {
     
-    lazy var acvAdapter: ACVAdapter = {
+    lazy private(set)var acvAdapter: ACVAdapter = {
         let adapter = ACVAdapter()
         adapter.collectionView = collectionView
         return adapter
     }()
     
-    lazy var refreshControl: UIRefreshControl = {
+    lazy private(set)var refreshControl: UIRefreshControl = {
         let refresher = UIRefreshControl()
         refresher.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         return refresher
     }()
     
-    lazy var loadingIndicator: UIActivityIndicatorView = {
+    lazy private(set)var loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .gray)
         indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +31,7 @@ class ACVViewController: UICollectionViewController {
         return indicator
     }()
     
-    lazy var emptyLabel: UILabel = {
+    lazy private(set)var emptyLabel: UILabel = {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 17)
