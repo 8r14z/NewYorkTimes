@@ -31,18 +31,16 @@ class ImageRepository: ImageRepositoryProtocol {
     private let localDataSource: ImageLocalDataSourceProtocol
     private let remoteDataSource: ImageRemoteDataSourceProtocol
     
-    init(local: ImageLocalDataSourceProtocol = ImageLocalDataSource(),
+    static let shared = ImageRepository()
+    
+    private init(local: ImageLocalDataSourceProtocol = ImageLocalDataSource(),
          remote: ImageRemoteDataSourceProtocol = ImageRemoteDataSource()) {
         
         localDataSource = local
         remoteDataSource = remote
     }
     
-    private var cachedImages = [URL: UIImage]() {
-        didSet {
-            print("DASDASDAD")
-        }
-    }
+    private var cachedImages = NSCache<NSURL, UIImage>()
     private let dataAccessQueue = DispatchQueue(label: "ImageRepositoryDataAccessQueue")
     
     func image(for url: URL, completion: @escaping (UIImage?) -> Void) {
@@ -53,15 +51,13 @@ class ImageRepository: ImageRepositoryProtocol {
                 return
             }
             
-            if let image = self.cachedImages[url] {
+            if let image = self.cachedImages.object(forKey: url as NSURL) {
                 completion(image)
                 
             } else {
                 
                 if let image = self.localDataSource.image(for: url) {
-                    
-                    self.cachedImages[url] = image
-                    
+                    self.cachedImages.setObject(image, forKey: url as NSURL)
                     completion(image)
                     
                 } else {
@@ -71,7 +67,7 @@ class ImageRepository: ImageRepositoryProtocol {
                         if let image = try? result.get() {
                             
                             self?.dataAccessQueue.sync { [weak self] in
-                                self?.cachedImages[url] = image
+                                self?.cachedImages.setObject(image, forKey: url as NSURL)
                             }
                             
                             self?.localDataSource.saveImage(image, for: url)

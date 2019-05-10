@@ -26,7 +26,7 @@ class ArticleRepository: ArticleRepositoryProtocol {
     
     private let localDataSource: ArticleLocalDataSourceProtocol
     private let remoteDataSource: ArticleRemoteDataSourceProtocol
-        
+    
     init(local: ArticleLocalDataSourceProtocol = ArticleLocalDataSource(),
          remote: ArticleRemoteDataSourceProtocol = ArticleRemoteDataSource()) {
         
@@ -50,7 +50,7 @@ class ArticleRepository: ArticleRepositoryProtocol {
                 
             } else {
      
-                self.localDataSource.fetchArticles(limit: pageSize) { [weak self] (result) in
+                self.localDataSource.fetchArticles(fromIndex: pageOffset, limit: pageSize) { [weak self] (result) in
                     
                     guard let self = self else {
                         return

@@ -19,7 +19,7 @@ protocol AdvancedImageViewProtocol {
 
 class AdvancedImageView: UIImageView, AdvancedImageViewProtocol {
     
-    lazy var imageRepository: ImageRepositoryProtocol = ImageRepository()
+    lazy var imageRepository: ImageRepositoryProtocol = ImageRepository.shared
     
     private let mutex = DispatchSemaphore(value: 1)
     private var currentURL: URL?
