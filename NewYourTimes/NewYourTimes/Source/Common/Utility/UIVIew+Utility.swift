@@ -59,7 +59,6 @@ extension UIView {
         case .trailing:
             self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: constant).isActive = true
             break
-
         }
         
         return self

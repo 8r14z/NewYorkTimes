@@ -1,15 +1,14 @@
 //
-//  NewYourTimes_DemoTests.swift
-//  NewYourTimes_DemoTests
+//  NewYourTimesTests.swift
+//  NewYourTimesTests
 //
-//  Created by An Le  on 5/6/19.
+//  Created by An Le  on 5/10/19.
 //  Copyright © 2019 An Le. All rights reserved.
 //
 
 import XCTest
-@testable import NewYourTimes_Demo
 
-class NewYourTimes_DemoTests: XCTestCase {
+class NewYourTimesTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

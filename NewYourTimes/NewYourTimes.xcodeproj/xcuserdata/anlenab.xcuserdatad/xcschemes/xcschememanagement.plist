@@ -9,10 +9,33 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>NewYourTimesTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>NewYourTimes_Demo.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1F97D39B22806B390059808A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F97D3B222806B3B0059808A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F97D3BD22806B3B0059808A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
