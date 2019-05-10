@@ -17,15 +17,6 @@ protocol ImageRepositoryProtocol {
 
 
 
-class ProxyRefType<T> {
-    var value: T
-    init(value: T) {
-        self.value = value
-    }
-}
-
-
-
 class ImageRepository: ImageRepositoryProtocol {
     
     private let localDataSource: ImageLocalDataSourceProtocol

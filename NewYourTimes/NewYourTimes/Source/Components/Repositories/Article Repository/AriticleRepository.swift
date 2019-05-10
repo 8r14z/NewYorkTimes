@@ -79,7 +79,7 @@ class ArticleRepository: ArticleRepositoryProtocol {
         }
     }
     
-    func _fetchArticlesFromRemote(pageOffset: Int,
+    private func _fetchArticlesFromRemote(pageOffset: Int,
                                   pageSize: Int,
                                   completion: ReadCompletionBlock<[Article]>?) {
         

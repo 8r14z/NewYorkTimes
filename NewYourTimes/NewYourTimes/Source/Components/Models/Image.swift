@@ -9,6 +9,7 @@
 import Foundation
 
 
+
 enum ImageFormat: String, Codable {
     case standardThumbnail = "Standard Thumbnail"
     case normal = "Normal"
@@ -16,6 +17,7 @@ enum ImageFormat: String, Codable {
     case mediumThreeByTwo440 = "mediumThreeByTwo440"
     case unknown = "unknown"
 }
+
 
 
 struct Image: Codable {

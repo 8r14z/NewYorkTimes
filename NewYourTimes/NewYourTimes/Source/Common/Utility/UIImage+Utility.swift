@@ -9,9 +9,10 @@
 import UIKit
 
 
-// 238, 238, 238
+
 extension UIImage {
     
+    /// Should be called in background thread
     func decoded() -> UIImage? {
 
         guard let cgImage = cgImage else { return nil }

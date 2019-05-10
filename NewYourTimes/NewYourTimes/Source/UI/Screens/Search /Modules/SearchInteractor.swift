@@ -42,7 +42,7 @@ class SearchInteractor: SearchInteractorProtocol {
     
     func fetchSearchArticles(with keyword: String) {
 
-        // Do sth
+        // Do sth... Cancel previous search if same keyword...
         repository.fetchSearchArticles(query: keyword, pageIndex: 0) { [weak self] (result) in
             
             guard let self = self else {
