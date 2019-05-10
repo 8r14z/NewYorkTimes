@@ -12,7 +12,10 @@ import UIKit
 
 class ArticleRounter {
     
-    static func makeArticleView() -> UIViewController {
-        return UIViewController()
+    static func makeArticleView(currentSectionIndex index: Int) -> UIPageViewController {
+        
+        let view = ArticlesViewController()
+        
+        return view
     }
 }

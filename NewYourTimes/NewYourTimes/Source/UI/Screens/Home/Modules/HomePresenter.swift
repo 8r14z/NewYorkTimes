@@ -42,9 +42,9 @@ class HomePresenter: HomePresenterProtocol {
         }
     }
     
-    func didSelectSection(_ section: HomeArticleSection) {
+    func didSelectSection(_ section: HomeArticleSection, sectionIndex: Int) {
         if let view = view {
-            router?.navigateToArticleView(from: view)
+            router?.navigateToArticleView(from: view, sectionIndex: sectionIndex)
         }
     }
     

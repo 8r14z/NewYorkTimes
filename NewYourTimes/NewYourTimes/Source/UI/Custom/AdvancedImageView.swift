@@ -11,7 +11,7 @@ import UIKit
 
 protocol AdvancedImageViewProtocol {
 
-    var imageRepository: ImageCaching { get set }
+    var imageRepository: ImageRepositoryProtocol { get set }
     
     func setImage(with url: URL)
 }
@@ -19,9 +19,44 @@ protocol AdvancedImageViewProtocol {
 
 class AdvancedImageView: UIImageView, AdvancedImageViewProtocol {
     
-    var imageRepository: ImageCaching = ImageCacher()
+    lazy var imageRepository: ImageRepositoryProtocol = ImageRepository()
+    
+    private let mutex = DispatchSemaphore(value: 1)
+    private var currentURL: URL?
     
     func setImage(with url: URL) {
-
+        
+        image = nil
+        backgroundColor = .lightGray
+        
+        DispatchQueue.global().async { [weak self] in
+            
+            guard let self = self else {
+                return
+            }
+            
+            self.mutex.wait()
+            self.currentURL = url
+            self.mutex.signal()
+            
+            self.imageRepository.image(for: url, completion: { [weak self] (image) in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                self.mutex.wait()
+                let currentURL = self.currentURL
+                self.mutex.signal()
+                
+                if let image = image,
+                    currentURL == url {
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        self?.image = image
+                    }
+                }
+            })
+        }
     }
 }

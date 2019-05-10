@@ -12,6 +12,8 @@ import Foundation
 
 protocol ArticleLocalDataSourceProtocol {
     
+    func fetchArticles(fromIndex index: Int, limit : Int, completion: ReadCompletionBlock<[Article]>?)
+
     func fetchArticles(limit: Int, completion: ReadCompletionBlock<[Article]>?)
     func saveArticles(_ articles: [Article], completion: WriteCompletionBlock?)
 }
@@ -20,13 +22,49 @@ protocol ArticleLocalDataSourceProtocol {
 
 class ArticleLocalDataSource: ArticleLocalDataSourceProtocol {
     
-   
+    private var cachedArticles = [Article]()
+    private var dataAccessMutex = DispatchSemaphore(value: 1)
+    
     func fetchArticles(limit: Int, completion: ReadCompletionBlock<[Article]>?) {
-        completion?(.success([]))
+        completion?(.success(cachedArticles))
+    }
+    
+    func fetchArticles(fromIndex index: Int, limit : Int, completion: ReadCompletionBlock<[Article]>?) {
+        
+        DispatchQueue.global().async { [weak self] in
+            
+            guard let self = self else {
+                return
+            }
+            
+            self.dataAccessMutex.wait()
+            defer {
+                self.dataAccessMutex.signal()
+            }
+            
+            if index + limit <= self.cachedArticles.count {
+                
+                let fetchedArticles = Array(self.cachedArticles[index..<limit])
+                completion?(.success(fetchedArticles))
+                
+            } else {
+                completion?(.success([]))
+            }
+        }
     }
     
     func saveArticles(_ articles: [Article], completion: WriteCompletionBlock?) {
-        completion?(true)
+        
+        DispatchQueue.global().async { [weak self] in
+            
+            self?.dataAccessMutex.wait()
+            defer {
+                self?.dataAccessMutex.signal()
+            }
+            
+            self?.cachedArticles.append(contentsOf: articles)
+            completion?(true)
+        }
     }
     
 }

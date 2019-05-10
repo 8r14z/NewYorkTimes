@@ -16,13 +16,17 @@ struct ArticleDetailSection: SectionViewModel {
     
     var supplementaryItems: [SupplementaryKind : ItemViewModel]?
     
+    private(set) var pageIndex: Int
+    
     init(title: String,
          publishedDate: Date,
          publisher: String,
          author: String,
          snippet: String,
-         image: Image?) {
+         image: Image?, pageIndex: Int = 0) {
      
+        self.pageIndex = pageIndex
+        
         itemModels = [ArticleTitleItem(title: title),
                       ArticlePublishedDateItem(publishedDate: publishedDate),
                       AdditionalInfoItem(info: publisher),

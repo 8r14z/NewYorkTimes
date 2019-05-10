@@ -12,7 +12,7 @@ import Foundation
 
 struct Constants {
     
-    static let imageCachePath = "articleImages"
+    static let imageCacheDirectory = "images"
     static let searchArticleDBKey = "searchArticleDBKey"
 }
 
@@ -39,6 +39,10 @@ enum HTTPMethod: String {
 enum NetworkError: Error {
     case noConnection
     case unexpected
+}
+
+enum FileError: Error {
+    case directoryNotExist
 }
 
 enum FetchStrategy {

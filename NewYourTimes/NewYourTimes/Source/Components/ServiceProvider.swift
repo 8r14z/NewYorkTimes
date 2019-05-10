@@ -22,6 +22,10 @@ extension URLSessionDataTask: Cancellable { }
 
 
 protocol ServiceProviding {
+    
+    @discardableResult
+    func downloadData(with url: URL, completion: ReadCompletionBlock<Data?>?) -> Cancellable
+    
     @discardableResult
     func download(with url: URL, completion: ReadCompletionBlock<JSON>?) -> Cancellable
 }
@@ -31,7 +35,7 @@ protocol ServiceProviding {
 /// ServiceProvider
 extension URLSession: ServiceProviding {
     
-    func download(with url: URL, completion: ReadCompletionBlock<JSON>?) -> Cancellable {
+    func downloadData(with url: URL, completion: ReadCompletionBlock<Data?>?) -> Cancellable {
         
         let task = dataTask(with: url) { (data, response, error) in
             
@@ -46,16 +50,31 @@ extension URLSession: ServiceProviding {
                     return
             }
             
-            if let data = data,
-                let json = try? JSONSerialization.jsonObject(with: data) as? JSON {
-                completion?(.success(json))
-            } else {
-                completion?(.success([:]))
-            }
+            completion?(.success(data))
         }
         
         task.resume()
         return task
+    }
+    
+    func download(with url: URL, completion: ReadCompletionBlock<JSON>?) -> Cancellable {
+        
+        return downloadData(with: url, completion: { (result) in
+        
+            switch result {
+            case .success(let data):
+                
+                if let data = data,
+                    let json = try? JSONSerialization.jsonObject(with: data) as? JSON {
+                    completion?(.success(json))
+                } else {
+                    completion?(.success([:]))
+                }
+                
+            case .failure(let error):
+                completion?(.failure(error))
+            }
+        })
     }
     
     

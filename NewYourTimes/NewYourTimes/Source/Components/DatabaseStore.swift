@@ -40,4 +40,3 @@ extension UserDefaults: DatabaseStoring {
         set(nil, forKey: key)
     }
 }
-

@@ -35,7 +35,7 @@ protocol HomePresenterProtocol: ClassOnly {
     
     func viewDidAppear()
     func didPullToRefresh()
-    func didSelectSection(_ section: HomeArticleSection)
+    func didSelectSection(_ section: HomeArticleSection, sectionIndex: Int)
     func willDisplaySection(_ section: HomeArticleSection, sectionIndex: Int, sectionCount: Int)
     func didSelectSearch()
     
@@ -64,5 +64,5 @@ protocol HomeRouterProtocol: ClassOnly {
     static func makeHomeView() -> UIViewController
     
     func navigateToSearchArticleView(from view: HomeViewProtocol)
-    func navigateToArticleView(from view: HomeViewProtocol)
+    func navigateToArticleView(from view: HomeViewProtocol, sectionIndex: Int)
 }

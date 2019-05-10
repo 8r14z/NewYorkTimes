@@ -26,10 +26,7 @@ class ArticleRepository: ArticleRepositoryProtocol {
     
     private let localDataSource: ArticleLocalDataSourceProtocol
     private let remoteDataSource: ArticleRemoteDataSourceProtocol
-    
-    private var isCacheFetched = false
-    private var concurrentQueue = DispatchQueue(label: "ArticleRepositoryQueue", attributes: .concurrent)
-    
+        
     init(local: ArticleLocalDataSourceProtocol = ArticleLocalDataSource(),
          remote: ArticleRemoteDataSourceProtocol = ArticleRemoteDataSource()) {
         
@@ -39,22 +36,22 @@ class ArticleRepository: ArticleRepositoryProtocol {
 
     func fetchArticles(pageOffset: Int,
                        pageSize: Int,
-                       fetchStrategy: FetchStrategy = .serverOnly,
+                       fetchStrategy: FetchStrategy,
                        completion: ReadCompletionBlock<[Article]>?) {
 
-        concurrentQueue.async { [weak self] in
+        DispatchQueue.global().async { [weak self] in
+            
             guard let self = self else {
                 return
             }
             
-            if fetchStrategy == .serverOnly || self.isCacheFetched {
+            if fetchStrategy == .serverOnly {
                 self.remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: completion)
                 
             } else {
-                
-                self.isCacheFetched = true
-                
+     
                 self.localDataSource.fetchArticles(limit: pageSize) { [weak self] (result) in
+                    
                     guard let self = self else {
                         return
                     }
@@ -62,13 +59,24 @@ class ArticleRepository: ArticleRepositoryProtocol {
                     switch result {
                     case .success(let articles):
                         
-                        completion?(.success(articles))
-                        
-                        if (fetchStrategy == .cacheFirstElseServer && articles.isEmpty) ||
-                            fetchStrategy == .cacheThenServer {
-                            
-                            self.remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: completion)
+                        if fetchStrategy == .cacheOnly ||
+                            (fetchStrategy == .cacheFirstElseServer && !articles.isEmpty) {
+                            completion?(.success(articles))
+                            return
                         }
+                        
+                        if fetchStrategy == .cacheThenServer {
+                            completion?(.success(articles))
+                        }
+                        
+                        self.remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: { [weak self] (result) in
+                            
+                            if let articles = try? result.get() {
+                                self?.localDataSource.saveArticles(articles, completion: nil)
+                            }
+                            
+                            completion?(result)
+                        })
                         
                     case .failure(let error):
                         completion?(.failure(error))

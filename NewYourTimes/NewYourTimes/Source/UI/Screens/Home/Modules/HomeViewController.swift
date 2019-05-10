@@ -99,7 +99,7 @@ extension HomeViewController: ACVAdapterDataSource {
 extension HomeViewController: ACVAdapterDelegate {
 
     func didSelectSection(_ section: Int) {
-        presenter?.didSelectSection(articleSections[section])
+        presenter?.didSelectSection(articleSections[section], sectionIndex: section)
     }
     
     func willDisplaySection(section: Int) {
