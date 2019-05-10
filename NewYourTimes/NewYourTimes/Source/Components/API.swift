@@ -15,13 +15,13 @@ enum API {
     // All constants of NewYourTimes APIs
     //************************************************
     struct Default {
-        static let pageSize: Int = 20
+        static let pageSize: Int = 5
         static let apiKey = "FauIo832lm5wKELs5tCMUlRA9EOdZL96"
         static let scheme = "https"
         static let host = "api.nytimes.com"
     }
     
-    struct JSONKeys {
+    struct ResponseKeys {
         // Article
         static let result = "results"
         static let title = "title"
@@ -35,7 +35,7 @@ enum API {
         static let searchResult = "docs"
     }
     
-    struct RequestKeys {
+    struct RequestParams {
         static let apiKey = "api-key"
         static let pageSize = "limit"
         static let offset = "offset"
@@ -75,15 +75,15 @@ enum API {
         
         switch self {
         case .article(let offset, let pageSize):
-            queryItems = [URLQueryItem(name: RequestKeys.pageSize, value: "\(pageSize)"),
-                          URLQueryItem(name: RequestKeys.offset, value: "\(offset)")]
+            queryItems = [URLQueryItem(name: RequestParams.pageSize, value: "\(pageSize)"),
+                          URLQueryItem(name: RequestParams.offset, value: "\(offset)")]
             
         case .searchArticle(let searchQuery, let pageIndex):
-            queryItems = [URLQueryItem(name: RequestKeys.searchQuery, value: searchQuery),
-                          URLQueryItem(name: RequestKeys.pageIndex, value: "\(pageIndex)")]
+            queryItems = [URLQueryItem(name: RequestParams.searchQuery, value: searchQuery),
+                          URLQueryItem(name: RequestParams.pageIndex, value: "\(pageIndex)")]
         }
         
-        queryItems.append(URLQueryItem(name: RequestKeys.apiKey, value: Default.apiKey))
+        queryItems.append(URLQueryItem(name: RequestParams.apiKey, value: Default.apiKey))
         
         return queryItems
     }

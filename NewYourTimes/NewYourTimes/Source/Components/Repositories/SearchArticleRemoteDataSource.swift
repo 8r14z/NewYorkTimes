@@ -36,8 +36,8 @@ class SearchArticleRemoteDataSource: SearchArticleRemoteDataSourceProtocol {
             switch result {
             case .success(let json):
                 
-                if let searchResponse = json[API.JSONKeys.searchResponse] as? JSON,
-                    let searchResult = searchResponse[API.JSONKeys.searchResult] as? [Any] {
+                if let searchResponse = json[API.ResponseKeys.searchResponse] as? JSON,
+                    let searchResult = searchResponse[API.ResponseKeys.searchResult] as? [Any] {
                     
                     do {
                         let decoder = JSONDecoder()

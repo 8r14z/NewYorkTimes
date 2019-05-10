@@ -38,15 +38,15 @@ class ArticleViewController: UIPageViewController, ArticleViewProtocol {
         view.backgroundColor = .separator
         dataSource = self
         
-        presenter?.viewDidLoad()
+        presenter?.initialSetup()
     }
 }
 
 
 
 extension ArticleViewController  {
-
-    func updateViewWithCurrentSection(_ section: ArticleDetailSection) {
+    
+    func initViewWithSection(_ section: ArticleDetailSection) {
         
         let articleDetailVC = ArticleDetailView(articleSection: section)
         currentSection = section
@@ -55,7 +55,7 @@ extension ArticleViewController  {
         presenter?.prepareNextSection(for: section)
         presenter?.preparePreviousSection(for: section)
     }
-    
+
     func updateViewWithNextSection(_ section: ArticleDetailSection?) {
         nextSection = section
     }
@@ -102,5 +102,4 @@ extension ArticleViewController: UIPageViewControllerDataSource {
             return nil
         }
     }
-    
 }

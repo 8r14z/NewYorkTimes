@@ -15,12 +15,14 @@ class ArticleInteractor: ArticleInteractorProtocol {
     weak var presenter: ArticlePresenterProtocol?
     lazy var repository: ArticleRepositoryProtocol = ArticleRepository.shared
     
-    func loadArticle(for index: Int) {
+    private let pageSize = 1
+    
+    func loadFirstArticle(for index: Int) {
         
-        repository.fetchArticles(pageOffset: index, pageSize: 1, fetchStrategy: .cacheOnly) { (result) in
+        repository.fetchArticles(pageOffset: index, pageSize: pageSize, fetchStrategy: .cacheOnly) { (result) in
             
             if let article = try? result.get().first {
-                self.presenter?.didLoadCurrentArticle(article, index: index)
+                self.presenter?.didLoadFirstArticle(article, index: index)
             }
         }
     }
@@ -28,7 +30,7 @@ class ArticleInteractor: ArticleInteractorProtocol {
     func loadNextArticle(for index: Int) {
         
         let nextIndex = index + 1
-        repository.fetchArticles(pageOffset: nextIndex, pageSize: 1, fetchStrategy: .cacheOnly) { (result) in
+        repository.fetchArticles(pageOffset: nextIndex, pageSize: pageSize, fetchStrategy: .cacheOnly) { (result) in
             
             if let article = try? result.get().first {
                 self.presenter?.didLoadNextArticle(article, index: nextIndex)
@@ -41,7 +43,7 @@ class ArticleInteractor: ArticleInteractorProtocol {
     func loadPreviousArticle(for index: Int) {
         
         let previousIndex = index - 1
-        repository.fetchArticles(pageOffset: previousIndex-1, pageSize: 1, fetchStrategy: .cacheOnly) { (result) in
+        repository.fetchArticles(pageOffset: previousIndex, pageSize: pageSize, fetchStrategy: .cacheOnly) { (result) in
             
             if let article = try? result.get().first {
                 self.presenter?.didLoadPreviousArticle(article, index: previousIndex)

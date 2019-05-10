@@ -34,7 +34,7 @@ class ArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
             switch result {
             case .success(let json):
                 
-                if let result = json[API.JSONKeys.result] as? [Any] {
+                if let result = json[API.ResponseKeys.result] as? [Any] {
                     
                     do {
                         let decoder = JSONDecoder(dateDecodingFormat: .iso8601DateAndTime)

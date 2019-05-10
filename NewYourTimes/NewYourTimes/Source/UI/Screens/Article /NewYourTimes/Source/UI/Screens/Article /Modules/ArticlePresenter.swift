@@ -21,8 +21,8 @@ class ArticlePresenter: ArticlePresenterProtocol {
         self.currentIndex = currentIndex
     }
     
-    func viewDidLoad() {
-        interactor?.loadArticle(for: currentIndex)
+    func initialSetup() {
+        interactor?.loadFirstArticle(for: currentIndex)
     }
     
     func prepareNextSection(for section: ArticleDetailSection) {
@@ -32,7 +32,7 @@ class ArticlePresenter: ArticlePresenterProtocol {
         interactor?.loadPreviousArticle(for: section.pageIndex)
     }
     
-    func didLoadCurrentArticle(_ article: Article, index: Int) {
+    func didLoadFirstArticle(_ article: Article, index: Int) {
         
         DispatchQueue.main.async { [weak self] in
             
@@ -44,7 +44,7 @@ class ArticlePresenter: ArticlePresenterProtocol {
                                                image: article.banner(),
                                                pageIndex: index)
             
-            self?.view?.updateViewWithCurrentSection(section)
+            self?.view?.initViewWithSection(section)
         }
     }
     
