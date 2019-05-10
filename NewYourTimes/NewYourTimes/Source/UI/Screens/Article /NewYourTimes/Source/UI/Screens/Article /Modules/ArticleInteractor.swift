@@ -17,12 +17,12 @@ class ArticleInteractor: ArticleInteractorProtocol {
     
     private let pageSize = 1
     
-    func loadFirstArticle(for index: Int) {
+    func intialFetchArticle(at index: Int) {
         
         repository.fetchArticles(pageOffset: index, pageSize: pageSize, fetchStrategy: .cacheOnly) { (result) in
             
             if let article = try? result.get().first {
-                self.presenter?.didLoadFirstArticle(article, index: index)
+                self.presenter?.didIntialFetchDone(article, index: index)
             }
         }
     }

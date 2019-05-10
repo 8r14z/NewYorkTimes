@@ -26,7 +26,7 @@ class ArticlePresenter: ArticlePresenterProtocol {
     }
     
     func initialSetup() {
-        interactor?.loadFirstArticle(for: currentIndex)
+        interactor?.intialFetchArticle(at: currentIndex)
     }
     
     func willTransitionToArticle(_ article: ArticleDetailSection) {
@@ -52,7 +52,7 @@ class ArticlePresenter: ArticlePresenterProtocol {
         }
     }
     
-    func didLoadFirstArticle(_ article: Article, index: Int) {
+    func didIntialFetchDone(_ article: Article, index: Int) {
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {

@@ -34,7 +34,7 @@ protocol ArticlePresenterProtocol: ClassOnly {
     func willTransitionToArticle(_ article: ArticleDetailSection)
     
     // Interactor listener
-    func didLoadFirstArticle(_ article: Article, index: Int)
+    func didIntialFetchDone(_ article: Article, index: Int)
     func didLoadNextArticle(_ article: Article?, index: Int)
     func didLoadPreviousArticle(_ article: Article?, index: Int)
 }
@@ -45,7 +45,7 @@ protocol ArticleInteractorProtocol: ClassOnly {
     var presenter: ArticlePresenterProtocol? { get set }
     var repository: ArticleRepositoryProtocol { get set }
 
-    func loadFirstArticle(for index: Int)
+    func intialFetchArticle(at index: Int)
     func loadNextArticle(for index: Int)
     func loadPreviousArticle(for index: Int)
 }

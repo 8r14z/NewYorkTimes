@@ -32,6 +32,7 @@ class ArticleViewController: UIPageViewController, ArticleViewProtocol {
         }
         
         view.backgroundColor = .separator
+        
         dataSource = self
         delegate = self
         
@@ -51,13 +52,21 @@ extension ArticleViewController  {
 
 
 
+// MARK: === USER INTERACTION ===
 extension ArticleViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        
+        if let articleDetailView = pendingViewControllers.first as? ArticleDetailView {
+            let article = articleDetailView.articleSection
+            presenter?.willTransitionToArticle(article)
+        }
+    }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         if let section = presenter?.previousArticle {
             return ArticleDetailView(articleSection: section)
-
         } else {
             return nil
         }
@@ -67,17 +76,8 @@ extension ArticleViewController: UIPageViewControllerDataSource, UIPageViewContr
         
         if let section = presenter?.nextArticle {
             return ArticleDetailView(articleSection: section)
-
         } else {
             return nil
-        }
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        
-        if let articleDetailView = pendingViewControllers.first as? ArticleDetailView {
-            let article = articleDetailView.articleSection
-            presenter?.willTransitionToArticle(article)
         }
     }
 }
