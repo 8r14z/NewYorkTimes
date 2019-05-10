@@ -15,7 +15,7 @@ enum API {
     // All constants of NewYourTimes APIs
     //************************************************
     struct Default {
-        static let pageSize: Int = 5
+        static let pageSize: Int = 20
         static let apiKey = "FauIo832lm5wKELs5tCMUlRA9EOdZL96"
         static let scheme = "https"
         static let host = "api.nytimes.com"
