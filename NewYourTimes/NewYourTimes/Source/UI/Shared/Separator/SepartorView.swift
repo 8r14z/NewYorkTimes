@@ -33,6 +33,6 @@ class SepartorView: UICollectionReusableView, ItemViewProtocol {
     func didUpdate(_ object: ItemViewModel) { }
     
     static func preferredSizeForItem(_ item: ItemViewModel, containerSize: CGSize) -> CGSize {
-        return CGSize(width: containerSize.width, height: 1)
+        return CGSize(width: containerSize.width, height: 1.0)
     }
 }
