@@ -46,7 +46,7 @@ class ArticleRepository: ArticleRepositoryProtocol {
             }
             
             if fetchStrategy == .serverOnly {
-                self.remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: completion)
+                self._fetchArticlesFromRemote(pageOffset: pageOffset, pageSize: pageSize, completion: completion)
                 
             } else {
      
@@ -68,15 +68,8 @@ class ArticleRepository: ArticleRepositoryProtocol {
                         if fetchStrategy == .cacheThenServer {
                             completion?(.success(articles))
                         }
-                        
-                        self.remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: { [weak self] (result) in
-                            
-                            if let articles = try? result.get() {
-                                self?.localDataSource.saveArticles(articles, completion: nil)
-                            }
-                            
-                            completion?(result)
-                        })
+
+                        self._fetchArticlesFromRemote(pageOffset: pageOffset, pageSize: pageSize, completion: completion)
                         
                     case .failure(let error):
                         completion?(.failure(error))
@@ -84,7 +77,20 @@ class ArticleRepository: ArticleRepositoryProtocol {
                 }
             }
         }
-       
+    }
+    
+    func _fetchArticlesFromRemote(pageOffset: Int,
+                                  pageSize: Int,
+                                  completion: ReadCompletionBlock<[Article]>?) {
+        
+        remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: { [weak self] (result) in
+            
+            if let articles = try? result.get() {
+                self?.localDataSource.saveArticles(articles, completion: nil)
+            }
+            
+            completion?(result)
+        })
     }
 }
 

@@ -10,7 +10,13 @@ import UIKit
 
 
 
-class ArticlesViewController: UIPageViewController {
+class ArticleViewController: UIPageViewController, ArticleViewProtocol {
+    
+    var presenter: ArticlePresenterProtocol?
+    
+    private var currentSection: ArticleDetailSection?
+    private var previousSection: ArticleDetailSection?
+    private var nextSection: ArticleDetailSection?
     
     init() {
         super.init(transitionStyle: .scroll,
@@ -27,34 +33,74 @@ class ArticlesViewController: UIPageViewController {
         
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
-        } else {
-            // Fallback on earlier versions
         }
         
+        view.backgroundColor = .separator
         dataSource = self
+        
+        presenter?.viewDidLoad()
     }
-    
 }
 
 
 
-extension ArticlesViewController: UIPageViewControllerDataSource {
+extension ArticleViewController  {
+
+    func updateViewWithCurrentSection(_ section: ArticleDetailSection) {
+        
+        let articleDetailVC = ArticleDetailView(articleSection: section)
+        currentSection = section
+        setViewControllers([articleDetailVC], direction: .forward, animated: false, completion: nil)
+        
+        presenter?.prepareNextSection(for: section)
+        presenter?.preparePreviousSection(for: section)
+    }
+    
+    func updateViewWithNextSection(_ section: ArticleDetailSection?) {
+        nextSection = section
+    }
+    
+    func updateViewWithPreviousSection(_ section: ArticleDetailSection?) {
+        previousSection = section
+    }
+}
+
+
+
+extension ArticleViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let articleDetailSection = ArticleDetailSection(title: "[1] For His 200th Birthday, a Composer Gets a Closer Look", publishedDate: Date(), publisher: "International New York Times", author: "By REBECCA SCHMID", snippet: "As the bicentenary of Jacques Offenbach’s birth approaches, opera companies across Europe have been staging some of his rarely performed works.", image: Image(url: "", format: .mediumThreeByTwo440, caption: "Jacques Offenbach often conducted his own compositions and worked closely with his librettists.", width: 440, height: 293))
         
-        
-        let xxx = ArticleDetailViewController(articleSection: articleDetailSection)
-        return xxx
+        if let section = previousSection {
+            
+            nextSection = currentSection
+            currentSection = section
+            previousSection = nil
+            
+            presenter?.preparePreviousSection(for: section)
+            
+            return ArticleDetailView(articleSection: section)
+
+        } else {
+            return nil
+        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let articleDetailSection = ArticleDetailSection(title: "[2] For His 200th Birthday, a Composer Gets a Closer Look", publishedDate: Date(), publisher: "International New York Times", author: "By REBECCA SCHMID", snippet: "As the bicentenary of Jacques Offenbach’s birth approaches, opera companies across Europe have been staging some of his rarely performed works.", image: Image(url: "", format: .mediumThreeByTwo440, caption: "Jacques Offenbach often conducted his own compositions and worked closely with his librettists.", width: 440, height: 293))
         
-        
-        let xxx = ArticleDetailViewController(articleSection: articleDetailSection)
-        return xxx
+        if let section = nextSection {
+            
+            previousSection = currentSection
+            currentSection = section
+            nextSection = nil
+            
+            presenter?.prepareNextSection(for: section)
+            
+            return ArticleDetailView(articleSection: section)
+
+        } else {
+            return nil
+        }
     }
-    
     
 }

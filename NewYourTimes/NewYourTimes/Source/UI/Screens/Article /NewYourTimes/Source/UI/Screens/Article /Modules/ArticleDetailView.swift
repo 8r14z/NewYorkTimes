@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ArticleDetailViewController: ACVViewController {
+class ArticleDetailView: ACVViewController {
     
     private(set) var articleSection: ArticleDetailSection
 
@@ -32,7 +32,7 @@ class ArticleDetailViewController: ACVViewController {
 
 
 
-extension ArticleDetailViewController: ACVAdapterDataSource {
+extension ArticleDetailView: ACVAdapterDataSource {
     
     func sectionViewModelsForAdapter(_ adapter: ACVAdapter) -> [SectionViewModel] {
         return [articleSection]

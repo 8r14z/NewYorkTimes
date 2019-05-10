@@ -44,12 +44,7 @@ class HomeRouter: HomeRouterProtocol {
             return
         }
         
-        let articleDetailSection = ArticleDetailSection(title: "For His 200th Birthday, a Composer Gets a Closer Look", publishedDate: Date(), publisher: "International New York Times", author: "By REBECCA SCHMID", snippet: "As the bicentenary of Jacques Offenbach’s birth approaches, opera companies across Europe have been staging some of his rarely performed works.", image: Image(url: "", format: .mediumThreeByTwo440, caption: "Jacques Offenbach often conducted his own compositions and worked closely with his librettists.", width: 440, height: 293))
-        
-        
-        let xxx = ArticleDetailViewController(articleSection: articleDetailSection)
-        let vc = ArticleRounter.makeArticleView(currentSectionIndex: sectionIndex)
-        vc.setViewControllers([xxx], direction: .forward, animated: false, completion: nil)
+        let vc = ArticleRouter.makeArticleView(currentIndex: sectionIndex)
         viewController.navigationController?.pushViewController(vc, animated: true)
     }
 }

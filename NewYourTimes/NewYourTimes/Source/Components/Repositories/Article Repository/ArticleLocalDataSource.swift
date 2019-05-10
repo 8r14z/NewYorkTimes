@@ -42,9 +42,11 @@ class ArticleLocalDataSource: ArticleLocalDataSourceProtocol {
                 self.dataAccessMutex.signal()
             }
             
-            if index + limit <= self.cachedArticles.count {
+            let articleCount = self.cachedArticles.count
+            if index >= 0 && index < articleCount {
                 
-                let fetchedArticles = Array(self.cachedArticles[index..<limit])
+                let upperBound = Swift.min(index + limit, articleCount)
+                let fetchedArticles = Array(self.cachedArticles[index..<upperBound])
                 completion?(.success(fetchedArticles))
                 
             } else {

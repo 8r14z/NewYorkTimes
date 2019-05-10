@@ -20,18 +20,28 @@ struct ArticleDetailSection: SectionViewModel {
     
     init(title: String,
          publishedDate: Date,
-         publisher: String,
-         author: String,
+         publisher: String?,
+         author: String?,
          snippet: String,
-         image: Image?, pageIndex: Int = 0) {
+         image: Image?,
+         pageIndex: Int) {
      
         self.pageIndex = pageIndex
         
-        itemModels = [ArticleTitleItem(title: title),
-                      ArticlePublishedDateItem(publishedDate: publishedDate),
-                      AdditionalInfoItem(info: publisher),
-                      AdditionalInfoItem(info: author),
-                      ArticleSnippetItem(snippet: snippet)]
+        itemModels = []
+        
+        itemModels.append(ArticleTitleItem(title: title))
+        itemModels.append(ArticlePublishedDateItem(publishedDate: publishedDate))
+        
+        if let publisher = publisher {
+            itemModels.append(AdditionalInfoItem(info: publisher))
+        }
+        
+        if let author = author {
+            itemModels.append(AdditionalInfoItem(info: author))
+        }
+        
+        itemModels.append(ArticleSnippetItem(snippet: snippet))
         
         if let image = image {
             itemModels.append(ArticleBannerItem(image: image))

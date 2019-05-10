@@ -10,12 +10,20 @@ import UIKit
 
 
 
-class ArticleRounter {
+class ArticleRouter: ArticleRouterProtocol {
     
-    static func makeArticleView(currentSectionIndex index: Int) -> UIPageViewController {
+    static func makeArticleView(currentIndex index: Int) -> UIViewController {
         
-        let view = ArticlesViewController()
+        let view = ArticleViewController()
+        let presenter = ArticlePresenter(currentIndex: index)
+        let interactor = ArticleInteractor()
+        
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        interactor.presenter = presenter
         
         return view
     }
+
 }
