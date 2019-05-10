@@ -14,27 +14,27 @@ protocol ArticleViewProtocol: ClassOnly {
     
     var presenter: ArticlePresenterProtocol? { get set }
     
-    func initViewWithSection(_ section: ArticleDetailSection)
-    func updateViewWithNextSection(_ section: ArticleDetailSection?)
-    func updateViewWithPreviousSection(_ section: ArticleDetailSection?)
+    func updateViewWithArticle(_ article: ArticleDetailSection)
 }
 
 
 
 protocol ArticlePresenterProtocol: ClassOnly {
     
-    var currentIndex: Int { get set }
+    var currentIndex: Int { get }
+    
+    var currentArticle: ArticleDetailSection? { get }
+    var nextArticle: ArticleDetailSection? { get }
+    var previousArticle: ArticleDetailSection? { get }
     
     var view: ArticleViewProtocol? { get set }
     var interactor: ArticleInteractorProtocol? { get set }
     
     func initialSetup()
+    func willTransitionToArticle(_ article: ArticleDetailSection)
     
-    func prepareNextSection(for section: ArticleDetailSection)
-    func preparePreviousSection(for section: ArticleDetailSection)
-    
+    // Interactor listener
     func didLoadFirstArticle(_ article: Article, index: Int)
-    
     func didLoadNextArticle(_ article: Article?, index: Int)
     func didLoadPreviousArticle(_ article: Article?, index: Int)
 }
@@ -46,7 +46,6 @@ protocol ArticleInteractorProtocol: ClassOnly {
     var repository: ArticleRepositoryProtocol { get set }
 
     func loadFirstArticle(for index: Int)
-    
     func loadNextArticle(for index: Int)
     func loadPreviousArticle(for index: Int)
 }

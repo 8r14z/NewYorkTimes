@@ -14,10 +14,6 @@ class ArticleViewController: UIPageViewController, ArticleViewProtocol {
     
     var presenter: ArticlePresenterProtocol?
     
-    private var currentSection: ArticleDetailSection?
-    private var previousSection: ArticleDetailSection?
-    private var nextSection: ArticleDetailSection?
-    
     init() {
         super.init(transitionStyle: .scroll,
                    navigationOrientation: .horizontal,
@@ -37,6 +33,7 @@ class ArticleViewController: UIPageViewController, ArticleViewProtocol {
         
         view.backgroundColor = .separator
         dataSource = self
+        delegate = self
         
         presenter?.initialSetup()
     }
@@ -46,39 +43,19 @@ class ArticleViewController: UIPageViewController, ArticleViewProtocol {
 
 extension ArticleViewController  {
     
-    func initViewWithSection(_ section: ArticleDetailSection) {
-        
-        let articleDetailVC = ArticleDetailView(articleSection: section)
-        currentSection = section
+    func updateViewWithArticle(_ article: ArticleDetailSection) {
+        let articleDetailVC = ArticleDetailView(articleSection: article)
         setViewControllers([articleDetailVC], direction: .forward, animated: false, completion: nil)
-        
-        presenter?.prepareNextSection(for: section)
-        presenter?.preparePreviousSection(for: section)
-    }
-
-    func updateViewWithNextSection(_ section: ArticleDetailSection?) {
-        nextSection = section
-    }
-    
-    func updateViewWithPreviousSection(_ section: ArticleDetailSection?) {
-        previousSection = section
     }
 }
 
 
 
-extension ArticleViewController: UIPageViewControllerDataSource {
+extension ArticleViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        if let section = previousSection {
-            
-            nextSection = currentSection
-            currentSection = section
-            previousSection = nil
-            
-            presenter?.preparePreviousSection(for: section)
-            
+        if let section = presenter?.previousArticle {
             return ArticleDetailView(articleSection: section)
 
         } else {
@@ -88,18 +65,19 @@ extension ArticleViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        if let section = nextSection {
-            
-            previousSection = currentSection
-            currentSection = section
-            nextSection = nil
-            
-            presenter?.prepareNextSection(for: section)
-            
+        if let section = presenter?.nextArticle {
             return ArticleDetailView(articleSection: section)
 
         } else {
             return nil
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        
+        if let articleDetailView = pendingViewControllers.first as? ArticleDetailView {
+            let article = articleDetailView.articleSection
+            presenter?.willTransitionToArticle(article)
         }
     }
 }

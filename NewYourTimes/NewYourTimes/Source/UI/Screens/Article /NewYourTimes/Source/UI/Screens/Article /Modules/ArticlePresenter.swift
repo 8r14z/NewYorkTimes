@@ -15,7 +15,11 @@ class ArticlePresenter: ArticlePresenterProtocol {
     weak var view: ArticleViewProtocol?
     var interactor: ArticleInteractorProtocol?
     
-    var currentIndex: Int
+    private(set) var currentIndex: Int
+    
+    private(set) var currentArticle: ArticleDetailSection?
+    private(set) var previousArticle: ArticleDetailSection?
+    private(set) var nextArticle: ArticleDetailSection?
     
     init(currentIndex: Int) {
         self.currentIndex = currentIndex
@@ -25,46 +29,55 @@ class ArticlePresenter: ArticlePresenterProtocol {
         interactor?.loadFirstArticle(for: currentIndex)
     }
     
-    func prepareNextSection(for section: ArticleDetailSection) {
-        interactor?.loadNextArticle(for: section.pageIndex)
-    }
-    func preparePreviousSection(for section: ArticleDetailSection) {
-        interactor?.loadPreviousArticle(for: section.pageIndex)
+    func willTransitionToArticle(_ article: ArticleDetailSection) {
+
+        guard let curArticle = currentArticle else {
+            return
+        }
+        
+        if article.pageIndex > curArticle.pageIndex {
+            
+            previousArticle = currentArticle
+            currentArticle = article
+            nextArticle = nil
+            
+            interactor?.loadNextArticle(for: article.pageIndex)
+        } else {
+            
+            nextArticle = currentArticle
+            currentArticle = article
+            previousArticle = nil
+            
+            interactor?.loadPreviousArticle(for: article.pageIndex)
+        }
     }
     
     func didLoadFirstArticle(_ article: Article, index: Int) {
         
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
             
-            let section = ArticleDetailSection(title: article.title,
-                                               publishedDate: article.publishedDate,
-                                               publisher: article.publisher,
-                                               author: article.author,
-                                               snippet: article.snippet,
-                                               image: article.banner(),
-                                               pageIndex: index)
-            
-            self?.view?.initViewWithSection(section)
+            let articleSection = self.convert(article, index: index)
+            self.currentArticle = articleSection
+            self.view?.updateViewWithArticle(articleSection)
+            self.interactor?.loadNextArticle(for: index)
+            self.interactor?.loadPreviousArticle(for: index)
         }
     }
     
     func didLoadNextArticle(_ article: Article?, index: Int) {
         
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
             
             if let article = article {
-                
-                let section = ArticleDetailSection(title: article.title,
-                                                   publishedDate: article.publishedDate,
-                                                   publisher: article.publisher,
-                                                   author: article.author,
-                                                   snippet: article.snippet,
-                                                   image: article.banner(),
-                                                   pageIndex: index)
-                
-                self?.view?.updateViewWithNextSection(section)
+                self.nextArticle = self.convert(article, index: index)
             } else {
-                self?.view?.updateViewWithNextSection(nil)
+                self.nextArticle = nil
             }
         }
     }
@@ -72,21 +85,25 @@ class ArticlePresenter: ArticlePresenterProtocol {
     func didLoadPreviousArticle(_ article: Article?, index: Int) {
         
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
             
             if let article = article {
-                
-                let section = ArticleDetailSection(title: article.title,
-                                                   publishedDate: article.publishedDate,
-                                                   publisher: article.publisher,
-                                                   author: article.author,
-                                                   snippet: article.snippet,
-                                                   image: article.banner(),
-                                                   pageIndex: index)
-                
-                self?.view?.updateViewWithPreviousSection(section)
+                self.previousArticle = self.convert(article, index: index)
             } else {
-                self?.view?.updateViewWithPreviousSection(nil)
+                self.previousArticle = nil
             }
         }
+    }
+    
+    private func convert(_ article: Article, index: Int) -> ArticleDetailSection {
+        return ArticleDetailSection(title: article.title,
+                                    publishedDate: article.publishedDate,
+                                    publisher: article.publisher,
+                                    author: article.author,
+                                    snippet: article.snippet,
+                                    image: article.banner(),
+                                    pageIndex: index)
     }
 }
