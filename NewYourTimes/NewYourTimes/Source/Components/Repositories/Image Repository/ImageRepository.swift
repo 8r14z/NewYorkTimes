@@ -24,52 +24,42 @@ class ImageRepository: ImageRepositoryProtocol {
     
     static let shared = ImageRepository()
     
-    private init(local: ImageLocalDataSourceProtocol = ImageLocalDataSource(),
+    init(local: ImageLocalDataSourceProtocol = ImageLocalDataSource(),
          remote: ImageRemoteDataSourceProtocol = ImageRemoteDataSource()) {
         
         localDataSource = local
         remoteDataSource = remote
     }
     
+    /// Thread-safe
     private var cachedImages = NSCache<NSURL, UIImage>()
-    private let dataAccessQueue = DispatchQueue(label: "ImageRepositoryDataAccessQueue")
     
     func image(for url: URL, completion: @escaping (UIImage?) -> Void) {
         
-        dataAccessQueue.async { [weak self] in
+        if let image = cachedImages.object(forKey: url as NSURL) {
+            completion(image)
             
-            guard let self = self else {
-                return
-            }
+        } else {
             
-            if let image = self.cachedImages.object(forKey: url as NSURL) {
+            if let image = localDataSource.image(for: url) {
+                cachedImages.setObject(image, forKey: url as NSURL)
                 completion(image)
                 
             } else {
                 
-                if let image = self.localDataSource.image(for: url) {
-                    self.cachedImages.setObject(image, forKey: url as NSURL)
-                    completion(image)
+                self.remoteDataSource.image(for: url, completion: { [weak self] (result) in
                     
-                } else {
-                    
-                    self.remoteDataSource.image(for: url, completion: { [weak self] (result) in
+                    if let image = try? result.get() {
+
+                        self?.cachedImages.setObject(image, forKey: url as NSURL)
+                        self?.localDataSource.saveImage(image, for: url)
                         
-                        if let image = try? result.get() {
-                            
-                            self?.dataAccessQueue.sync { [weak self] in
-                                self?.cachedImages.setObject(image, forKey: url as NSURL)
-                            }
-                            
-                            self?.localDataSource.saveImage(image, for: url)
-                            
-                            completion(image)
-                            
-                        } else {
-                            completion(nil)
-                        }
-                    })
-                }
+                        completion(image)
+                        
+                    } else {
+                        completion(nil)
+                    }
+                })
             }
         }
     }

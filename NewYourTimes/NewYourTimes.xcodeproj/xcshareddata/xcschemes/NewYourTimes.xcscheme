@@ -26,13 +26,24 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1F97D39B22806B390059808A"
+            BuildableName = "NewYourTimes.app"
+            BlueprintName = "NewYourTimes"
+            ReferencedContainer = "container:NewYourTimes.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1F97D3B222806B3B0059808A"
+               BlueprintIdentifier = "1F4525A62285B15D00CFFA7F"
                BuildableName = "NewYourTimesTests.xctest"
                BlueprintName = "NewYourTimesTests"
                ReferencedContainer = "container:NewYourTimes.xcodeproj">
