@@ -59,11 +59,11 @@ acvAdapter.performUpdate()
 ## 3 main folders:
 ### NewYourTimes
 Contains App Bundle with 3 main folders:
-* [Source](#head1.1) which contains all source code
-* [Resources](#head1.2) which contains all resources such as: images, localizable strings,...
-* [Supporting Files](#head1.3) which contains supporting files for the project: info.plist,...
+* **Source** which contains all source code
+* **Resources** which contains all resources such as: images, localizable strings,...
+* **Supporting Files** which contains supporting files for the project: info.plist,...
 
-  #### <a name="head1.1"></a> Source
+  #### Source
   * **AppDelegate.swift** 
   * **UI**: contains all UI related code
     * **Custom**: contains all custom UI
