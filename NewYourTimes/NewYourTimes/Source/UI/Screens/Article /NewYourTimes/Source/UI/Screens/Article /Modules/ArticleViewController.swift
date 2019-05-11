@@ -61,9 +61,14 @@ extension ArticleViewController: UIPageViewControllerDataSource, UIPageViewContr
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
+        guard let presenter = presenter,
+            let currentArticle = presenter.currentArticle  else {
+            return
+        }
+        
         if let articleDetailView = pendingViewControllers.first as? ArticleDetailView {
             let article = articleDetailView.articleSection
-            presenter?.willTransitionToArticle(article)
+            presenter.willTransitionFromArticle(currentArticle, to: article)
         }
     }
     

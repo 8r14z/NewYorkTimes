@@ -32,12 +32,14 @@ class MockArticlePresenter: ArticlePresenterProtocol {
         
     }
     
-    func willTransitionToArticle(_ article: ArticleDetailSection) {
+    func willTransitionFromArticle(_ currentArticle: ArticleDetailSection, to article: ArticleDetailSection) {
         
     }
     
     func didInitialFetchSuccess(_ article: Article, index: Int) {
+        
         didFetchFirstArticleSucess = true
+        
         currentArticle = ArticleDetailSection(title: article.title,
                                               publishedDate: article.publishedDate,
                                               publisher: article.publisher,

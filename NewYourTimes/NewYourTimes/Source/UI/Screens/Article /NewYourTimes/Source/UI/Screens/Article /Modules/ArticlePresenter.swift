@@ -29,22 +29,23 @@ class ArticlePresenter: ArticlePresenterProtocol {
         interactor?.intialFetchArticle(at: currentIndex)
     }
     
-    func willTransitionToArticle(_ article: ArticleDetailSection) {
-
-        guard let curArticle = currentArticle else {
+    func willTransitionFromArticle(_ current: ArticleDetailSection, to article: ArticleDetailSection) {
+        
+        guard current.pageIndex != article.pageIndex else {
             return
         }
         
-        if article.pageIndex > curArticle.pageIndex {
+        if article.pageIndex > current.pageIndex {
             
-            previousArticle = currentArticle
+            previousArticle = current
             currentArticle = article
             nextArticle = nil
             
             interactor?.loadNextArticle(for: article.pageIndex)
+            
         } else {
             
-            nextArticle = currentArticle
+            nextArticle = current
             currentArticle = article
             previousArticle = nil
             
