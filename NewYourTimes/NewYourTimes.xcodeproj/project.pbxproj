@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F1A7877228746C000F51628 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F1A7876228746C000F51628 /* README.md */; };
+		1F1A78792287485000F51628 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F1A78782287485000F51628 /* README.md */; };
 		1F31EA97228721EF003C5CED /* NewYourTimesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31EA96228721EF003C5CED /* NewYourTimesUITests.swift */; };
 		1F31EA9F228722B4003C5CED /* TestHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31EA9E228722B4003C5CED /* TestHomeView.swift */; };
 		1F31EAA12287271A003C5CED /* TestSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F31EAA02287271A003C5CED /* TestSearchView.swift */; };
@@ -150,7 +150,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F1A7876228746C000F51628 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
+		1F1A78782287485000F51628 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1F31EA94228721EF003C5CED /* NewYourTimesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewYourTimesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F31EA96228721EF003C5CED /* NewYourTimesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewYourTimesUITests.swift; sourceTree = "<group>"; };
 		1F31EA98228721EF003C5CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -758,7 +758,7 @@
 		1F97D39322806B390059808A = {
 			isa = PBXGroup;
 			children = (
-				1F1A7876228746C000F51628 /* README.md */,
+				1F1A78782287485000F51628 /* README.md */,
 				1F97D39E22806B390059808A /* NewYourTimes */,
 				1F4525A82285B15D00CFFA7F /* NewYourTimesTests */,
 				1F31EA95228721EF003C5CED /* NewYourTimesUITests */,
@@ -995,7 +995,7 @@
 			files = (
 				1F38BAE522846CA9008A07CE /* ArticleCaptionCell.xib in Resources */,
 				1F5487DA2282A915008F6823 /* ArticleBannerCell.xib in Resources */,
-				1F1A7877228746C000F51628 /* README.md in Resources */,
+				1F1A78792287485000F51628 /* README.md in Resources */,
 				1F97D3AD22806B3B0059808A /* LaunchScreen.storyboard in Resources */,
 				1F5487D42282A733008F6823 /* ArticlePublishedDateCell.xib in Resources */,
 				1F3FAD4C22818389002A0705 /* Localizable.strings in Resources */,
