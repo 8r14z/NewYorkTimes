@@ -27,12 +27,9 @@ class MockArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
         
         switch response {
         case .hit:
-            let article = TestArticle
-            completion?(.success([article]))
-            
+            completion?(.success([TestArticle]))
         case .miss:
             completion?(.success([]))
-            
         case .error:
             completion?(.failure(TestError))
         }

@@ -25,12 +25,23 @@ struct SearchArticle: Codable {
     var title: String
     private var headline: Headline
     
+    init(title: String, snippet: String, publisher: String) {
+        self.title = title
+        headline = Headline(title: title)
+        self.snippet = snippet
+        self.publisher = publisher
+    }
+    
     enum CodingKeys: String, CodingKey, CaseIterable {
         case title
         case headline
         case snippet = "abstract"
         case publisher = "source"
     }
+}
+
+
+extension SearchArticle {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)

@@ -61,7 +61,7 @@ class MockServiceProvider: ServiceProviding {
         case .article:
             jsonObject = ArticleResponse
         case .search:
-            jsonObject = [:]
+            jsonObject = SearchArticleResponse
         }
         
         switch response {

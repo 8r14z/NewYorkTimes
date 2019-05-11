@@ -40,6 +40,11 @@ let TestArticle = Article(title: "Title",
                           author: "Author",
                           publisher: "Publisher")
 
+let TestSearchArticle = SearchArticle(title: "Title",
+                                      snippet: "Snippet",
+                                      publisher: "The New Your Times")
+
+
 // MARK: JSON Object
 let ImageJSON: JSON = [
     "url": "https://static01.nyt.com/images/2019/05/10/opinion/10eganWeb/10eganWeb-thumbStandard.jpg",
@@ -59,8 +64,22 @@ let ArticleJSON: JSON = [
     "multimedia": [ImageJSON]
 ]
 
+let SearchArticleJSON: JSON = [
+    "abstract": "The interior minister bowed to pressure to resign, and the governing party pledged a thorough investigation into the recent killing of a journalist.",
+    "source": "The New York Times",
+    "headline": ["main" : "After Murder and Protests, Slovak Leaders Struggle to Keep Power"]
+]
+
+
+// MARK: Cloned Response
 let ArticleResponse: JSON = [
     "results": [ArticleJSON]
+]
+
+let SearchArticleResponse: JSON = [
+    "response": [
+        "docs": [SearchArticleJSON]
+    ]
 ]
 
 

@@ -62,7 +62,11 @@ class HomeInteractor: HomeInteractorProtocol {
                 }
                 
             case .failure(let error):
-                self.presenter?.didFetchError(error)
+                if isInitialFetch {
+                    self.presenter?.didIntialFetchError(error)
+                } else {
+                    self.presenter?.didFetchError(error)
+                }
             }
             
             self.mutex.signal()
