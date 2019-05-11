@@ -18,7 +18,11 @@
 # AVC Kit
 With objectives are to write **reusable**, **maintainable** and **testable** code. I introduce a new way of using UICollectionView, **ACVKit**, a lightweight collection view.
 
+![](Images/ACVKit.png)
 
+As your can see, from our data models, we will break down into corresponding section models. And each section model is backed by other item models and each item is corresponding to a cell. With this approach, you can easily reuse your cells. For instance, you already have an section model that contains 3 items: title, subtext, image. Then you wanna create a new section that also contain title, so your can attach the title item directly into your new section model. That's is easy to do.
+
+> Pls take a look at my source code for reference.
 
 # Project Structure:
 ## 3 main folders:
