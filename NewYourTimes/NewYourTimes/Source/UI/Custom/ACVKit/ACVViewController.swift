@@ -58,6 +58,7 @@ class ACVViewController: UICollectionViewController {
         
         super.init(collectionViewLayout: flowLayout)
         collectionView.backgroundColor = .white
+        collectionView.keyboardDismissMode = .onDrag
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -8,27 +8,65 @@
 
 import XCTest
 
+
+
 class NewYourTimesUITests: XCTestCase {
 
+    var app: XCUIApplication!
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launch()
+    }
+    
+    func testShowHome() {
+        sleep(3)
+        let cell = app.collectionViews.cells.firstMatch
+        XCTAssert(cell.exists)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testScrollOnOfContent() {
+        sleep(3)
+        app.collectionViews.cells.firstMatch.swipeUp()
+        app.collectionViews.cells.firstMatch.swipeUp()
+        app.collectionViews.cells.firstMatch.swipeUp()
     }
-
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testScrollDownToShowSearchBar() {
+        sleep(3)
+        app.collectionViews.cells.firstMatch.swipeDown()
+        let searchBar = app.searchFields.firstMatch
+        XCTAssert(searchBar.exists)
     }
-
+    
+    func testSearchArticleBySearchBar() {
+        sleep(3)
+        app.collectionViews.cells.firstMatch.swipeDown()
+        app.searchFields.firstMatch.tap()
+        app.searchFields.firstMatch.typeText("Sd")
+        sleep(5)
+        app.collectionViews.cells.firstMatch.swipeUp()
+    }
+    
+    func testShowArticleDetail() {
+        sleep(3)
+        app.collectionViews.cells.firstMatch.tap()
+        let cell = app.collectionViews.children(matching: .cell).element(boundBy: 0)
+        XCTAssertTrue(cell.exists)
+    }
+    
+    func testSwipeBetwwenArticles() {
+        sleep(3)
+        app.collectionViews.cells.firstMatch.tap()
+        app.collectionViews.cells.firstMatch.swipeLeft()
+        app.collectionViews.cells.firstMatch.swipeLeft()
+        app.collectionViews.cells.firstMatch.swipeLeft()
+        app.collectionViews.cells.firstMatch.swipeRight()
+        app.collectionViews.cells.firstMatch.swipeRight()
+        sleep(1)
+    }
+    
+    
 }
