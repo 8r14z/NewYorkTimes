@@ -14,6 +14,7 @@ import Foundation
 class MockArticleRepository: ArticleRepositoryProtocol {
     
     private var response: Response
+    var articles: [Article]?
     
     init(response: Response) {
         self.response = response
@@ -26,10 +27,13 @@ class MockArticleRepository: ArticleRepositoryProtocol {
         
         switch response {
         case .hit:
+            articles = [TestArticle]
             completion?(.success([TestArticle]))
         case .miss:
+            articles = []
             completion?(.success([]))
         case .error:
+            articles = nil
             completion?(.failure(TestError))
         }
     }

@@ -21,15 +21,19 @@ class TestHomeInteractor: XCTestCase {
     
     func testInitialFetchArticlesSuccess() {
         
+        let repository = MockArticleRepository(response: .hit)
         let interactor = HomeInteractor()
         interactor.presenter = mockPresenter
-        interactor.repository = MockArticleRepository(response: .hit)
+        interactor.repository = repository
         
         interactor.initialFetchArticles()
         
         Thread.sleep(forTimeInterval: 0.3)
 
+        XCTAssertNotNil(mockPresenter.articles)
+        XCTAssert(mockPresenter.articles!.count == repository.articles!.count)
         XCTAssertTrue(mockPresenter.didIntialFetchSuccess)
+        XCTAssertFalse(mockPresenter.didInitialFetchError)
     }
 
     func testInitialFetchArticlesSuccessFail() {
@@ -42,20 +46,24 @@ class TestHomeInteractor: XCTestCase {
         
         Thread.sleep(forTimeInterval: 0.3)
         
+        XCTAssertNil(mockPresenter.articles)
         XCTAssertTrue(mockPresenter.didInitialFetchError)
         XCTAssertFalse(mockPresenter.didIntialFetchSuccess)
     }
     
     func testFetchArticlesSuccess() {
         
+        let repository = MockArticleRepository(response: .hit)
         let interactor = HomeInteractor()
         interactor.presenter = mockPresenter
-        interactor.repository = MockArticleRepository(response: .hit)
+        interactor.repository = repository
         
         interactor.fetchArticles()
         
         Thread.sleep(forTimeInterval: 0.3)
         
+        XCTAssertNotNil(mockPresenter.articles)
+        XCTAssert(mockPresenter.articles!.count == repository.articles!.count)
         XCTAssertTrue(mockPresenter.didFetchSuccess)
         XCTAssertFalse(mockPresenter.didFetchError)
     }
@@ -64,12 +72,13 @@ class TestHomeInteractor: XCTestCase {
         
         let interactor = HomeInteractor()
         interactor.presenter = mockPresenter
-        interactor.repository = MockArticleRepository(response: .hit)
+        interactor.repository = MockArticleRepository(response: .error)
         
         interactor.fetchArticles()
         
         Thread.sleep(forTimeInterval: 0.3)
         
+        XCTAssertNil(mockPresenter.articles)
         XCTAssertTrue(mockPresenter.didFetchError)
         XCTAssertFalse(mockPresenter.didFetchSuccess)
     }
