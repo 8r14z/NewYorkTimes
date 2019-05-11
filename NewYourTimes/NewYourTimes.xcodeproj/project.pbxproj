@@ -73,6 +73,12 @@
 		1F4525FB2286BF8200CFFA7F /* MockHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525FA2286BF8200CFFA7F /* MockHomeRouter.swift */; };
 		1F4525FD2286CB7A00CFFA7F /* TestHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525FC2286CB7A00CFFA7F /* TestHomeRouter.swift */; };
 		1F4525FF2286CC2B00CFFA7F /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525FE2286CC2B00CFFA7F /* UIApplication+Utility.swift */; };
+		1F4526062286D1C500CFFA7F /* MockSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4526052286D1C500CFFA7F /* MockSearchView.swift */; };
+		1F4526082286D2D700CFFA7F /* MockSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4526072286D2D700CFFA7F /* MockSearchInteractor.swift */; };
+		1F45260A2286D30700CFFA7F /* MockSearchRepositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4526092286D30700CFFA7F /* MockSearchRepositor.swift */; };
+		1F45260C2286D58C00CFFA7F /* TestSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F45260B2286D58C00CFFA7F /* TestSearchPresenter.swift */; };
+		1F45260E2286DC9F00CFFA7F /* TestSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F45260D2286DC9F00CFFA7F /* TestSearchInteractor.swift */; };
+		1F4526102286DCD100CFFA7F /* MockSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F45260F2286DCD100CFFA7F /* MockSearchPresenter.swift */; };
 		1F5487A62280B3EB008F6823 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A52280B3EB008F6823 /* API.swift */; };
 		1F5487A82280BC08008F6823 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A72280BC08008F6823 /* Image.swift */; };
 		1F5487AA22815285008F6823 /* DateFormatter+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A922815285008F6823 /* DateFormatter+Utility.swift */; };
@@ -196,6 +202,12 @@
 		1F4525FA2286BF8200CFFA7F /* MockHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeRouter.swift; sourceTree = "<group>"; };
 		1F4525FC2286CB7A00CFFA7F /* TestHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHomeRouter.swift; sourceTree = "<group>"; };
 		1F4525FE2286CC2B00CFFA7F /* UIApplication+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
+		1F4526052286D1C500CFFA7F /* MockSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchView.swift; sourceTree = "<group>"; };
+		1F4526072286D2D700CFFA7F /* MockSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchInteractor.swift; sourceTree = "<group>"; };
+		1F4526092286D30700CFFA7F /* MockSearchRepositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchRepositor.swift; sourceTree = "<group>"; };
+		1F45260B2286D58C00CFFA7F /* TestSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSearchPresenter.swift; sourceTree = "<group>"; };
+		1F45260D2286DC9F00CFFA7F /* TestSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSearchInteractor.swift; sourceTree = "<group>"; };
+		1F45260F2286DCD100CFFA7F /* MockSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchPresenter.swift; sourceTree = "<group>"; };
 		1F5487A52280B3EB008F6823 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1F5487A72280BC08008F6823 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		1F5487A922815285008F6823 /* DateFormatter+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Utility.swift"; sourceTree = "<group>"; };
@@ -512,8 +524,10 @@
 		1F4525F12286AD1700CFFA7F /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				1F4526022286D13A00CFFA7F /* Home */,
 				1F4525F42286AFEF00CFFA7F /* MockArticleRepository.swift */,
+				1F4526092286D30700CFFA7F /* MockSearchRepositor.swift */,
+				1F4526022286D13A00CFFA7F /* Home */,
+				1F4526032286D17800CFFA7F /* Search */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -521,6 +535,8 @@
 		1F4526002286D0E800CFFA7F /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				1F45260B2286D58C00CFFA7F /* TestSearchPresenter.swift */,
+				1F45260D2286DC9F00CFFA7F /* TestSearchInteractor.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -534,6 +550,16 @@
 				1F4525FA2286BF8200CFFA7F /* MockHomeRouter.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		1F4526032286D17800CFFA7F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1F4526052286D1C500CFFA7F /* MockSearchView.swift */,
+				1F4526072286D2D700CFFA7F /* MockSearchInteractor.swift */,
+				1F45260F2286DCD100CFFA7F /* MockSearchPresenter.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		1F5487AF2281BD8D008F6823 /* Modules */ = {
@@ -880,8 +906,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F45260C2286D58C00CFFA7F /* TestSearchPresenter.swift in Sources */,
 				1F4525CA2285F5A200CFFA7F /* TestImageLocalDataSource.swift in Sources */,
 				1F4525E722869FA300CFFA7F /* TestSearchArticleRepository.swift in Sources */,
+				1F45260E2286DC9F00CFFA7F /* TestSearchInteractor.swift in Sources */,
+				1F4526102286DCD100CFFA7F /* MockSearchPresenter.swift in Sources */,
 				1F4525F72286B9BC00CFFA7F /* MockHomeView.swift in Sources */,
 				1F4525E12286963200CFFA7F /* MockDatabaseStore.swift in Sources */,
 				1F4525BB2285EFF500CFFA7F /* MockImageLocalDataSource.swift in Sources */,
@@ -896,7 +925,10 @@
 				1F4525C22285F43D00CFFA7F /* MockImageRemoteDataSource.swift in Sources */,
 				1F4525B32285DEAB00CFFA7F /* APITest.swift in Sources */,
 				1F4525DF228694C600CFFA7F /* MockSearchArticleLocalDataSource.swift in Sources */,
+				1F4526082286D2D700CFFA7F /* MockSearchInteractor.swift in Sources */,
+				1F45260A2286D30700CFFA7F /* MockSearchRepositor.swift in Sources */,
 				1F4525EE2286A86700CFFA7F /* TestHomePrenseter.swift in Sources */,
+				1F4526062286D1C500CFFA7F /* MockSearchView.swift in Sources */,
 				1F4525F02286AC4D00CFFA7F /* TestHomeInteractor.swift in Sources */,
 				1F4525DA2286857100CFFA7F /* TestArticleRepository.swift in Sources */,
 				1F4525F32286AD2300CFFA7F /* MockHomePresenter.swift in Sources */,

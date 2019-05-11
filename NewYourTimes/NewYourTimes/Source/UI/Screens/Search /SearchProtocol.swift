@@ -52,7 +52,7 @@ protocol SearchPresenterProtocol: ClassOnly {
 protocol SearchInteractorProtocol: ClassOnly {
 
     var presenter: SearchPresenterProtocol? { get set }
-    var repository: SearchArticleRepository { get set }
+    var repository: SearchArticleRepositoryProtocol { get set }
     
     func fetchPreviousKeywords()
     func saveKeyword(_ keyword: String)

@@ -14,39 +14,17 @@ import Foundation
 class MockHomeInteractor: HomeInteractorProtocol {
     
     var presenter: HomePresenterProtocol?
-    var repository: ArticleRepositoryProtocol
+    var repository: ArticleRepositoryProtocol = MockArticleRepository(response: .error)
     
     var didIntialFetch = false
     var didFetch = false
     
-    private var response: Response
-    init(response: Response = .hit) {
-        self.response = response
-        repository = MockArticleRepository(response: response)
-    }
-    
     func initialFetchArticles() {
-        
         didIntialFetch = true
-        
-        switch response {
-        case .hit, .miss:
-            presenter?.didInitialFetchSuccess([TestArticle])
-        case .error:
-            presenter?.didIntialFetchError(TestError)
-        }
     }
     
     func fetchArticles() {
-        
         didFetch = true
-        
-        switch response {
-        case .hit, .miss:
-            presenter?.didFetchSuccess([TestArticle])
-        case .error:
-            presenter?.didFetchError(TestError)
-        }
     }
 
 }

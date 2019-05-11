@@ -13,74 +13,69 @@ import XCTest
 
 class TestHomeInteractor: XCTestCase {
     
-    var mockPresenter: MockHomePresenter!
+    var presenter: MockHomePresenter!
+    var interactor: HomeInteractor!
     
     override func setUp() {
-        mockPresenter = MockHomePresenter()
+        presenter = MockHomePresenter()
+        interactor = HomeInteractor()
+        interactor.presenter = presenter
     }
     
     func testInitialFetchArticlesSuccess() {
         
         let repository = MockArticleRepository(response: .hit)
-        let interactor = HomeInteractor()
-        interactor.presenter = mockPresenter
         interactor.repository = repository
         
         interactor.initialFetchArticles()
         
         Thread.sleep(forTimeInterval: 0.3)
 
-        XCTAssertNotNil(mockPresenter.articles)
-        XCTAssert(mockPresenter.articles!.count == repository.articles!.count)
-        XCTAssertTrue(mockPresenter.didIntialFetchSuccess)
-        XCTAssertFalse(mockPresenter.didInitialFetchError)
+        XCTAssertNotNil(presenter.articles)
+        XCTAssert(presenter.articles!.count == repository.articles!.count)
+        XCTAssertTrue(presenter.didIntialFetchSuccess)
+        XCTAssertFalse(presenter.didInitialFetchError)
     }
 
     func testInitialFetchArticlesSuccessFail() {
         
-        let interactor = HomeInteractor()
-        interactor.presenter = mockPresenter
         interactor.repository = MockArticleRepository(response: .error)
         
         interactor.initialFetchArticles()
         
         Thread.sleep(forTimeInterval: 0.3)
         
-        XCTAssertNil(mockPresenter.articles)
-        XCTAssertTrue(mockPresenter.didInitialFetchError)
-        XCTAssertFalse(mockPresenter.didIntialFetchSuccess)
+        XCTAssertNil(presenter.articles)
+        XCTAssertTrue(presenter.didInitialFetchError)
+        XCTAssertFalse(presenter.didIntialFetchSuccess)
     }
     
     func testFetchArticlesSuccess() {
         
         let repository = MockArticleRepository(response: .hit)
-        let interactor = HomeInteractor()
-        interactor.presenter = mockPresenter
         interactor.repository = repository
         
         interactor.fetchArticles()
         
         Thread.sleep(forTimeInterval: 0.3)
         
-        XCTAssertNotNil(mockPresenter.articles)
-        XCTAssert(mockPresenter.articles!.count == repository.articles!.count)
-        XCTAssertTrue(mockPresenter.didFetchSuccess)
-        XCTAssertFalse(mockPresenter.didFetchError)
+        XCTAssertNotNil(presenter.articles)
+        XCTAssert(presenter.articles!.count == repository.articles!.count)
+        XCTAssertTrue(presenter.didFetchSuccess)
+        XCTAssertFalse(presenter.didFetchError)
     }
     
     func testFetchArticlesError() {
         
-        let interactor = HomeInteractor()
-        interactor.presenter = mockPresenter
         interactor.repository = MockArticleRepository(response: .error)
         
         interactor.fetchArticles()
         
         Thread.sleep(forTimeInterval: 0.3)
         
-        XCTAssertNil(mockPresenter.articles)
-        XCTAssertTrue(mockPresenter.didFetchError)
-        XCTAssertFalse(mockPresenter.didFetchSuccess)
+        XCTAssertNil(presenter.articles)
+        XCTAssertTrue(presenter.didFetchError)
+        XCTAssertFalse(presenter.didFetchSuccess)
     }
 }
 

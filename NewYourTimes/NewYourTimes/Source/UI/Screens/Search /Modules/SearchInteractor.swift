@@ -13,7 +13,7 @@ import Foundation
 class SearchInteractor: SearchInteractorProtocol {
     
     weak var presenter: SearchPresenterProtocol?
-    var repository: SearchArticleRepository = SearchArticleRepository()
+    var repository: SearchArticleRepositoryProtocol = SearchArticleRepository()
     
     func fetchPreviousKeywords() {
         
