@@ -16,7 +16,8 @@
 > I also use Repository pattern for Data Access Layer.
 
 # AVC Kit
-With objectives are to write **reusable**, **maintainable** and **testable** code. I introduce a new way of using Collection View that is AVC Kit, inspired by **IGListKit**
+With objectives are to write **reusable**, **maintainable** and **testable** code. I introduce a new way of using UICollectionView, **ACVKit**, a lightweight collection view.
+
 
 
 # Project Structure:
