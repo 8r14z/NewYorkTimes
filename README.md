@@ -15,6 +15,7 @@
 
 > I also use Repository pattern for Data Access Layer.
 
+---
 # AVC Kit
 With objectives are to write **reusable**, **maintainable** and **testable** code. I introduce a new way of using UICollectionView, **ACVKit**, a lightweight collection view.
 
@@ -55,6 +56,7 @@ Invoke `acvAdapter.performUpdate()` or `acvAdapter.reloadAllSections()` when has
 acvAdapter.performUpdate()
 ```
 
+---
 # Project Structure:
 ## 3 main folders:
 ### NewYourTimes
