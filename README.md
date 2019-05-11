@@ -20,7 +20,7 @@ With objectives are to write **reusable**, **maintainable** and **testable** cod
 
 ![](Images/ACVKit.png)
 
-As your can see, from our data models, we will break down into corresponding section models. And each section model is backed by other item models and each item is corresponding to a cell. With this approach, you can easily reuse your cells. For instance, you already have an section model that contains 3 items: **title**, **subtext**, **image**. And then you wanna create a new section that also contain **title**, so you can attach the title item directly into your new section model and BOOM!. That's is easy to do.
+As your can see, from our data models, we will break down into corresponding section models. And each section model is backed by other item models and each item is corresponding to a cell. With this approach, you can easily reuse your cells. For instance, you already have an section model that contains 3 items: **title**, **subtext**, **image**. And then you wanna create a new section that also contain **title**, so you can attach the title item directly into your new section model and BOOM!. That's it.
 
 > Pls take a look at my source code for reference.
 
