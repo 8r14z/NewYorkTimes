@@ -34,7 +34,16 @@ class NewYourTimesUITests: XCTestCase {
         app.collectionViews.cells.firstMatch.swipeUp()
     }
     
-    func testScrollDownToShowSearchBar() {
+    func testPullToRefresh() {
+        sleep(3)
+        let firstCell = app.collectionViews.children(matching: .cell).element(boundBy: 0)
+        let start = firstCell.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+        let finish = firstCell.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 6))
+        start.press(forDuration: 0, thenDragTo: finish)
+        sleep(3)
+    }
+    
+    func testShowSearchBar() {
         sleep(3)
         app.collectionViews.cells.firstMatch.swipeDown()
         let searchBar = app.searchFields.firstMatch
@@ -48,6 +57,7 @@ class NewYourTimesUITests: XCTestCase {
         app.searchFields.firstMatch.typeText("Sd")
         sleep(5)
         app.collectionViews.cells.firstMatch.swipeUp()
+        app.buttons["Cancel"].tap()
     }
     
     func testShowArticleDetail() {
