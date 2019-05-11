@@ -32,7 +32,7 @@ class MockArticlePresenter: ArticlePresenterProtocol {
         
     }
     
-    func willTransitionFromArticle(_ article: ArticleDetailSection) {
+    func willTransitionToArticle(_ article: ArticleDetailSection) {
         
     }
     

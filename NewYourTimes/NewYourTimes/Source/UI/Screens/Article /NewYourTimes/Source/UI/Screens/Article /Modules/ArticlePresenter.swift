@@ -29,7 +29,7 @@ class ArticlePresenter: ArticlePresenterProtocol {
         interactor?.intialFetchArticle(at: currentIndex)
     }
     
-    func willTransitionFromArticle(_ article: ArticleDetailSection) {
+    func willTransitionToArticle(_ article: ArticleDetailSection) {
 
         guard let curArticle = currentArticle else {
             return

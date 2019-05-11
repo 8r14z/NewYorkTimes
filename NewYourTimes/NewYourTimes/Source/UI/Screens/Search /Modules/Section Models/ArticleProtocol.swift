@@ -33,7 +33,7 @@ protocol ArticlePresenterProtocol: ClassOnly {
     var interactor: ArticleInteractorProtocol? { get set }
     
     func initialSetup()
-    func willTransitionFromArticle(_ article: ArticleDetailSection)
+    func willTransitionToArticle(_ article: ArticleDetailSection)
     
     // Interactor listener
     func didInitialFetchSuccess(_ article: Article, index: Int)
