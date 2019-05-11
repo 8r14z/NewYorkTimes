@@ -32,17 +32,113 @@ class TestArticlePresenter: XCTestCase {
         XCTAssertTrue(interactor.didInitialFetch)
     }
     
-    func testWillTransitionToArticle_Next() {
+    func testWillTransitionToNextArticle() {
         
-        presenter = ArticlePresenter(currentIndex: 0)
-        presenter.view = view
-        presenter.interactor = interactor
+        let currentArticle = ArticleDetailSection(title: "", publishedDate: Date(), publisher: "", author: "", snippet: "", image: nil, pageIndex: 0)
         
-        let article = ArticleDetailSection(title: "", publishedDate: Date(), publisher: "", author: "", snippet: "", image: nil, pageIndex: 1)
+        let nextArticle = ArticleDetailSection(title: "", publishedDate: Date(), publisher: "", author: "", snippet: "", image: nil, pageIndex: 1)
+        
+        presenter.willTransitionFromArticle(currentArticle, to: nextArticle)
+        
+        XCTAssertNil(presenter.nextArticle)
+        XCTAssertNotNil(presenter.previousArticle)
+        XCTAssertNotNil(presenter.currentArticle)
+        XCTAssertTrue(interactor.didLoadNext)
+    }
 
-        presenter.willTransitionFromArticle(article)
+    func testWillTransitionToPreviousArticle() {
+
+        let currentArticle = ArticleDetailSection(title: "", publishedDate: Date(), publisher: "", author: "", snippet: "", image: nil, pageIndex: 1)
         
+        let nextArticle = ArticleDetailSection(title: "", publishedDate: Date(), publisher: "", author: "", snippet: "", image: nil, pageIndex: 0)
         
+        presenter.willTransitionFromArticle(currentArticle, to: nextArticle)
         
+        XCTAssertNil(presenter.previousArticle)
+        XCTAssertNotNil(presenter.nextArticle)
+        XCTAssertNotNil(presenter.currentArticle)
+        XCTAssertTrue(interactor.didLoadPrevious)
+    }
+    
+    func testDidInitialFetchSuccess() {
+        
+        presenter.didInitialFetchSuccess(TestArticle, index: 0)
+        
+        let promise = expectation(description: "")
+        DispatchQueue.main.async {
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        XCTAssertNotNil(presenter.currentArticle)
+        XCTAssertTrue(view.didUpdateView)
+        XCTAssertTrue(interactor.didLoadNext)
+        XCTAssertTrue(interactor.didLoadPrevious)
+    }
+    
+    func testDidInitialFetchError() {
+        
+        presenter.didInitialFetchError(TestError)
+        
+        let promise = expectation(description: "")
+        DispatchQueue.main.async {
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        XCTAssertNil(presenter.currentArticle)
+        XCTAssertTrue(view.didShowError)
+    }
+    
+    func testDidLoadNextArticle() {
+        
+        presenter.didLoadNextArticle(TestArticle, index: 0)
+        
+        let promise = expectation(description: "")
+        DispatchQueue.main.async {
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        XCTAssertNotNil(presenter.nextArticle)
+    }
+    
+    func testDidLoadNextArticleEmpty() {
+        
+        presenter.didLoadNextArticle(nil, index: 0)
+        
+        let promise = expectation(description: "")
+        DispatchQueue.main.async {
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        XCTAssertNil(presenter.nextArticle)
+    }
+    
+    func testDidLoadPreviousArticle() {
+        
+        presenter.didLoadPreviousArticle(TestArticle, index: 0)
+        
+        let promise = expectation(description: "")
+        DispatchQueue.main.async {
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        XCTAssertNotNil(presenter.previousArticle)
+    }
+    
+    func testDidLoadPreviousArticleEmpty() {
+        
+        presenter.didLoadPreviousArticle(nil, index: 0)
+        
+        let promise = expectation(description: "")
+        DispatchQueue.main.async {
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        XCTAssertNil(presenter.previousArticle)
     }
 }
