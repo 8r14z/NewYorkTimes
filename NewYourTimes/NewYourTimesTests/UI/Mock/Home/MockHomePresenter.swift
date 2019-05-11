@@ -18,6 +18,8 @@ class MockHomePresenter: HomePresenterProtocol {
     var router: HomeRouterProtocol?
     
     var selectedSection = -1
+    var displaySection = -1
+    
     var didExecuteViewDidAppear = false
     var didPullToRefreshData = false
     var didSelectSection = false
@@ -48,7 +50,7 @@ class MockHomePresenter: HomePresenterProtocol {
     
     func willDisplaySection(_ section: HomeArticleSection, sectionIndex: Int, sectionCount: Int) {
         willDisplaySection = true
-        selectedSection = sectionIndex
+        displaySection = sectionIndex
 
     }
     

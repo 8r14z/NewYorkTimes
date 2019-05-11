@@ -50,7 +50,7 @@ extension ArticleViewController  {
     }
     
     func showError(_ error: Error) {
-        //
+        
     }
 }
 

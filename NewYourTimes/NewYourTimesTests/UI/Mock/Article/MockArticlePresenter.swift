@@ -22,6 +22,9 @@ class MockArticlePresenter: ArticlePresenterProtocol {
     var view: ArticleViewProtocol?
     var interactor: ArticleInteractorProtocol?
     
+    var didInitialSetup = false
+    var didTransitionBetweenArticle = false
+    
     var didFetchFirstArticleSucess = false
     var didFetchFirstArticleError = false
 
@@ -29,11 +32,11 @@ class MockArticlePresenter: ArticlePresenterProtocol {
     var didFetchPreviousArticle = false
     
     func initialSetup() {
-        
+        didInitialSetup = true
     }
     
     func willTransitionFromArticle(_ currentArticle: ArticleDetailSection, to article: ArticleDetailSection) {
-        
+        didTransitionBetweenArticle = true
     }
     
     func didInitialFetchSuccess(_ article: Article, index: Int) {

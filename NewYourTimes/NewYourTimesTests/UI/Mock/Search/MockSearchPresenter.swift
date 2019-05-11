@@ -17,6 +17,12 @@ class MockSearchPresenter: SearchPresenterProtocol {
     var interactor: SearchInteractorProtocol?
     var router: SearchRouterProtocol?
     
+    var searchKeyword: String?
+    var didSelectSearchKeyword = false
+    var didClickSearchButton = false
+    var didBeginEditSearchBar = false
+    var didChangeSearchBarText = false
+    
     var didFetchKeywords = false
     var keywords: [String]?
     var didFetchArticlesSuccess = false
@@ -24,19 +30,22 @@ class MockSearchPresenter: SearchPresenterProtocol {
     var didFetchArticlesError = false
     
     func didSelectSearchKeyword(_ keyword: String) {
-        
+        didSelectSearchKeyword = true
+        searchKeyword = keyword
     }
     
     func searchBarDidBeginEditing() {
-        
+        didBeginEditSearchBar = true
     }
     
     func searchBarTextDidChange(_ text: String) {
-        
+        didChangeSearchBarText = true
+        searchKeyword = text
     }
     
     func searchBarButtonDidEnter(_ text: String) {
-        
+        didClickSearchButton = true
+        searchKeyword = text
     }
     
     func didFetchKeywords(_ keywords: [String]) {
