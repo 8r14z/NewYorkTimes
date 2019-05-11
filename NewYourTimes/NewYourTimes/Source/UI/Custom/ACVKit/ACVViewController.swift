@@ -78,19 +78,7 @@ class ACVViewController: UICollectionViewController {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
     }
-    
-    
-    // MARK: === Convenient ===
-    func showError(_ error: Error) {
-        
-        let alertController = UIAlertController(title: "Something went wrong", message: error.localizedDescription, preferredStyle: .alert)
-        alertController.addAction(
-            UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        )
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
+
     /// To override by sub class
     func didPullToRefreshSections() { }
     

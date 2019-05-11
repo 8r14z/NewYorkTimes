@@ -33,7 +33,7 @@ protocol HomePresenterProtocol: ClassOnly {
     var interactor: HomeInteractorProtocol? { get set }
     var router: HomeRouterProtocol? { get set }
     
-    func viewDidAppear()
+    func initialSetup()
     func didPullToRefresh()
     func didSelectSection(_ section: HomeArticleSection, sectionIndex: Int)
     func willDisplaySection(_ section: HomeArticleSection, sectionIndex: Int, sectionCount: Int)

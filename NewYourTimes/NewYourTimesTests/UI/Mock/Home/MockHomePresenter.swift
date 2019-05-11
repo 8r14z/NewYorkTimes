@@ -33,7 +33,7 @@ class MockHomePresenter: HomePresenterProtocol {
     
     var articles: [Article]?
     
-    func viewDidAppear() {
+    func initialSetup() {
         didExecuteViewDidAppear = true
         interactor?.initialFetchArticles()
     }

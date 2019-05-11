@@ -22,7 +22,7 @@ class HomePresenter: HomePresenterProtocol {
     private var isFetchingArticles = false
 
     // MARK: === VIEW EVENTS ===
-    func viewDidAppear() {
+    func initialSetup() {
         
         if !isFetchingArticles  {
             isFetchingArticles = true

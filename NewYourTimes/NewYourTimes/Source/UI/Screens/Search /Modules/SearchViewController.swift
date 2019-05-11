@@ -34,6 +34,17 @@ class SearchViewController: ACVViewController, SearchViewProtocol {
 
 
 extension SearchViewController {
+    
+    func showError(_ error: Error) {
+        
+        let alertController = UIAlertController(title: "Something went wrong", message: error.localizedDescription, preferredStyle: .alert)
+        
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        )
+        
+        present(alertController, animated: true, completion: nil)
+    }
 
     func showEmptyView() {
         emptyLabel.isHidden = false

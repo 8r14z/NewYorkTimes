@@ -32,7 +32,7 @@ class TestHomePresenter: XCTestCase {
     
     func testViewDidAppear() {
         
-        presenter.viewDidAppear()
+        presenter.initialSetup()
         
         XCTAssertTrue(view.didShowLoading)
         XCTAssertTrue(interactor.didIntialFetch)

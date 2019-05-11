@@ -47,7 +47,7 @@ class HomeViewController: ACVViewController, HomeViewProtocol {
         if !viewDidAppearOnceToken {
             viewDidAppearOnceToken = true
         
-            presenter?.viewDidAppear()
+            presenter?.initialSetup()
         }
         
     }
@@ -81,6 +81,23 @@ extension HomeViewController {
     func updateView(with newData: [HomeArticleSection]) {
         articleSections.append(contentsOf: newData)
         acvAdapter.performUpdate()
+    }
+    
+    func showError(_ error: Error) {
+        
+        let alertController = UIAlertController(title: "Something went wrong", message: error.localizedDescription, preferredStyle: .alert)
+        
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        )
+        
+        alertController.addAction(
+            UIAlertAction(title: "Retry", style: .default, handler: { [weak self] (_) in
+                self?.presenter?.initialSetup()
+            })
+        )
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 
