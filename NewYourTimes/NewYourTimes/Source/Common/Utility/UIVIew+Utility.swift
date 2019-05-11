@@ -65,7 +65,7 @@ extension UIView {
     }
     
     @discardableResult
-    func constraintEqual(to view: UIView) -> Self {
+    func constraintFill(to view: UIView) -> Self {
         return constraint(.top, to: view)
             .constraint(.leading, to: view)
             .constraint(.trailing, to: view)

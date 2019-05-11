@@ -42,7 +42,7 @@ class ACVViewController: UICollectionViewController {
         label.numberOfLines = 0
         label.isHidden = true
         view.addSubview(label)
-        label.constraintEqual(to: view)
+        label.constraintFill(to: view)
         return label
     }()
     
