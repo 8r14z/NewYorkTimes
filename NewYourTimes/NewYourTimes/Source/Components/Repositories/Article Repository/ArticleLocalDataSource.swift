@@ -12,7 +12,7 @@ import Foundation
 
 protocol ArticleLocalDataSourceProtocol {
     
-    func fetchArticles(fromIndex index: Int, limit : Int, completion: ReadCompletionBlock<[Article]>?)
+    func fetchArticles(fromIndex index: Int, limit : Int, completion: (([Article]?) -> Void)?)
     func saveArticles(_ articles: [Article], completion: WriteCompletionBlock?)
 }
 
@@ -23,8 +23,8 @@ class ArticleLocalDataSource: ArticleLocalDataSourceProtocol {
     private var cachedArticles = [Article]()
     private var dataAccessMutex = DispatchSemaphore(value: 1)
 
-    func fetchArticles(fromIndex index: Int, limit : Int, completion: ReadCompletionBlock<[Article]>?) {
-        
+    func fetchArticles(fromIndex index: Int, limit : Int, completion: (([Article]?) -> Void)?) {
+
         DispatchQueue.global().async { [weak self] in
             
             guard let self = self else {
@@ -41,10 +41,10 @@ class ArticleLocalDataSource: ArticleLocalDataSourceProtocol {
                 
                 let upperBound = Swift.min(index + limit, articleCount)
                 let fetchedArticles = Array(self.cachedArticles[index..<upperBound])
-                completion?(.success(fetchedArticles))
+                completion?(fetchedArticles)
                 
             } else {
-                completion?(.success([]))
+                completion?(nil)
             }
         }
     }

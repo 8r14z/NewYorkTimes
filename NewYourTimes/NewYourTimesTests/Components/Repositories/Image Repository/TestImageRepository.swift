@@ -80,7 +80,7 @@ class TestImageRepository: XCTestCase {
     func testRetrieveImageFromLocal() {
         
         let imageRepository = ImageRepository(local: MockImageLocalDataSource(available: true),
-                                              remote: MockImageRemoteDataSource(response: .miss))
+                                              remote: MockImageRemoteDataSource(response: .error))
         
         let url = TestURL
         var testImage: UIImage?
@@ -101,7 +101,7 @@ class TestImageRepository: XCTestCase {
     func testRetrieveImageFromInMemoryCache() {
         
         let imageRepository = ImageRepository(local: MockImageLocalDataSource(available: true),
-                                              remote: MockImageRemoteDataSource(response: .miss))
+                                              remote: MockImageRemoteDataSource(response: .error))
         
         let url = TestURL
         var testImage: UIImage?

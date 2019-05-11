@@ -13,21 +13,28 @@ import XCTest
 
 class MockArticleLocalDataSource: ArticleLocalDataSourceProtocol {
     
-    private var response: Response
-    init(reponse: Response) {
-        self.response = response
+    private var article: Article?
+
+    init(available: Bool) {
+        if available {
+            article = TestArticle
+        } else {
+            article = nil
+        }
     }
     
-    func fetchArticles(fromIndex index: Int, limit: Int, completion: ReadCompletionBlock<[Article]>?) {
+    func fetchArticles(fromIndex index: Int, limit: Int, completion: (([Article]?) -> Void)?) {
         
+        if let article = article {
+            completion?([article])
+        } else {
+            completion?(nil)
+        }
     }
-    
-    func fetchArticles(limit: Int, completion: ReadCompletionBlock<[Article]>?) {
-        
-    }
-    
+
     func saveArticles(_ articles: [Article], completion: WriteCompletionBlock?) {
-        
+        article = articles.first
+        completion?(true)
     }
     
     

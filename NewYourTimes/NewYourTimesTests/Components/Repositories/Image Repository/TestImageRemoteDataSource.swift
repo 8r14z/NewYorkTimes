@@ -16,7 +16,7 @@ class TestImageRemoteDataSource: XCTestCase {
     
     func testImageDownloadSuccess() {
         
-        let remoteDataSource = ImageRemoteDataSource(serviceProvider: MockImageProvider(response: .hit))
+        let remoteDataSource = ImageRemoteDataSource(serviceProvider: MockServiceProvider(response: .hit))
         
         let url = TestURL
         var testImage: UIImage?
@@ -37,7 +37,7 @@ class TestImageRemoteDataSource: XCTestCase {
     
     func testImageDownloadEmpty() {
         
-        let remoteDataSource = ImageRemoteDataSource(serviceProvider: MockImageProvider(response: .miss))
+        let remoteDataSource = ImageRemoteDataSource(serviceProvider: MockServiceProvider(response: .miss))
         
         let url = TestURL
         var testImage: UIImage?
@@ -58,7 +58,7 @@ class TestImageRemoteDataSource: XCTestCase {
     
     func testImageDownloadFail() {
         
-        let remoteDataSource = ImageRemoteDataSource(serviceProvider: MockImageProvider(response: .error))
+        let remoteDataSource = ImageRemoteDataSource(serviceProvider: MockServiceProvider(response: .error))
         
         let url = TestURL
         var testImage: UIImage?

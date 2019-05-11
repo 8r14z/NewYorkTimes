@@ -56,24 +56,20 @@ class ArticleRepository: ArticleRepositoryProtocol {
                         return
                     }
                     
-                    switch result {
-                    case .success(let articles):
-                        
-                        if fetchStrategy == .cacheOnly ||
-                            (fetchStrategy == .cacheFirstElseServer && !articles.isEmpty) {
-                            completion?(.success(articles))
-                            return
-                        }
-                        
-                        if fetchStrategy == .cacheThenServer {
-                            completion?(.success(articles))
-                        }
-
-                        self._fetchArticlesFromRemote(pageOffset: pageOffset, pageSize: pageSize, completion: completion)
-                        
-                    case .failure(let error):
-                        completion?(.failure(error))
+                    let articles = result ?? []
+                    
+                    if fetchStrategy == .cacheOnly ||
+                        (fetchStrategy == .cacheFirstElseServer && !articles.isEmpty) {
+                        completion?(.success(articles))
+                        return
                     }
+                    
+                    if fetchStrategy == .cacheThenServer {
+                        completion?(.success(articles))
+                    }
+                    
+                    self._fetchArticlesFromRemote(pageOffset: pageOffset, pageSize: pageSize, completion: completion)
+                    
                 }
             }
         }

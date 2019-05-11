@@ -1,17 +1,18 @@
 //
-//  MockImageRemoteDataSource.swift
+//  MockArticleRemoteDataSource.swift
 //  NewYourTimesTests
 //
 //  Created by An Le  on 5/11/19.
 //  Copyright © 2019 An Le. All rights reserved.
 //
 
+
 import UIKit
 @testable import NewYourTimes
 
 
 
-class MockImageRemoteDataSource: ImageRemoteDataSourceProtocol {
+class MockArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
     
     var serviceProvider: ServiceProviding
     
@@ -22,18 +23,18 @@ class MockImageRemoteDataSource: ImageRemoteDataSourceProtocol {
         serviceProvider = MockServiceProvider(response: response)
     }
     
-    func image(for url: URL, completion: @escaping ReadCompletionBlock<UIImage?>) {
+    func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?) {
         
         switch response {
         case .hit:
-            let image = TestImage
-            completion(.success(image))
+            let article = TestArticle
+            completion?(.success([article]))
             
         case .miss:
-            completion(.success(nil))
+            completion?(.success([]))
             
         case .error:
-            completion(.failure(TestError))
+            completion?(.failure(TestError))
         }
     }
 }

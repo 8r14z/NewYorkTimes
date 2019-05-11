@@ -20,36 +20,18 @@ class MockCanceller: Cancellable {
 
 class MockServiceProvider: ServiceProviding {
     
-    func downloadData(with url: URL, completion: ReadCompletionBlock<Data?>?) -> Cancellable {
-        
-        let data = Data(count: 1024)
-        
-        completion?(.success(data))
-        
-        return MockCanceller()
-    }
-    
-    func download(with url: URL, completion: ReadCompletionBlock<JSON>?) -> Cancellable {
-
-        let data = ArticleJSON
-        
-        completion?(.success(data))
-        
-        return MockCanceller()
-    }
-}
-
-
-
-class MockImageProvider: ServiceProviding {
-    
     private var response: Response
-    
-    init(response: Response) {
+    private var api: TestAPI?
+    init(response: Response, api: TestAPI? = nil) {
         self.response = response
+        self.api = api
     }
     
     func downloadData(with url: URL, completion: ReadCompletionBlock<Data?>?) -> Cancellable {
+        
+        guard api == nil else {
+            fatalError()
+        }
         
         switch response {
         case .hit:
@@ -59,15 +41,40 @@ class MockImageProvider: ServiceProviding {
             
         case .miss:
             completion?(.success(nil))
-         
+            
         case .error:
             completion?(.failure(TestError))
         }
-
+        
         return MockCanceller()
     }
     
     func download(with url: URL, completion: ReadCompletionBlock<JSON>?) -> Cancellable {
+
+        guard let api = api else {
+            fatalError()
+        }
+        
+        let jsonObject: JSON
+        
+        switch api {
+        case .article:
+            jsonObject = ArticleResponse
+        case .search:
+            jsonObject = [:]
+        }
+        
+        switch response {
+        case .hit:
+            completion?(.success(jsonObject))
+            
+        case .miss:
+            completion?(.success([:]))
+            
+        case .error:
+            completion?(.failure(TestError))
+        }
+
         return MockCanceller()
     }
 }
