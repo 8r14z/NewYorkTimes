@@ -10,15 +10,24 @@ import UIKit
 @testable import NewYourTimes
 
 
+
 class MockImageLocalDataSource: ImageLocalDataSourceProtocol {
     
-    private var cachedImage = [URL: UIImage]()
+    private var cachedImage: UIImage?
+    
+    init(available: Bool = true) {
+        if available {
+            cachedImage = TestImage
+        } else {
+            cachedImage = nil
+        }
+    }
     
     func image(for url: URL) -> UIImage? {
-        return cachedImage[url]
+        return cachedImage
     }
     
     func saveImage(_ image: UIImage, for url: URL) {
-        cachedImage[url] = image
+        cachedImage = image
     }
 }

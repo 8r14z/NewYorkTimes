@@ -21,7 +21,7 @@ protocol ImageLocalDataSourceProtocol {
 class ImageLocalDataSource: ImageLocalDataSourceProtocol {
     
     private let diskAccessQueue = DispatchQueue(label: "ImageLocalDataSourceDiskAccessKey")
-    private let cacheDirectoryURL: URL
+    let cacheDirectoryURL: URL
     
     init(cacheDirectoryName: String = Constants.imageCacheDirectory) {
         

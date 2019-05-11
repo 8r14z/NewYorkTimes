@@ -52,6 +52,8 @@
 		1F4525C82285F59700CFFA7F /* TestImageRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525C72285F59700CFFA7F /* TestImageRemoteDataSource.swift */; };
 		1F4525CA2285F5A200CFFA7F /* TestImageLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525C92285F5A200CFFA7F /* TestImageLocalDataSource.swift */; };
 		1F4525CE2285F88900CFFA7F /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F4525CD2285F88900CFFA7F /* image.jpg */; };
+		1F4525D12286703800CFFA7F /* MockArticleLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525D02286703800CFFA7F /* MockArticleLocalDataSource.swift */; };
+		1F4525D3228670BC00CFFA7F /* TestArticleLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525D2228670BC00CFFA7F /* TestArticleLocalDataSource.swift */; };
 		1F5487A62280B3EB008F6823 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A52280B3EB008F6823 /* API.swift */; };
 		1F5487A82280BC08008F6823 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A72280BC08008F6823 /* Image.swift */; };
 		1F5487AA22815285008F6823 /* DateFormatter+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A922815285008F6823 /* DateFormatter+Utility.swift */; };
@@ -154,6 +156,8 @@
 		1F4525C72285F59700CFFA7F /* TestImageRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestImageRemoteDataSource.swift; sourceTree = "<group>"; };
 		1F4525C92285F5A200CFFA7F /* TestImageLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestImageLocalDataSource.swift; sourceTree = "<group>"; };
 		1F4525CD2285F88900CFFA7F /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
+		1F4525D02286703800CFFA7F /* MockArticleLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArticleLocalDataSource.swift; sourceTree = "<group>"; };
+		1F4525D2228670BC00CFFA7F /* TestArticleLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestArticleLocalDataSource.swift; sourceTree = "<group>"; };
 		1F5487A52280B3EB008F6823 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1F5487A72280BC08008F6823 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		1F5487A922815285008F6823 /* DateFormatter+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Utility.swift"; sourceTree = "<group>"; };
@@ -378,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				1F4525B92285EFCC00CFFA7F /* Image Repository */,
+				1F4525CF2286700E00CFFA7F /* Article Repository */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -398,8 +403,17 @@
 				1F4525BC2285F08A00CFFA7F /* MockServiceProvider.swift */,
 				1F4525BA2285EFF500CFFA7F /* MockImageLocalDataSource.swift */,
 				1F4525C12285F43D00CFFA7F /* MockImageRemoteDataSource.swift */,
+				1F4525D02286703800CFFA7F /* MockArticleLocalDataSource.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		1F4525CF2286700E00CFFA7F /* Article Repository */ = {
+			isa = PBXGroup;
+			children = (
+				1F4525D2228670BC00CFFA7F /* TestArticleLocalDataSource.swift */,
+			);
+			path = "Article Repository";
 			sourceTree = "<group>";
 		};
 		1F5487AF2281BD8D008F6823 /* Modules */ = {
@@ -747,6 +761,7 @@
 			files = (
 				1F4525CA2285F5A200CFFA7F /* TestImageLocalDataSource.swift in Sources */,
 				1F4525BB2285EFF500CFFA7F /* MockImageLocalDataSource.swift in Sources */,
+				1F4525D3228670BC00CFFA7F /* TestArticleLocalDataSource.swift in Sources */,
 				1F4525C02285F31600CFFA7F /* Default.swift in Sources */,
 				1F4525BD2285F08A00CFFA7F /* MockServiceProvider.swift in Sources */,
 				1F4525B52285E47600CFFA7F /* TestServiceProvider.swift in Sources */,
@@ -755,6 +770,7 @@
 				1F4525C82285F59700CFFA7F /* TestImageRemoteDataSource.swift in Sources */,
 				1F4525B72285EB2B00CFFA7F /* TestDatabaseStore.swift in Sources */,
 				1F4525C62285F58C00CFFA7F /* TestImageRepository.swift in Sources */,
+				1F4525D12286703800CFFA7F /* MockArticleLocalDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

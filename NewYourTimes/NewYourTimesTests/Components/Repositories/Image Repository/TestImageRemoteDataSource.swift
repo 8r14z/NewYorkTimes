@@ -13,24 +13,72 @@ import XCTest
 
 class TestImageRemoteDataSource: XCTestCase {
     
-    var remoteDataSource = ImageRemoteDataSource(serviceProvider: MockImageProvider())
     
-    func testImageDownload() {
+    func testImageDownloadSuccess() {
+        
+        let remoteDataSource = ImageRemoteDataSource(serviceProvider: MockImageProvider(response: .hit))
         
         let url = TestURL
-        var success = false
+        var testImage: UIImage?
         let promise = expectation(description: "")
         
         remoteDataSource.image(for: url) { (result) in
             
-            if let _ = try? result.get() {
-                success = true
+            if let image = try? result.get() {
+                testImage = image
             }
             
             promise.fulfill()
         }
         
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertTrue(success)
+        XCTAssertNotNil(testImage)
+    }
+    
+    func testImageDownloadEmpty() {
+        
+        let remoteDataSource = ImageRemoteDataSource(serviceProvider: MockImageProvider(response: .miss))
+        
+        let url = TestURL
+        var testImage: UIImage?
+        let promise = expectation(description: "")
+        
+        remoteDataSource.image(for: url) { (result) in
+            
+            if let image = try? result.get() {
+                testImage = image
+            }
+            
+            promise.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertNil(testImage)
+    }
+    
+    func testImageDownloadFail() {
+        
+        let remoteDataSource = ImageRemoteDataSource(serviceProvider: MockImageProvider(response: .error))
+        
+        let url = TestURL
+        var testImage: UIImage?
+        var testError: Error?
+        let promise = expectation(description: "")
+        
+        remoteDataSource.image(for: url) { (result) in
+            
+            switch result {
+            case .success(let image):
+                testImage = image
+            case.failure(let error):
+                testError = error
+            }
+            
+            promise.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertNil(testImage)
+        XCTAssertNotNil(testError)
     }
 }

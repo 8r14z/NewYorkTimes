@@ -15,13 +15,25 @@ class MockImageRemoteDataSource: ImageRemoteDataSourceProtocol {
     
     var serviceProvider: ServiceProviding
     
-    init(serviceProvider: ServiceProviding = MockServiceProvider()) {
-        self.serviceProvider = serviceProvider
+    private var response: Response
+    
+    init(response: Response) {
+        self.response = response
+        serviceProvider = MockServiceProvider()
     }
     
     func image(for url: URL, completion: @escaping ReadCompletionBlock<UIImage?>) {
         
-        let image = TestImage
-        completion(.success(image))
+        switch response {
+        case .hit:
+            let image = TestImage
+            completion(.success(image))
+            
+        case .miss:
+            completion(.success(nil))
+            
+        case .error:
+            completion(.failure(TestError))
+        }
     }
 }

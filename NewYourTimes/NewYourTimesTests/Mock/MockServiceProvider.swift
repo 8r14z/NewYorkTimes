@@ -31,7 +31,7 @@ class MockServiceProvider: ServiceProviding {
     
     func download(with url: URL, completion: ReadCompletionBlock<JSON>?) -> Cancellable {
 
-        let data = articleJSON
+        let data = ArticleJSON
         
         completion?(.success(data))
         
@@ -43,13 +43,27 @@ class MockServiceProvider: ServiceProviding {
 
 class MockImageProvider: ServiceProviding {
     
+    private var response: Response
+    
+    init(response: Response) {
+        self.response = response
+    }
+    
     func downloadData(with url: URL, completion: ReadCompletionBlock<Data?>?) -> Cancellable {
         
-        let image = TestImage
-        let data = image.jpegData(compressionQuality: 1.0)
-        
-        completion?(.success(data))
-        
+        switch response {
+        case .hit:
+            let image = TestImage
+            let data = image.jpegData(compressionQuality: 1.0)
+            completion?(.success(data))
+            
+        case .miss:
+            completion?(.success(nil))
+         
+        case .error:
+            completion?(.failure(TestError))
+        }
+
         return MockCanceller()
     }
     
