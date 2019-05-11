@@ -72,7 +72,6 @@
 		1F4525F92286B9E000CFFA7F /* MockHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525F82286B9E000CFFA7F /* MockHomeInteractor.swift */; };
 		1F4525FB2286BF8200CFFA7F /* MockHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525FA2286BF8200CFFA7F /* MockHomeRouter.swift */; };
 		1F4525FD2286CB7A00CFFA7F /* TestHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525FC2286CB7A00CFFA7F /* TestHomeRouter.swift */; };
-		1F4525FF2286CC2B00CFFA7F /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4525FE2286CC2B00CFFA7F /* UIApplication+Utility.swift */; };
 		1F4526062286D1C500CFFA7F /* MockSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4526052286D1C500CFFA7F /* MockSearchView.swift */; };
 		1F4526082286D2D700CFFA7F /* MockSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4526072286D2D700CFFA7F /* MockSearchInteractor.swift */; };
 		1F45260A2286D30700CFFA7F /* MockSearchRepositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4526092286D30700CFFA7F /* MockSearchRepositor.swift */; };
@@ -84,6 +83,7 @@
 		1F4526182286F08700CFFA7F /* MockArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4526172286F08700CFFA7F /* MockArticleView.swift */; };
 		1F45261A2286F13B00CFFA7F /* MockArticleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4526192286F13B00CFFA7F /* MockArticleInteractor.swift */; };
 		1F45261C2286F1BE00CFFA7F /* TestArticlePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F45261B2286F1BE00CFFA7F /* TestArticlePresenter.swift */; };
+		1F45261F2287168500CFFA7F /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F45261E2287168500CFFA7F /* TestUtilities.swift */; };
 		1F5487A62280B3EB008F6823 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A52280B3EB008F6823 /* API.swift */; };
 		1F5487A82280BC08008F6823 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A72280BC08008F6823 /* Image.swift */; };
 		1F5487AA22815285008F6823 /* DateFormatter+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5487A922815285008F6823 /* DateFormatter+Utility.swift */; };
@@ -206,7 +206,6 @@
 		1F4525F82286B9E000CFFA7F /* MockHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeInteractor.swift; sourceTree = "<group>"; };
 		1F4525FA2286BF8200CFFA7F /* MockHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeRouter.swift; sourceTree = "<group>"; };
 		1F4525FC2286CB7A00CFFA7F /* TestHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHomeRouter.swift; sourceTree = "<group>"; };
-		1F4525FE2286CC2B00CFFA7F /* UIApplication+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
 		1F4526052286D1C500CFFA7F /* MockSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchView.swift; sourceTree = "<group>"; };
 		1F4526072286D2D700CFFA7F /* MockSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchInteractor.swift; sourceTree = "<group>"; };
 		1F4526092286D30700CFFA7F /* MockSearchRepositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchRepositor.swift; sourceTree = "<group>"; };
@@ -218,6 +217,7 @@
 		1F4526172286F08700CFFA7F /* MockArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArticleView.swift; sourceTree = "<group>"; };
 		1F4526192286F13B00CFFA7F /* MockArticleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArticleInteractor.swift; sourceTree = "<group>"; };
 		1F45261B2286F1BE00CFFA7F /* TestArticlePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestArticlePresenter.swift; sourceTree = "<group>"; };
+		1F45261E2287168500CFFA7F /* TestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
 		1F5487A52280B3EB008F6823 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1F5487A72280BC08008F6823 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		1F5487A922815285008F6823 /* DateFormatter+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Utility.swift"; sourceTree = "<group>"; };
@@ -422,6 +422,7 @@
 				1F4525BF2285F31600CFFA7F /* Default.swift */,
 				1F4525EA2286A7C700CFFA7F /* UI Tests */,
 				1F4525B12285DE9300CFFA7F /* Components Tests */,
+				1F45261D228715D000CFFA7F /* Common */,
 				1F4525AB2285B15D00CFFA7F /* Info.plist */,
 			);
 			path = NewYourTimesTests;
@@ -593,6 +594,14 @@
 			path = Article;
 			sourceTree = "<group>";
 		};
+		1F45261D228715D000CFFA7F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1F45261E2287168500CFFA7F /* TestUtilities.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		1F5487AF2281BD8D008F6823 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,7 +715,6 @@
 				1F95E22E227CB69E00EA7B02 /* UIImage+Utility.swift */,
 				1F5487EC2282EA6F008F6823 /* UIScrollView+Utility.swift */,
 				1F5487E32282D1DD008F6823 /* UIVIew+Utility.swift */,
-				1F4525FE2286CC2B00CFFA7F /* UIApplication+Utility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -967,6 +975,7 @@
 				1F4525F32286AD2300CFFA7F /* MockHomePresenter.swift in Sources */,
 				1F45261C2286F1BE00CFFA7F /* TestArticlePresenter.swift in Sources */,
 				1F4525C82285F59700CFFA7F /* TestImageRemoteDataSource.swift in Sources */,
+				1F45261F2287168500CFFA7F /* TestUtilities.swift in Sources */,
 				1F4525B72285EB2B00CFFA7F /* TestDatabaseStore.swift in Sources */,
 				1F4525E92286A06100CFFA7F /* MockSearchArticleRemoteDataSource.swift in Sources */,
 				1F4526182286F08700CFFA7F /* MockArticleView.swift in Sources */,
@@ -1014,7 +1023,6 @@
 				1F5487CC2282A4DD008F6823 /* ArticleSnippetCell.swift in Sources */,
 				1F5487E62282DB2A008F6823 /* SepartorItem.swift in Sources */,
 				1F38BADA22846B7B008A07CE /* ArticlePresenter.swift in Sources */,
-				1F4525FF2286CC2B00CFFA7F /* UIApplication+Utility.swift in Sources */,
 				1F5487B62281BE82008F6823 /* ArticleSnippetItem.swift in Sources */,
 				1F5487BA2281C079008F6823 /* ArticleBannerItem.swift in Sources */,
 				1F38BAC622841DF0008A07CE /* SearchRouter.swift in Sources */,
