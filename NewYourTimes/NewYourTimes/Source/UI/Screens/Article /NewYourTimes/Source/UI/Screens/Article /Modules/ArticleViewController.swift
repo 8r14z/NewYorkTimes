@@ -48,6 +48,10 @@ extension ArticleViewController  {
         let articleDetailVC = ArticleDetailView(articleSection: article)
         setViewControllers([articleDetailVC], direction: .forward, animated: false, completion: nil)
     }
+    
+    func showError(_ error: Error) {
+        //
+    }
 }
 
 
@@ -59,7 +63,7 @@ extension ArticleViewController: UIPageViewControllerDataSource, UIPageViewContr
         
         if let articleDetailView = pendingViewControllers.first as? ArticleDetailView {
             let article = articleDetailView.articleSection
-            presenter?.willTransitionToArticle(article)
+            presenter?.willTransitionFromArticle(article)
         }
     }
     

@@ -15,6 +15,8 @@ protocol ArticleViewProtocol: ClassOnly {
     var presenter: ArticlePresenterProtocol? { get set }
     
     func updateViewWithArticle(_ article: ArticleDetailSection)
+    
+    func showError(_ error: Error)
 }
 
 
@@ -31,10 +33,11 @@ protocol ArticlePresenterProtocol: ClassOnly {
     var interactor: ArticleInteractorProtocol? { get set }
     
     func initialSetup()
-    func willTransitionToArticle(_ article: ArticleDetailSection)
+    func willTransitionFromArticle(_ article: ArticleDetailSection)
     
     // Interactor listener
-    func didIntialFetchDone(_ article: Article, index: Int)
+    func didInitialFetchSuccess(_ article: Article, index: Int)
+    func didInitialFetchError(_ error: Error)
     func didLoadNextArticle(_ article: Article?, index: Int)
     func didLoadPreviousArticle(_ article: Article?, index: Int)
 }

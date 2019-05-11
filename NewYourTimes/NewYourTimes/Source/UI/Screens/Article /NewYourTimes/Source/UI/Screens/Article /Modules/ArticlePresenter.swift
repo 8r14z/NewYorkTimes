@@ -29,7 +29,7 @@ class ArticlePresenter: ArticlePresenterProtocol {
         interactor?.intialFetchArticle(at: currentIndex)
     }
     
-    func willTransitionToArticle(_ article: ArticleDetailSection) {
+    func willTransitionFromArticle(_ article: ArticleDetailSection) {
 
         guard let curArticle = currentArticle else {
             return
@@ -52,8 +52,8 @@ class ArticlePresenter: ArticlePresenterProtocol {
         }
     }
     
-    func didIntialFetchDone(_ article: Article, index: Int) {
-        
+    func didInitialFetchSuccess(_ article: Article, index: Int) {
+
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
@@ -64,6 +64,13 @@ class ArticlePresenter: ArticlePresenterProtocol {
             self.view?.updateViewWithArticle(articleSection)
             self.interactor?.loadNextArticle(for: index)
             self.interactor?.loadPreviousArticle(for: index)
+        }
+    }
+    
+    func didInitialFetchError(_ error: Error) {
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.showError(error)
         }
     }
     

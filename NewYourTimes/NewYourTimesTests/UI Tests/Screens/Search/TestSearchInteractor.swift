@@ -24,12 +24,85 @@ class TestSearchInteractor: XCTestCase {
         interactor.presenter = presenter
     }
     
-    func testFetchPreviousKeywords() {
+    func testFetchPreviousKeywords_Empty() {
+        
+        let repository = MockSearchRepository(response: .miss)
+        interactor.repository = repository
+        
+        interactor.fetchPreviousKeywords()
+        
+        Thread.sleep(forTimeInterval: 0.3)
+        
+        XCTAssertTrue(presenter.didFetchKeywords)
+        XCTAssertNotNil(presenter.keywords)
+        XCTAssert(presenter.keywords!.isEmpty)
+    }
+    
+    func testFetchPrevious10Keywords() {
+        
+        let repository = MockSearchRepository(response: .hit)
+        interactor.repository = repository
+        
+        interactor.fetchPreviousKeywords()
+        
+        Thread.sleep(forTimeInterval: 0.3)
+        
+        XCTAssertTrue(presenter.didFetchKeywords)
+        XCTAssertNotNil(presenter.keywords)
+        XCTAssert(presenter.keywords?.count == 10)
+    }
+    
+    func testSaveKeyword() {
+
+        let repository = MockSearchRepository(response: .error)
+        interactor.repository = repository
+        
+        interactor.saveKeyword("keyword")
+        
+        Thread.sleep(forTimeInterval: 0.3)
+
+        XCTAssertNotNil(repository.searchTerm)
+        XCTAssert(repository.searchTerm! == "keyword")
+    }
+    
+    func testFetchSearchArticlesSuccess() {
+        
+        let repository = MockSearchRepository(response: .hit)
+        interactor.repository = repository
+    
+        interactor.fetchSearchArticles(with: "keyword")
+        
+        Thread.sleep(forTimeInterval: 0.3)
+        
+        XCTAssertTrue(presenter.didFetchArticlesSuccess)
+        XCTAssertNotNil(presenter.articles)
+        XCTAssertTrue(!presenter.articles!.isEmpty)
+    }
+    
+    func testFetchSearchArticlesEmpty() {
+        
+        let repository = MockSearchRepository(response: .miss)
+        interactor.repository = repository
+        
+        interactor.fetchSearchArticles(with: "keyword")
+        
+        Thread.sleep(forTimeInterval: 0.3)
+        
+        XCTAssertTrue(presenter.didFetchArticlesSuccess)
+        XCTAssertNotNil(presenter.articles)
+        XCTAssertTrue(presenter.articles!.isEmpty)
+    }
+    
+    func testFetchSearchArticlesError() {
         
         let repository = MockSearchRepository(response: .error)
         interactor.repository = repository
         
+        interactor.fetchSearchArticles(with: "keyword")
         
+        Thread.sleep(forTimeInterval: 0.3)
         
+        XCTAssertTrue(presenter.didFetchArticlesError)
+        XCTAssertNil(presenter.articles)
     }
 }

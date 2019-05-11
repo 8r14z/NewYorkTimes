@@ -25,7 +25,7 @@ class MockSearchRepository: SearchArticleRepositoryProtocol {
         
         switch response {
         case .hit:
-            return ["String1", "String2"]
+            return ["String1", "String2","String3", "String4","String5", "String6","String7", "String8","String9", "String10","String11"]
         default:
             return nil
         }

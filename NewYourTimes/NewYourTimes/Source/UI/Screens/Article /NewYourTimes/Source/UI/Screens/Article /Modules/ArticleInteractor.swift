@@ -20,9 +20,11 @@ class ArticleInteractor: ArticleInteractorProtocol {
     func intialFetchArticle(at index: Int) {
         
         repository.fetchArticles(pageOffset: index, pageSize: pageSize, fetchStrategy: .cacheOnly) { (result) in
-            
+
             if let article = try? result.get().first {
-                self.presenter?.didIntialFetchDone(article, index: index)
+                self.presenter?.didInitialFetchSuccess(article, index: index)
+            } else {
+                self.presenter?.didInitialFetchError(NetworkError.unexpected)
             }
         }
     }

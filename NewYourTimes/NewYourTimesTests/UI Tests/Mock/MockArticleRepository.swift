@@ -25,6 +25,11 @@ class MockArticleRepository: ArticleRepositoryProtocol {
                        fetchStrategy: FetchStrategy,
                        completion: ReadCompletionBlock<[Article]>?) {
         
+        if pageOffset < 0 {
+            completion?(.failure(TestError))
+            return
+        }
+        
         switch response {
         case .hit:
             articles = [TestArticle]
