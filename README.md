@@ -13,15 +13,21 @@
 * **Entity**: contains basic model objects used by the Interactor.
 * **Routing**: contains navigation logic for describing which screens are shown in which order.
 
-> I also use Repository pattern for Data Access Layer.
+> I also use [Repository]([1]) pattern for `Data Access Layer`.
+
+> [Learn more about VIPER and other iOS architectures](https://github.com/onmyway133/fantastic-ios-architecture#viper)
+
+[0]:https://medium.com/tiendeo-tech/ios-repository-pattern-in-swift-85a8c62bf436
 
 ---
 # AVC Kit
 With objectives are to write **reusable**, **maintainable** and **testable** code. I introduce a new way of using UICollectionView, **ACVKit**, a lightweight collection view.
 
-![](Images/ACVKit.png)
+![](Images/ACVKit_v2.png)
 
-As your can see, from our data models, we will break down into corresponding section models. And each section model is backed by other item models and each item is corresponding to a cell. With this approach, you can easily reuse your cells. For instance, you already have an section model that contains 3 items: **title**, **subtext**, **image**. And then you wanna create a new section that also contain **title**, so you can attach the title item directly into your new section model and BOOM!. That's it.
+As your can see, from our data models, we will break down into corresponding section models. A section model is backed by bunch of item models and each item is corresponding to a cell. And then thank to Adapter them can work with collection view. With this approach, you can easily reuse your cells, your items and your sections as well. 
+
+For instance, you already have an section model that contains 3 items: **title**, **subtext**, **image**. And then you wanna create a new section that also contain **title**, so you can attach the title item directly into your new section model and BOOM!. That's it.
 
 > Pls take a look at my source code for the reference.
 
