@@ -30,6 +30,8 @@ As your can see, from our data models, we will break down into corresponding sec
 
 For instance, you already have an section model that contains 3 items: **title**, **subtext**, **image**. And then you wanna create a new section that also contain **title**, so you can attach the title item directly into your new section model and BOOM!. That's it.
 
+We can enject multiple types of section models. So we can make a collection view that shows multiple types of data as well. For instance, you making an application with having the newsfeed, so it's really nice to serve users with different types of content, such as: image, video or ... ads :D to make profit.
+
 > Pls take a look at my source code for the reference.
 
 ## How to use
@@ -62,6 +64,8 @@ Invoke `acvAdapter.performUpdate()` or `acvAdapter.reloadAllSections()` when has
 ```swift
 acvAdapter.performUpdate()
 ```
+
+Create your section by comforming to `SectionViewModel` 
 
 ---
 # Project Structure:
