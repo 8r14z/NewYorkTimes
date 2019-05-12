@@ -13,7 +13,7 @@
 * **Entity**: contains basic model objects used by the Interactor.
 * **Routing**: contains navigation logic for describing which screens are shown in which order.
 
-> I also use [Repository]([1]) pattern for `Data Access Layer`.
+> I also use [Repository]([0]) pattern for `Data Access Layer`.
 
 > [Learn more about VIPER and other iOS architectures](https://github.com/onmyway133/fantastic-ios-architecture#viper)
 
