@@ -37,6 +37,8 @@ We can enject multiple types of section models. So we can make a collection view
 ## How to use
 I already create an concrete class, `ACVViewController`, subclassing `UICollectionViewController`.
 
+Create your section by comforming to `SectionViewModel`, item by `ItemViewModel` and cell by `ImageViewProtocol`
+
 ### Step 1:
 Creat a new view controller that is inhereted `ACVViewController`. 
 ```swift
@@ -64,8 +66,6 @@ Invoke `acvAdapter.performUpdate()` or `acvAdapter.reloadAllSections()` when has
 ```swift
 acvAdapter.performUpdate()
 ```
-
-Create your section by comforming to `SectionViewModel` 
 
 ---
 # Project Structure:
