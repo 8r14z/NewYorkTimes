@@ -1,7 +1,5 @@
 # NewYorkTimes
 
-*This is a demo for NYTimes APIs which applys **VIPER, POP, Core Data,** ...*
-
 # VIPER
 *This project will apply VIPER*
 
