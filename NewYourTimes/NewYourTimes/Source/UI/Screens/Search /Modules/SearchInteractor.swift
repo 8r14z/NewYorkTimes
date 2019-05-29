@@ -14,10 +14,11 @@ class SearchInteractor: SearchInteractorProtocol {
     
     weak var presenter: SearchPresenterProtocol?
     var repository: SearchArticleRepositoryProtocol = SearchArticleRepository()
+    var requestQueue = DispatchQueue.global()
     
     func fetchPreviousKeywords() {
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        requestQueue.async { [weak self] in
             
             guard let self = self else {
                 return
@@ -35,7 +36,7 @@ class SearchInteractor: SearchInteractorProtocol {
     
     func saveKeyword(_ keyword: String) {
         
-        DispatchQueue.global().async { [weak self] in
+        requestQueue.async { [weak self] in
             self?.repository.saveSearchTerm(keyword)
         }
     }

@@ -15,6 +15,7 @@ class TestSearchInteractor: XCTestCase {
     
     var presenter: MockSearchPresenter!
     var interactor: SearchInteractor!
+    var queue = DispatchQueue(label: "TestSearchInteractorQueue")
     
     override func setUp() {
         super.setUp()
@@ -22,6 +23,7 @@ class TestSearchInteractor: XCTestCase {
         presenter = MockSearchPresenter()
         interactor = SearchInteractor()
         interactor.presenter = presenter
+        interactor.requestQueue = queue
     }
     
     func testFetchPreviousKeywords_Empty() {
@@ -31,7 +33,7 @@ class TestSearchInteractor: XCTestCase {
         
         interactor.fetchPreviousKeywords()
         
-        Thread.sleep(forTimeInterval: 0.3)
+        queue.sync { }
         
         XCTAssertTrue(presenter.didFetchKeywords)
         XCTAssertNotNil(presenter.keywords)
@@ -45,7 +47,7 @@ class TestSearchInteractor: XCTestCase {
         
         interactor.fetchPreviousKeywords()
         
-        Thread.sleep(forTimeInterval: 0.3)
+        queue.sync { }
         
         XCTAssertTrue(presenter.didFetchKeywords)
         XCTAssertNotNil(presenter.keywords)
@@ -59,8 +61,8 @@ class TestSearchInteractor: XCTestCase {
         
         interactor.saveKeyword("keyword")
         
-        Thread.sleep(forTimeInterval: 0.3)
-
+        queue.sync { }
+        
         XCTAssertNotNil(repository.searchTerm)
         XCTAssert(repository.searchTerm! == "keyword")
     }
@@ -72,7 +74,7 @@ class TestSearchInteractor: XCTestCase {
     
         interactor.fetchSearchArticles(with: "keyword")
         
-        Thread.sleep(forTimeInterval: 0.3)
+        queue.sync { }
         
         XCTAssertTrue(presenter.didFetchArticlesSuccess)
         XCTAssertNotNil(presenter.articles)
@@ -86,7 +88,7 @@ class TestSearchInteractor: XCTestCase {
         
         interactor.fetchSearchArticles(with: "keyword")
         
-        Thread.sleep(forTimeInterval: 0.3)
+        queue.sync { }
         
         XCTAssertTrue(presenter.didFetchArticlesSuccess)
         XCTAssertNotNil(presenter.articles)
@@ -100,7 +102,7 @@ class TestSearchInteractor: XCTestCase {
         
         interactor.fetchSearchArticles(with: "keyword")
         
-        Thread.sleep(forTimeInterval: 0.3)
+        queue.sync { }
         
         XCTAssertTrue(presenter.didFetchArticlesError)
         XCTAssertNil(presenter.articles)

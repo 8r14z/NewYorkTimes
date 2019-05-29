@@ -13,9 +13,18 @@ import XCTest
 
 class TestImageLocalDataSource: XCTestCase {
     
-    var localDataSource = ImageLocalDataSource(cacheDirectoryName: "testImages")
+    var localDataSource: ImageLocalDataSource!
+    let queue = DispatchQueue(label: "TestImageLocalDataSourceQueue")
+    
+    override func setUp() {
+        super.setUp()
+        
+        localDataSource = ImageLocalDataSource(cacheDirectoryName: "testImages")
+        localDataSource.diskAccessQueue = queue
+    }
     
     override func tearDown() {
+        super.tearDown()
         
         if FileManager.default.fileExists(atPath: localDataSource.cacheDirectoryURL.path) {
             try? FileManager.default.removeItem(at: localDataSource.cacheDirectoryURL)
@@ -33,7 +42,7 @@ class TestImageLocalDataSource: XCTestCase {
         
         localDataSource.saveImage(image, for: url)
         
-        Thread.sleep(forTimeInterval: 0.3)
+        queue.sync { }
         
         let notNilImage = localDataSource.image(for: url)
         

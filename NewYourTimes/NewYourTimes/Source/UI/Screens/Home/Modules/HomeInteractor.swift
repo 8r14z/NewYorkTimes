@@ -14,6 +14,7 @@ class HomeInteractor: HomeInteractorProtocol {
     
     weak var presenter: HomePresenterProtocol?
     lazy var repository: ArticleRepositoryProtocol = ArticleRepository.shared
+    var requestQueue = DispatchQueue.global()
 
     private let pageSize = API.Default.pageSize
     private var pageOffset: Int = 0
@@ -21,7 +22,8 @@ class HomeInteractor: HomeInteractorProtocol {
     private let mutex = DispatchSemaphore(value: 1)
     
     func initialFetchArticles() {
-        DispatchQueue.global().async { [weak self] in
+        
+        requestQueue.async { [weak self] in
             guard let self = self else {
                 return
             }
@@ -32,7 +34,8 @@ class HomeInteractor: HomeInteractorProtocol {
     }
 
     func fetchArticles() {
-        DispatchQueue.global().async { [weak self] in
+        
+        requestQueue.async { [weak self] in
             guard let self = self else {
                 return
             }

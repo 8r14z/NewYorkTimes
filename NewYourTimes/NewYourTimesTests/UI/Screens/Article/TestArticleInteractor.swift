@@ -29,9 +29,7 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.intialFetchArticle(at: 0)
-        
-        Thread.sleep(forTimeInterval: 0.3)
-        
+
         XCTAssertTrue(presenter.didFetchFirstArticleSucess)
         XCTAssertNotNil(presenter.currentArticle)
     }
@@ -42,9 +40,7 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.intialFetchArticle(at: 0)
-        
-        Thread.sleep(forTimeInterval: 0.3)
-        
+  
         XCTAssertTrue(presenter.didFetchFirstArticleError)
         XCTAssertNil(presenter.currentArticle)
     }
@@ -55,9 +51,7 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.intialFetchArticle(at: 0)
-        
-        Thread.sleep(forTimeInterval: 0.3)
-        
+   
         XCTAssertTrue(presenter.didFetchFirstArticleError)
         XCTAssertNil(presenter.currentArticle)
     }
@@ -68,9 +62,7 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.loadNextArticle(for: 0)
-        
-        Thread.sleep(forTimeInterval: 0.3)
-        
+ 
         XCTAssertTrue(presenter.didFetchNextArticle)
         XCTAssertNotNil(presenter.nextArticle)
     }
@@ -81,8 +73,6 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.loadNextArticle(for: 0)
-        
-        Thread.sleep(forTimeInterval: 0.3)
         
         XCTAssertTrue(presenter.didFetchNextArticle)
         XCTAssertNil(presenter.nextArticle)
@@ -95,8 +85,6 @@ class TestArticleInteractor: XCTestCase {
         
         interactor.loadPreviousArticle(for: 1)
         
-        Thread.sleep(forTimeInterval: 0.3)
-        
         XCTAssertTrue(presenter.didFetchPreviousArticle)
         XCTAssertNotNil(presenter.previousArticle)
     }
@@ -108,8 +96,6 @@ class TestArticleInteractor: XCTestCase {
         
         interactor.loadPreviousArticle(for: -1)
         
-        Thread.sleep(forTimeInterval: 0.3)
-        
         XCTAssertTrue(presenter.didFetchPreviousArticle)
         XCTAssertNil(presenter.previousArticle)
     }
@@ -120,9 +106,7 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.loadPreviousArticle(for: 1)
-        
-        Thread.sleep(forTimeInterval: 0.3)
-        
+                
         XCTAssertTrue(presenter.didFetchPreviousArticle)
         XCTAssertNil(presenter.previousArticle)
     }

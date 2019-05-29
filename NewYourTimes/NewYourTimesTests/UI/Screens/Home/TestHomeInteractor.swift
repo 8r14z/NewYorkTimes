@@ -15,11 +15,13 @@ class TestHomeInteractor: XCTestCase {
     
     var presenter: MockHomePresenter!
     var interactor: HomeInteractor!
+    var queue = DispatchQueue(label: "TestHomeInteractorQueue")
     
     override func setUp() {
         presenter = MockHomePresenter()
         interactor = HomeInteractor()
         interactor.presenter = presenter
+        interactor.requestQueue = queue
     }
     
     func testInitialFetchArticlesSuccess() {
@@ -29,7 +31,7 @@ class TestHomeInteractor: XCTestCase {
         
         interactor.initialFetchArticles()
         
-        Thread.sleep(forTimeInterval: 0.3)
+        queue.sync { }
 
         XCTAssertNotNil(presenter.articles)
         XCTAssert(presenter.articles!.count == repository.articles!.count)
@@ -43,8 +45,8 @@ class TestHomeInteractor: XCTestCase {
         
         interactor.initialFetchArticles()
         
-        Thread.sleep(forTimeInterval: 0.3)
-        
+        queue.sync { }
+
         XCTAssertNil(presenter.articles)
         XCTAssertTrue(presenter.didInitialFetchError)
         XCTAssertFalse(presenter.didIntialFetchSuccess)
@@ -57,8 +59,8 @@ class TestHomeInteractor: XCTestCase {
         
         interactor.fetchArticles()
         
-        Thread.sleep(forTimeInterval: 0.3)
-        
+        queue.sync { }
+
         XCTAssertNotNil(presenter.articles)
         XCTAssert(presenter.articles!.count == repository.articles!.count)
         XCTAssertTrue(presenter.didFetchSuccess)
@@ -71,8 +73,8 @@ class TestHomeInteractor: XCTestCase {
         
         interactor.fetchArticles()
         
-        Thread.sleep(forTimeInterval: 0.3)
-        
+        queue.sync { }
+
         XCTAssertNil(presenter.articles)
         XCTAssertTrue(presenter.didFetchError)
         XCTAssertFalse(presenter.didFetchSuccess)
