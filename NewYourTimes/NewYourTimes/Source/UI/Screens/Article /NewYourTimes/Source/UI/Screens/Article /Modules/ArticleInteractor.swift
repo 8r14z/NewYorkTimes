@@ -14,45 +14,79 @@ class ArticleInteractor: ArticleInteractorProtocol {
     
     weak var presenter: ArticlePresenterProtocol?
     lazy var repository: ArticleRepositoryProtocol = ArticleRepository.shared
+    var requestQueue = DispatchQueue.global()
     
     private let pageSize = 1
     
     func intialFetchArticle(at index: Int) {
         
-        repository.fetchArticles(pageOffset: index, pageSize: pageSize, fetchStrategy: .cacheOnly) { (result) in
-
-            if let article = try? result.get().first {
-                self.presenter?.didInitialFetchSuccess(article, index: index)
-            } else {
-                self.presenter?.didInitialFetchError(NetworkError.unexpected)
+        requestQueue.async { [weak self] in
+            
+            guard let self = self else {
+                return
+            }
+            
+            self.repository.fetchArticles(pageOffset: index, pageSize: self.pageSize, fetchStrategy: .cacheOnly) { [weak self] (result) in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                if let article = try? result.get().first {
+                    self.presenter?.didInitialFetchSuccess(article, index: index)
+                } else {
+                    self.presenter?.didInitialFetchError(NetworkError.unexpected)
+                }
             }
         }
     }
     
     func loadNextArticle(for index: Int) {
         
-        let nextIndex = index + 1
-        repository.fetchArticles(pageOffset: nextIndex, pageSize: pageSize, fetchStrategy: .cacheOnly) { (result) in
+        requestQueue.async { [weak self] in
             
-            if let article = try? result.get().first {
-                self.presenter?.didLoadNextArticle(article, index: nextIndex)
-            } else {
-                self.presenter?.didLoadNextArticle(nil, index: nextIndex)
+            guard let self = self else {
+                return
+            }
+            
+            let nextIndex = index + 1
+            self.repository.fetchArticles(pageOffset: nextIndex, pageSize: self.pageSize, fetchStrategy: .cacheOnly) { [weak self] (result) in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                if let article = try? result.get().first {
+                    self.presenter?.didLoadNextArticle(article, index: nextIndex)
+                } else {
+                    self.presenter?.didLoadNextArticle(nil, index: nextIndex)
+                }
             }
         }
+        
     }
     
     func loadPreviousArticle(for index: Int) {
         
-        let previousIndex = index - 1
-        repository.fetchArticles(pageOffset: previousIndex, pageSize: pageSize, fetchStrategy: .cacheOnly) { (result) in
+        requestQueue.async { [weak self] in
             
-            if let article = try? result.get().first {
-                self.presenter?.didLoadPreviousArticle(article, index: previousIndex)
-            } else {
-                self.presenter?.didLoadPreviousArticle(nil, index: previousIndex)
+            guard let self = self else {
+                return
+            }
+            
+            let previousIndex = index - 1
+            self.repository.fetchArticles(pageOffset: previousIndex, pageSize: self.pageSize, fetchStrategy: .cacheOnly) { [weak self] (result) in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                if let article = try? result.get().first {
+                    self.presenter?.didLoadPreviousArticle(article, index: previousIndex)
+                } else {
+                    self.presenter?.didLoadPreviousArticle(nil, index: previousIndex)
+                }
             }
         }
     }
-    
 }

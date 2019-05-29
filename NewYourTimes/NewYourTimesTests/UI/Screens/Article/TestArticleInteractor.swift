@@ -15,12 +15,15 @@ class TestArticleInteractor: XCTestCase {
     
     var interactor: ArticleInteractor!
     var presenter: MockArticlePresenter!
+    var queue = DispatchQueue(label: "TestArticleInteractorQueue")
     
     override func setUp() {
         super.setUp()
+        
         presenter = MockArticlePresenter()
         interactor = ArticleInteractor()
         interactor.presenter = presenter
+        interactor.requestQueue = queue
     }
     
     func testIntialFetchArticle() {
@@ -29,6 +32,8 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.intialFetchArticle(at: 0)
+        
+        queue.sync { }
 
         XCTAssertTrue(presenter.didFetchFirstArticleSucess)
         XCTAssertNotNil(presenter.currentArticle)
@@ -40,6 +45,8 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.intialFetchArticle(at: 0)
+        
+        queue.sync { }
   
         XCTAssertTrue(presenter.didFetchFirstArticleError)
         XCTAssertNil(presenter.currentArticle)
@@ -51,6 +58,8 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.intialFetchArticle(at: 0)
+        
+        queue.sync { }
    
         XCTAssertTrue(presenter.didFetchFirstArticleError)
         XCTAssertNil(presenter.currentArticle)
@@ -63,6 +72,8 @@ class TestArticleInteractor: XCTestCase {
         
         interactor.loadNextArticle(for: 0)
  
+        queue.sync { }
+
         XCTAssertTrue(presenter.didFetchNextArticle)
         XCTAssertNotNil(presenter.nextArticle)
     }
@@ -74,6 +85,8 @@ class TestArticleInteractor: XCTestCase {
         
         interactor.loadNextArticle(for: 0)
         
+        queue.sync { }
+
         XCTAssertTrue(presenter.didFetchNextArticle)
         XCTAssertNil(presenter.nextArticle)
     }
@@ -85,6 +98,8 @@ class TestArticleInteractor: XCTestCase {
         
         interactor.loadPreviousArticle(for: 1)
         
+        queue.sync { }
+
         XCTAssertTrue(presenter.didFetchPreviousArticle)
         XCTAssertNotNil(presenter.previousArticle)
     }
@@ -96,6 +111,8 @@ class TestArticleInteractor: XCTestCase {
         
         interactor.loadPreviousArticle(for: -1)
         
+        queue.sync { }
+
         XCTAssertTrue(presenter.didFetchPreviousArticle)
         XCTAssertNil(presenter.previousArticle)
     }
@@ -106,7 +123,9 @@ class TestArticleInteractor: XCTestCase {
         interactor.repository = repository
         
         interactor.loadPreviousArticle(for: 1)
-                
+        
+        queue.sync { }
+
         XCTAssertTrue(presenter.didFetchPreviousArticle)
         XCTAssertNil(presenter.previousArticle)
     }

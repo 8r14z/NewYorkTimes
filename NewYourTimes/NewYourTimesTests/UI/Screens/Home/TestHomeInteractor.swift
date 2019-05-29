@@ -18,6 +18,8 @@ class TestHomeInteractor: XCTestCase {
     var queue = DispatchQueue(label: "TestHomeInteractorQueue")
     
     override func setUp() {
+        super.setUp()
+        
         presenter = MockHomePresenter()
         interactor = HomeInteractor()
         interactor.presenter = presenter
