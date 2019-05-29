@@ -14,11 +14,6 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>NewYourTimesUITests.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
 		<key>NewYourTimes_Demo.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,11 +22,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1F31EA93228721EF003C5CED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1F97D39B22806B390059808A</key>
 		<dict>
 			<key>primary</key>
