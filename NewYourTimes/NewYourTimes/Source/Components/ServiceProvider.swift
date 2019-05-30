@@ -18,9 +18,9 @@ protocol Cancellable {
 
 
 protocol ServiceProviding {
-    
+    @discardableResult
     func downloadData(with url: URL, completion: ReadCompletionBlock<Data?>?) -> Cancellable
-    
+    @discardableResult
     func download(with url: URL, completion: ReadCompletionBlock<JSON>?) -> Cancellable
 }
 

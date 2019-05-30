@@ -13,17 +13,17 @@ import Foundation
 struct SearchArticle: Codable {
     
     private struct Headline: Codable {
-        var title: String
+        var title: String?
         
         enum CodingKeys: String, CodingKey, CaseIterable {
             case title = "main"
         }
     }
     
-    var publisher: String
-    var snippet: String
-    var title: String
-    private var headline: Headline
+    var publisher: String?
+    var snippet: String?
+    var title: String?
+    private var headline: Headline?
     
     init(title: String, snippet: String, publisher: String) {
         self.title = title
@@ -45,9 +45,9 @@ extension SearchArticle {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        snippet = try values.decode(String.self, forKey: .snippet)
-        publisher = try values.decode(String.self, forKey: .publisher)
-        headline = try values.decode(Headline.self, forKey: .headline)
-        title = headline.title
+        snippet = try? values.decode(String.self, forKey: .snippet)
+        publisher = try? values.decode(String.self, forKey: .publisher)
+        headline = try? values.decode(Headline.self, forKey: .headline)
+        title = headline?.title
     }
 }

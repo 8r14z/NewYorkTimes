@@ -74,8 +74,15 @@ class SearchPresenter: SearchPresenterProtocol {
     
     func didFetchSearchArticleSuccess(_ searchArticles: [SearchArticle]) {
         
-        let sections = searchArticles.map {
-            SearchArticleSection(title: $0.title, snippet: $0.snippet, publisher: $0.publisher)
+        let sections = searchArticles.compactMap { (article) -> SearchArticleSection? in
+            
+            guard let title = article.title,
+                let snippet = article.snippet,
+                let publisher = article.publisher else {
+                return nil
+            }
+            
+            return SearchArticleSection(title: title, snippet: snippet, publisher: publisher)
         }
         
         DispatchQueue.main.async { [weak self] in
