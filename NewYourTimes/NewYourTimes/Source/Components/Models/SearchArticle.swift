@@ -26,8 +26,8 @@ struct SearchArticle: Codable {
     private var headline: Headline?
     
     init(title: String, snippet: String, publisher: String) {
-        self.title = title
         headline = Headline(title: title)
+        self.title = title
         self.snippet = snippet
         self.publisher = publisher
     }
