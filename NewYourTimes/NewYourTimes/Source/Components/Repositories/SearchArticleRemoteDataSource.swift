@@ -23,7 +23,7 @@ class SearchArticleRemoteDataSource: SearchArticleRemoteDataSourceProtocol {
     
     var serviceProvider: ServiceProviding
     
-    init(serviceProvider: ServiceProviding = URLSession(configuration: .default)) {
+    init(serviceProvider: ServiceProviding = ServiceProvider.default) {
         self.serviceProvider = serviceProvider
     }
     

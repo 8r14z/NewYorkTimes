@@ -13,18 +13,9 @@ import XCTest
 
 class TestServiceProvider: XCTestCase {
     
-    var serviceProvider: ServiceProviding!
-    
-    override func setUp() {
-        serviceProvider = URLSession(configuration: .default)
-    }
-    
-    override func tearDown() {
-        serviceProvider = nil
-    }
-    
     func testDownloadDataWithValidURL() {
         
+        let serviceProvider = ServiceProvider(urlSession: MockURLSession(response: .hit))
         let url = URL(string: "https://www.google.com/")!
         
         var success = false
@@ -43,6 +34,7 @@ class TestServiceProvider: XCTestCase {
     
     func testDownDataWithInvalidURL() {
         
+        let serviceProvider = ServiceProvider(urlSession: MockURLSession(response: .error))
         let url = URL(string: "https://www.thisisinvaliddomain.com/")!
         
         var success = false
@@ -61,17 +53,35 @@ class TestServiceProvider: XCTestCase {
     
     func testDownloadJSON() {
         
+        let serviceProvider = ServiceProvider(urlSession: MockURLSession(response: .hit))
         let api = API.article(offset: 0, pageSize: 1)
         
         var success = false
         let promise = expectation(description: "")
 
         serviceProvider.download(with: api.url) { (result) in
-            
             if let _ = try? result.get() {
                 success = true
             }
-            
+            promise.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertTrue(success)
+    }
+    
+    func testDownloadEmptyJSON() {
+        
+        let serviceProvider = ServiceProvider(urlSession: MockURLSession(response: .miss))
+        let api = API.article(offset: 0, pageSize: 1)
+        
+        var success = false
+        let promise = expectation(description: "")
+        
+        serviceProvider.download(with: api.url) { (result) in
+            if let emptyJSON = try? result.get() {
+                success = emptyJSON.isEmpty
+            }
             promise.fulfill()
         }
         
@@ -81,17 +91,16 @@ class TestServiceProvider: XCTestCase {
     
     func testDownloadJSONInvalidURL() {
         
+        let serviceProvider = ServiceProvider(urlSession: MockURLSession(response: .error))
         let url = URL(string: "https://www.thisisinvaliddomain.com/")!
 
         var success = false
         let promise = expectation(description: "")
         
         serviceProvider.download(with: url) { (result) in
-            
             if let _ = try? result.get() {
                 success = true
             }
-            
             promise.fulfill()
         }
         
