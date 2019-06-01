@@ -13,7 +13,8 @@ protocol ArticleRemoteDataSourceProtocol {
     
     var serviceProvider: ServiceProviding { get set }
 
-    func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?)
+    @discardableResult
+    func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?) -> Cancellable
 }
 
 
@@ -25,11 +26,12 @@ class ArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
         self.serviceProvider = serviceProvider
     }
     
-    func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?) {
+    @discardableResult
+    func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?) -> Cancellable {
         
         let articleAPI = API.article(offset: offset, pageSize: pageSize)
         
-        serviceProvider.download(with: articleAPI.url) { (result) in
+        return serviceProvider.download(with: articleAPI.url) { (result) in
             
             switch result {
             case .success(let json):

@@ -23,11 +23,13 @@ class MockArticleRepository: ArticleRepositoryProtocol {
     func fetchArticles(pageOffset: Int,
                        pageSize: Int,
                        fetchStrategy: FetchStrategy,
-                       completion: ReadCompletionBlock<[Article]>?) {
+                       completion: ReadCompletionBlock<[Article]>?) -> Cancellable {
+        
+        let mockCanceller = MockCanceller()
         
         if pageOffset < 0 {
             completion?(.failure(TestError))
-            return
+            return mockCanceller
         }
         
         switch response {
@@ -41,6 +43,8 @@ class MockArticleRepository: ArticleRepositoryProtocol {
             articles = nil
             completion?(.failure(TestError))
         }
+        
+        return mockCanceller
     }
 }
 

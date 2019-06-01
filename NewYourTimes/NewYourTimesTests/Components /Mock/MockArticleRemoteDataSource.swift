@@ -23,7 +23,7 @@ class MockArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
         serviceProvider = MockServiceProvider(response: response)
     }
     
-    func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?) {
+    func fetchArticles(forPageOffset offset: Int, pageSize: Int, completion: ReadCompletionBlock<[Article]>?) -> Cancellable {
         
         switch response {
         case .hit:
@@ -33,5 +33,7 @@ class MockArticleRemoteDataSource: ArticleRemoteDataSourceProtocol {
         case .error:
             completion?(.failure(TestError))
         }
+        
+        return MockCanceller()
     }
 }

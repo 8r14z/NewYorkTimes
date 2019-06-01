@@ -12,10 +12,11 @@ import Foundation
 
 protocol ArticleRepositoryProtocol {
     
+    @discardableResult
     func fetchArticles(pageOffset: Int,
                        pageSize: Int,
                        fetchStrategy: FetchStrategy,
-                       completion: ReadCompletionBlock<[Article]>?)
+                       completion: ReadCompletionBlock<[Article]>?) -> Cancellable
 }
 
 
@@ -24,71 +25,114 @@ class ArticleRepository: ArticleRepositoryProtocol {
     
     static let shared = ArticleRepository()
     
-    private let localDataSource: ArticleLocalDataSourceProtocol
-    private let remoteDataSource: ArticleRemoteDataSourceProtocol
+    let localDataSource: ArticleLocalDataSourceProtocol
+    let remoteDataSource: ArticleRemoteDataSourceProtocol
     
+    private let operationQueue: OperationQueue
+
     init(local: ArticleLocalDataSourceProtocol = ArticleLocalDataSource(),
          remote: ArticleRemoteDataSourceProtocol = ArticleRemoteDataSource()) {
         
         localDataSource = local
         remoteDataSource = remote
+        
+        operationQueue = OperationQueue()
     }
 
+    @discardableResult
     func fetchArticles(pageOffset: Int,
                        pageSize: Int,
                        fetchStrategy: FetchStrategy,
-                       completion: ReadCompletionBlock<[Article]>?) {
+                       completion: ReadCompletionBlock<[Article]>?) -> Cancellable {
+        
+        let operation = ArticleQueryOperation(repository: self,
+                                              fetchStrategy: fetchStrategy,
+                                              pageOffset: pageOffset,
+                                              pageSize: pageSize,
+                                              resultHandler: completion)
+        operationQueue.addOperation(operation)
 
-        DispatchQueue.global().async { [weak self] in
+        return operation
+    }
+    
+    
+}
+
+
+
+private final class ArticleQueryOperation: Operation, Cancellable {
+    
+    private var networkTask: Cancellable?
+    let fetchStrategy: FetchStrategy
+    let pageOffset: Int
+    let pageSize: Int
+    let repository: ArticleRepository
+    let resultHandler: ReadCompletionBlock<[Article]>?
+    
+    
+    init(repository: ArticleRepository,
+         fetchStrategy: FetchStrategy,
+         pageOffset: Int,
+         pageSize: Int,
+         resultHandler: ReadCompletionBlock<[Article]>?) {
+        
+        self.repository = repository
+        self.fetchStrategy = fetchStrategy
+        self.pageOffset = pageOffset
+        self.pageSize = pageSize
+        self.resultHandler = resultHandler
+    }
+    
+    override func start() {
+
+        if isCancelled {
+            return
+        }
+        
+        if fetchStrategy == .serverOnly {
+            fetchArticlesFromRemote()
             
-            guard let self = self else {
-                return
-            }
+        } else {
             
-            if fetchStrategy == .serverOnly {
-                self._fetchArticlesFromRemote(pageOffset: pageOffset, pageSize: pageSize, completion: completion)
+            repository.localDataSource.fetchArticles(fromIndex: pageOffset, limit: pageSize) { [weak self] (result) in
                 
-            } else {
-     
-                self.localDataSource.fetchArticles(fromIndex: pageOffset, limit: pageSize) { [weak self] (result) in
-                    
-                    guard let self = self else {
-                        return
-                    }
-                    
-                    let articles = result ?? []
-                    
-                    if fetchStrategy == .cacheOnly ||
-                        (fetchStrategy == .cacheFirstElseServer && !articles.isEmpty) {
-                        completion?(.success(articles))
-                        return
-                    }
-                    
-                    if fetchStrategy == .cacheThenServer {
-                        completion?(.success(articles))
-                    }
-                    
-                    self._fetchArticlesFromRemote(pageOffset: pageOffset, pageSize: pageSize, completion: completion)
-                    
+                guard let self = self else {
+                    return
                 }
+                
+                let articles = result ?? []
+                
+                if self.fetchStrategy == .cacheOnly ||
+                    (self.fetchStrategy == .cacheFirstElseServer && !articles.isEmpty) {
+                    self.resultHandler?(.success(articles))
+                    return
+                }
+                
+                if self.fetchStrategy == .cacheThenServer {
+                    self.resultHandler?(.success(articles))
+                }
+                
+                self.fetchArticlesFromRemote()
             }
         }
     }
     
-    private func _fetchArticlesFromRemote(pageOffset: Int,
-                                  pageSize: Int,
-                                  completion: ReadCompletionBlock<[Article]>?) {
+    private func fetchArticlesFromRemote() {
         
-        remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: { [weak self] (result) in
+        networkTask = repository.remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: { [weak self] (result) in
             
             if let articles = try? result.get() {
-                self?.localDataSource.saveArticles(articles, completion: nil)
+                self?.repository.localDataSource.saveArticles(articles, completion: nil)
             }
             
-            completion?(result)
+            self?.resultHandler?(result)
         })
     }
+
+    override func cancel() {
+        super.cancel()
+        networkTask?.cancel()
+    }
+
 }
-
-
 
