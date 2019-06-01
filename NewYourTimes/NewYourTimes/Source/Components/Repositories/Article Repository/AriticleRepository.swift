@@ -95,9 +95,14 @@ private final class ArticleQueryOperation: Operation, Cancellable {
         self.resultHandler = resultHandler
     }
     
+    deinit {
+        print("Deinit")
+    }
+    
     override func start() {
 
         if isCancelled {
+            _isFinished = true
             return
         }
         
