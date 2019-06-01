@@ -10,7 +10,7 @@ import Foundation
 
 
 
-protocol Cancellable {
+protocol Cancellable: ClassOnly {
     
     func cancel()
 }

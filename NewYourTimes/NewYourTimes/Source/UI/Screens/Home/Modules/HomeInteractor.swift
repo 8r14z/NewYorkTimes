@@ -19,7 +19,7 @@ class HomeInteractor: HomeInteractorProtocol {
     private let pageSize = API.Default.pageSize
     private var pageOffset: Int = 0
     
-    private let mutex = DispatchSemaphore(value: 1)
+    weak private var currentRequest: Cancellable?
     
     func initialFetchArticles() {
         
@@ -28,7 +28,6 @@ class HomeInteractor: HomeInteractorProtocol {
                 return
             }
             
-            self.mutex.wait()
             self.fetch(with: 0, pageSize: self.pageSize, isInitialFetch: true)
         }
     }
@@ -40,14 +39,15 @@ class HomeInteractor: HomeInteractorProtocol {
                 return
             }
             
-            self.mutex.wait()
             self.fetch(with: self.pageOffset, pageSize: self.pageSize, isInitialFetch: false)
         }
     }
     
     private func fetch(with pageOffset: Int, pageSize: Int, isInitialFetch: Bool) {
 
-        repository.fetchArticles(pageOffset: pageOffset, pageSize: pageSize, fetchStrategy: .serverOnly) { [weak self] (result) in
+        currentRequest?.cancel()
+        
+        currentRequest = repository.fetchArticles(pageOffset: pageOffset, pageSize: pageSize, fetchStrategy: .serverOnly) { [weak self] (result) in
             
             guard let self = self else {
                 return
@@ -71,8 +71,6 @@ class HomeInteractor: HomeInteractorProtocol {
                     self.presenter?.didFetchError(error)
                 }
             }
-            
-            self.mutex.signal()
         }
     }
 }
