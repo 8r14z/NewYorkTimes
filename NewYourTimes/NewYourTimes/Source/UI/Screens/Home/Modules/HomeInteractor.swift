@@ -65,10 +65,22 @@ class HomeInteractor: HomeInteractorProtocol {
                 }
                 
             case .failure(let error):
-                if isInitialFetch {
-                    self.presenter?.didIntialFetchError(error)
+                
+                if let error = error as? NetworkError, error == .cancelled {
+                    
+                    if isInitialFetch {
+                        self.presenter?.didInitialFetchSuccess([])
+                    } else {
+                        self.presenter?.didFetchSuccess([])
+                    }
+                    
                 } else {
-                    self.presenter?.didFetchError(error)
+                    
+                    if isInitialFetch {
+                        self.presenter?.didIntialFetchError(error)
+                    } else {
+                        self.presenter?.didFetchError(error)
+                    }
                 }
             }
         }
