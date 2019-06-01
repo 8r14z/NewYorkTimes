@@ -69,7 +69,19 @@ private final class ArticleQueryOperation: Operation, Cancellable {
     let repository: ArticleRepository
     let resultHandler: ReadCompletionBlock<[Article]>?
     
+    private var _isFinished = false {
+        willSet {
+            willChangeValue(forKey: "isFinished")
+        }
+        didSet {
+            didChangeValue(forKey: "isFinished")
+        }
+    }
     
+    override var isFinished: Bool {
+        return _isFinished
+    }
+
     init(repository: ArticleRepository,
          fetchStrategy: FetchStrategy,
          pageOffset: Int,
@@ -126,6 +138,7 @@ private final class ArticleQueryOperation: Operation, Cancellable {
             }
             
             self?.resultHandler?(result)
+            self?._isFinished = true
         })
     }
 
@@ -133,6 +146,5 @@ private final class ArticleQueryOperation: Operation, Cancellable {
         super.cancel()
         networkTask?.cancel()
     }
-
 }
 
