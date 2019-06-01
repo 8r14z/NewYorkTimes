@@ -39,6 +39,7 @@ enum HTTPMethod: String {
 enum NetworkError: Error {
     case noConnection
     case unexpected
+    case cancelled
 }
 
 enum FileError: Error {

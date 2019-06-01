@@ -54,7 +54,11 @@ class ServiceProvider: ServiceProviding {
         let task = urlSession.dataTask(with: url) { (data, response, error) in
             
             if let error = error {
-                completion?(.failure(error))
+                if (error as NSError).code == NSURLErrorCancelled {
+                    completion?(.failure(NetworkError.cancelled))
+                } else {
+                    completion?(.failure(error))
+                }
                 return
             }
             
