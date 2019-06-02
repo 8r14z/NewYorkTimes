@@ -19,7 +19,7 @@ class HomeInteractor: HomeInteractorProtocol {
     private let pageSize = API.Default.pageSize
     private var pageOffset: Int = 0
     
-    weak private var currentRequest: Cancellable?
+    private weak var currentRequest: Cancellable?
     
     func initialFetchArticles() {
         
