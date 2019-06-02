@@ -14,13 +14,14 @@ protocol ArticleLocalDataSourceProtocol {
     
     func fetchArticles(fromIndex index: Int, limit : Int, completion: (([Article]?) -> Void)?)
     func saveArticles(_ articles: [Article], completion: WriteCompletionBlock?)
+    func removeAllArticles(completion: WriteCompletionBlock?)
 }
 
 
 
 class ArticleLocalDataSource: ArticleLocalDataSourceProtocol {
     
-    private var cachedArticles = [Article]()
+    private(set) var cachedArticles = [Article]()
     private var dataAccessMutex = DispatchSemaphore(value: 1)
 
     func fetchArticles(fromIndex index: Int, limit : Int, completion: (([Article]?) -> Void)?) {
@@ -53,12 +54,34 @@ class ArticleLocalDataSource: ArticleLocalDataSourceProtocol {
         
         DispatchQueue.global().async { [weak self] in
             
-            self?.dataAccessMutex.wait()
-            defer {
-                self?.dataAccessMutex.signal()
+            guard let self = self else {
+                return
             }
             
-            self?.cachedArticles.append(contentsOf: articles)
+            self.dataAccessMutex.wait()
+            defer {
+                self.dataAccessMutex.signal()
+            }
+            
+            self.cachedArticles.append(contentsOf: articles)
+            completion?(true)
+        }
+    }
+    
+    func removeAllArticles(completion: WriteCompletionBlock?) {
+        
+        DispatchQueue.global().async { [weak self] in
+            
+            guard let self = self else {
+                return
+            }
+            
+            self.dataAccessMutex.wait()
+            defer {
+                self.dataAccessMutex.signal()
+            }
+            
+            self.cachedArticles.removeAll()
             completion?(true)
         }
     }

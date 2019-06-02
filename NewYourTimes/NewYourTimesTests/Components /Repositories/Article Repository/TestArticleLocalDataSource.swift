@@ -31,6 +31,7 @@ class TestArticleLocalDataSource: XCTestCase {
         localDataSource.saveArticles([article]) { (success) in
             
             XCTAssertTrue(success)
+            XCTAssertFalse(localDataSource.cachedArticles.isEmpty)
             
             promise.fulfill()
         }
@@ -79,6 +80,37 @@ class TestArticleLocalDataSource: XCTestCase {
                 
                 promise.fulfill()
             })
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testSaveAndRemoveAll() {
+        
+        let localDataSource = ArticleLocalDataSource()
+        
+        let article = Article(title: "Title",
+                              snippet: "Snippet",
+                              updatedDate: Date(),
+                              publishedDate: Date(),
+                              images: nil,
+                              author: "Author",
+                              publisher: "Publisher")
+        
+        let promise = expectation(description: "")
+        
+        localDataSource.saveArticles([article]) { (success) in
+            
+            XCTAssertTrue(success)
+            XCTAssertFalse(localDataSource.cachedArticles.isEmpty)
+            
+            localDataSource.removeAllArticles { (success) in
+                
+                XCTAssertTrue(success)
+                XCTAssertTrue(localDataSource.cachedArticles.isEmpty)
+                
+                promise.fulfill()
+            }
         }
         
         waitForExpectations(timeout: 5, handler: nil)

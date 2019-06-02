@@ -139,12 +139,31 @@ private final class ArticleQueryOperation: Operation, Cancellable {
         
         networkTask = repository.remoteDataSource.fetchArticles(forPageOffset: pageOffset, pageSize: pageSize, completion: { [weak self] (result) in
             
-            if let articles = try? result.get() {
-                self?.repository.localDataSource.saveArticles(articles, completion: nil)
+            guard let self = self else {
+                return
             }
             
-            self?.resultHandler?(result)
-            self?._isFinished = true
+            let completionHandler = { [weak self] in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                if let articles = try? result.get() {
+                    self.repository.localDataSource.saveArticles(articles, completion: nil)
+                }
+                
+                self.resultHandler?(result)
+                self._isFinished = true
+            }
+            
+            if self.pageOffset == 0 {
+                self.repository.localDataSource.removeAllArticles{ (_) in
+                    completionHandler()
+                }
+            } else {
+                completionHandler()
+            }
         })
     }
 

@@ -37,5 +37,8 @@ class MockArticleLocalDataSource: ArticleLocalDataSourceProtocol {
         completion?(true)
     }
     
-    
+    func removeAllArticles(completion: WriteCompletionBlock?) {
+        article = nil
+        completion?(true)
+    }
 }
