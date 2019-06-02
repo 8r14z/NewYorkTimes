@@ -103,6 +103,7 @@ private final class ArticleQueryOperation: Operation, Cancellable {
 
         if isCancelled {
             _isFinished = true
+            self.resultHandler?(.failure(NetworkError.cancelled))
             return
         }
         
